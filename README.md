@@ -6,7 +6,7 @@ Take note of GUI Auto Test stuffs
 [GUI Test Tools](#gui-test-tools)  
 [GUI Mobile Test Tools](#gui-mobile-test-tools)  
 
-
+[Auto Test Tool Library](#auto-test-tool-library)
 
 
 # Auto Test Tools  
@@ -37,6 +37,19 @@ Take note of GUI Auto Test stuffs
 
 ### MagicPod
 ### Calabash
+
+
+# Auto Test Tool Library  
+[テスト自動化関連ツール・ライブラリまとめ  Oct 25, 2019](https://qiita.com/YoshikiIto/items/2b3ab5ff84610d0f74bd)  
+
+## モバイル向けテスト自動化ツール・ライブラリ  
+### Android / iOS  
+[Appium](http://appium.io/)  
+[Appium Studio](https://experitest.com/mobile-test-automation/appium-studio/)  
+[coteafs-appium](https://github.com/WasiqB/coteafs-appium)  
+
+### iOS  
+### Android  
 
 # Troubleshooting
 
