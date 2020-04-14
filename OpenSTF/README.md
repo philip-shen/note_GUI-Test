@@ -2,10 +2,10 @@
 Take note of OpenSTF (Smartphone Test Farm) Test stuffs  
 
 # Table of Contents  
-[]()  
+[OpenSTF (Smartphone Test Farm) on Windows Subsystem for Linux](#openstf-(smartphone-test-farm)-on-windows-subsystem-for-linux)  
 []()  
 
-# 
+# OpenSTF (Smartphone Test Farm) on Windows Subsystem for Linux  
 [Windows Subsystem for Linux で OpenSTF (Smartphone Test Farm) を動かす Jul 11, 2019](https://qiita.com/PikachuPunch/items/1c0c469df8aa8f4339dc)  
 ## 試した環境  
 [試した環境](https://qiita.com/PikachuPunch/items/1c0c469df8aa8f4339dc#%E8%A9%A6%E3%81%97%E3%81%9F%E7%92%B0%E5%A2%83)  
@@ -103,6 +103,16 @@ $ stf local --allow-remote
 
 ![alt tag](https://i.imgur.com/mrC3F1f.jpg)   
 
+```
+$ export RETHINKDB_PORT_28015_TCP='tcp://192.168.1.217:28015'
+$ stf local --allow-remote --public-ip xx.xx.xx.xx
+```
+![alt tag](https://i.imgur.com/EPT9gfW.jpg)  
+
+## STF 上で端末を操作する  
+### 端末が認識されない場合  
+[端末が認識されない場合](https://qiita.com/PikachuPunch/items/1c0c469df8aa8f4339dc#%E7%AB%AF%E6%9C%AB%E3%81%8C%E8%AA%8D%E8%AD%98%E3%81%95%E3%82%8C%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88)  
+[[Android] デバッグモードで接続した端末がadb devicesで認識されない場合の対処法 2018.08.15](https://webbibouroku.com/Blog/Article/adb-interface-driver-update)  
 
 
 ## Unable to connect to 127.0.0.1:28015 
@@ -163,6 +173,19 @@ but it seems that stf doesn't connect successfully. Have you ever try this featu
 2. You are using wrong command. Instead of stf local 10.1.X.X 10.1.X.X you need to run stf local --public-ip <IP_ADDRESS_OF_CURRENT_MACHINE>. After this, from another machine(should be in same network) access http://IP_ADDRESS_OF_MACHINE_WHERE_STF_IS_RUNNING:7100
 ```
 
+[OpenSTF を Mac に入れたら 簡単にAndroid端末をリモート操作できた話 Aug 03, 2019](https://qiita.com/enuesutea/items/bbf2e88fa79f44aee2e0)  
+[インストールしたアプリを消さない設定で OpenSTF を実行](https://qiita.com/enuesutea/items/bbf2e88fa79f44aee2e0#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%9F%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E6%B6%88%E3%81%95%E3%81%AA%E3%81%84%E8%A8%AD%E5%AE%9A%E3%81%A7-openstf-%E3%82%92%E5%AE%9F%E8%A1%8C)
+```
+# 以下のIPアドレスは例で、実際はインストールしたMacのIPアドレスを指定
+$ stf local --no-cleanup --public-ip 192.168.1.10
+```
+[スクリーンキャプチャの画質を落として転送量を減らす](https://qiita.com/enuesutea/items/bbf2e88fa79f44aee2e0#%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3%E3%81%AE%E7%94%BB%E8%B3%AA%E3%82%92%E8%90%BD%E3%81%A8%E3%81%97%E3%81%A6%E8%BB%A2%E9%80%81%E9%87%8F%E3%82%92%E6%B8%9B%E3%82%89%E3%81%99)  
+```
+# 以下のように環境変数を設定してから、STF を起動する
+$ export SCREEN_JPEG_QUALITY=30
+```
+
+ 
 [mac系统搭建手工测试openstf - CodeToSurvive的个人博客 Nov 2, 2016](https://codetosurvive1.github.io/posts/mac-openstf-environment.html)  
 
 
@@ -272,7 +295,7 @@ stf local
 # Reference
 
 
-* []()
+* []() 
 ![alt tag]()  
 
 # h1 size
