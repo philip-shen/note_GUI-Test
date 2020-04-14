@@ -14,6 +14,8 @@ Take note of OpenSTF (Smartphone Test Farm) Test stuffs
  Linux には Ubuntu 18.04.2 LTS (Bionic Beaver) を使用
 ```
 ## Windows Subsystem for Linux (Ubuntu) の インストール  
+![alt tag]()  
+![alt tag]()  
 
 ## RethinkDB のインストール  
 
@@ -27,10 +29,13 @@ sudo apt-get update
 ```
 sudo apt-get -y install npm
 ```
+![alt tag](https://i.imgur.com/UoWGFAk.jpg)  
+
 
 ```
 sudo apt-get -y install git android-tools-adb python autoconf automake libtool build-essential ninja-build libzmq3-dev libprotobuf-dev graphicsmagick yasm stow
 ```
+![alt tag](https://i.imgur.com/LAVesDP.jpg)  
 
 ```
 #ZeroMQ
@@ -45,6 +50,10 @@ sudo make install
 cd /usr/local/stow
 sudo stow -vv zeromq-4.1.2
 ```
+![alt tag](https://i.imgur.com/sBTx0Gk.jpg)  
+![alt tag](https://i.imgur.com/zSGOGMN.jpg)  
+![alt tag](https://i.imgur.com/OoTzkSN.jpg)  
+![alt tag](https://i.imgur.com/JHBa3r7.jpg)  
 
 ```
 #Google protobuf 10分程度かかる
@@ -58,6 +67,9 @@ sudo make install
 cd /usr/local/stow
 sudo stow -vv protobuf-*
 ```
+![alt tag](https://i.imgur.com/X6c17yw.jpg)  
+![alt tag](https://i.imgur.com/KWC1BS7.jpg)  
+![alt tag](https://i.imgur.com/LuRJpiM.jpg)  
 
 ```
 #OpenSTF
@@ -68,6 +80,8 @@ git clone https://github.com/openstf/stf.git
 cd stf
 sudo npm install -g stf --unsafe-perm
 ```
+![alt tag](https://i.imgur.com/Bv0vI0U.jpg)  
+![alt tag](https://i.imgur.com/0dJyDab.jpg)  
 
 ## STF の実行  
 さきほど書いた手順で RethinkDB を起動しておきます。
@@ -84,6 +98,8 @@ stf local
 $ export RETHINKDB_PORT_28015_TCP='tcp://192.168.1.217:28015'
 $ stf local --allow-remote
 ```
+![alt tag](https://i.imgur.com/TJAC7jM.jpg)  
+![alt tag](https://i.imgur.com/doq0A1T.jpg)  
 
 ![alt tag](https://i.imgur.com/mrC3F1f.jpg)   
 
@@ -94,6 +110,7 @@ $ stf local --allow-remote
 ```
 You probably don’t have rethinkdb running. Read the README.
 ```
+![alt tag](https://i.imgur.com/Hmz1yRz.jpg)
 
 ## How to connect remote rethinkdb ?  
 [How to connect remote rethinkdb ? Oct 14, 2015](https://github.com/openstf/stf/issues/122)  
@@ -236,6 +253,18 @@ stf local
 
 [OSSなリモートスマホサービス（STF）が素敵すぎる Jan 30, 2017](https://qiita.com/tabbyz/items/5f6cec37e1d525a8e4d5)  
 
+[OpenSTFとkintoneでモバイル端末を管理する話  2018-12-20](https://blog.cybozu.io/entry/2018/12/20/110000)  
+```
+こんにちは。品質保証部の園です。 
+モバイル端末、何台持っていますか? 管理面倒ですよね!!
+積年の問題を解決すべく、OpenSTFとkintoneを組み合わせて、
+検証用のモバイル端末数十機を管理する仕組みを作りました。
+はまりどころ含めてご紹介します。
+```
+
+[OpenSTFでAndroidのCIを2倍早くする  2016-08-15](https://techlife.cookpad.com/entry/2016/08/15/200000)  
+
+[Android App 自動化測試：OPEN-STF環境搭建 2017-10-24](https://kknews.cc/digital/65xqxlp.html)  
 
 # Troubleshooting
 
