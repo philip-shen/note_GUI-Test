@@ -2,7 +2,7 @@
 Take note of OpenSTF (Smartphone Test Farm) Test stuffs  
 
 # Table of Contents  
-[OpenSTF (Smartphone Test Farm) on Windows Subsystem for Linux](#openstf-(smartphone-test-farm)-on-windows-subsystem-for-linux)  
+[OpenSTF (Smartphone Test Farm) on Windows Subsystem for Linux](#openstf-smartphone-test-farm-on-windows-subsystem-for-linux)  
 []()  
 
 # OpenSTF (Smartphone Test Farm) on Windows Subsystem for Linux  
