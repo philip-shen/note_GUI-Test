@@ -114,6 +114,19 @@ $ stf local --allow-remote --public-ip xx.xx.xx.xx
 [端末が認識されない場合](https://qiita.com/PikachuPunch/items/1c0c469df8aa8f4339dc#%E7%AB%AF%E6%9C%AB%E3%81%8C%E8%AA%8D%E8%AD%98%E3%81%95%E3%82%8C%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88)  
 [[Android] デバッグモードで接続した端末がadb devicesで認識されない場合の対処法 2018.08.15](https://webbibouroku.com/Blog/Article/adb-interface-driver-update)  
 
+### Smart Phone connection with NB  
+[[基礎教學]安裝ADB和Fastboot驅動，適用於所有Sony手機。Mar 13, 2016](https://www.mobile01.com/topicdetail.php?f=569&t=4736079)  
+
+```
+A.安裝Fastboot和ADB驅動，以及讓電腦正確判讀到手機內部空間。
+B.Fastboot解鎖與注意事項。
+```
+```
+A-2.上面做完後，去手機設定-->安全性，不明來源要打勾；然後一樣回到設定-->關於平板電腦,連續點擊最下面的版本號碼，直到通知你已經是開發人員，回到上一頁就會發現開發人員選項，右上角點開啟、OEM解鎖打勾，USB偵錯打勾，就像我下圖一模一樣這樣。(如果你沒有OEM解鎖打勾就忽略沒關係。)
+```
+![alt tag](https://i.imgur.com/2GiVbJk.jpg)  
+
+
 
 ## Unable to connect to 127.0.0.1:28015 
 [FTL Error No hosts left to try when run `stf local --public-ip xxxx` Nov 13, 2017](https://github.com/openstf/stf/issues/752)  
