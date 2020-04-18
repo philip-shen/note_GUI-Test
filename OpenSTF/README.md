@@ -10,12 +10,19 @@ Take note of OpenSTF (Smartphone Test Farm) Test stuffs
 ## 試した環境  
 [試した環境](https://qiita.com/PikachuPunch/items/1c0c469df8aa8f4339dc#%E8%A9%A6%E3%81%97%E3%81%9F%E7%92%B0%E5%A2%83)  
 ```
- Windows 10 Home 1903
- Linux には Ubuntu 18.04.2 LTS (Bionic Beaver) を使用
+Windows 10 Home 1903
+Linux には Ubuntu 18.04.2 LTS (Bionic Beaver) を使用
 ```
 ## Windows Subsystem for Linux (Ubuntu) の インストール  
 ![alt tag]()  
 ![alt tag]()  
+
+Or WSL2  
+```
+Microsoft Windows [Version 10.0.19608.1006]
+Linux には Ubuntu 18.04.2 LTS
+```
+[03. WSL2 Installation on Win 10](https://github.com/philip-shen/note_Linux/tree/master/WSL(WindowsSubsystemLinux))  
 
 ## RethinkDB のインストール  
 
