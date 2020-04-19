@@ -17,6 +17,8 @@
 [2.9. How to connect remote rethinkdb ?](#29-how-to-connect-remote-rethinkdb-)     
 [2.10. How do I connect to my local STF from another computer](#210-how-do-i-connect-to-my-local-stf-from-another-computer)    
 [2.11. Ubuntu 16.04 環境構築](#211-ubuntu-1604-環境構築)     
+[Error During Installation Ubuntu Failed at the jpeg-turbo@0.4.0](#error-during-installation-ubuntu-failed-at-the-jpeg-turbo@040)  
+
 [2.12. Chromeを入れる](#212-chromeを入れる)     
 [2.13. 起動](#213-起動)  
 
@@ -455,6 +457,7 @@ cd stf
 sudo npm install -g stf --unsafe-perm
 ```
 
+### Error During Installation Ubuntu Failed at the jpeg-turbo@0.4.0  
 [Error During installation ubuntu Failed at the jpeg-turbo@0.4.0#1066 Jun 24, 2019](https://github.com/openstf/stf/issues/1066)  
 ```
 Refer to: #950 , #1015
