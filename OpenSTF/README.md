@@ -376,10 +376,9 @@ $ export SCREEN_JPEG_QUALITY=30
 
 
 *Error Msg*
-![alt tag](https://i.imgur.com/bpIivbL.jpg)  
+![alt tag](https://i.imgur.com/P6oMzlv.jpg)  
 [n now works on windows 10 (using windows subsystem for Jun 11, 2018](https://github.com/tj/n/issues/511)  
 [cant run react server on Windows Subsystem for Linux (ubuntu) Nov 3, 2019](https://stackoverflow.com/questions/58681101/cant-run-react-server-on-windows-subsystem-for-linux-ubuntu)  
-[]()  
 
 
 [Ubuntu 16.04にOpenSTF環境構築 Sep 29, 2017](https://qiita.com/tanaka512/items/4792931fe08b08441dc7)  
