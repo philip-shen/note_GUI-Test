@@ -5,15 +5,17 @@ Take note of OpenSTF (Smartphone Test Farm) Test stuffs
 [OpenSTF (Smartphone Test Farm) on Windows Subsystem for Linux](#openstf-smartphone-test-farm-on-windows-subsystem-for-linux)  
 []()  
 
+<!-- TOC -->autoauto- [Purpose](#purpose)auto- [Table of Contents](#table-of-contents)auto- [OpenSTF (Smartphone Test Farm) on Windows Subsystem for Linux](#openstf-smartphone-test-farm-on-windows-subsystem-for-linux)auto    - [1. Environment](#1-environment)auto    - [2. Windows Subsystem for Linux (Ubuntu) Installation](#2-windows-subsystem-for-linux-ubuntu-installation)auto    - [3. RethinkDB Installation](#3-rethinkdb-installation)auto    - [4. STF Related Application and STF stuffs Installation](#4-stf-related-application-and-stf-stuffs-installation)auto    - [5. STF Execution](#5-stf-execution)auto    - [6. Hand On STF](#6-hand-on-stf)auto    - [7. Mobile Devices Operation on STF](#7-mobile-devices-operation-on-stf)auto        - [01. Mobile Devices could not Recongnized](#01-mobile-devices-could-not-recongnized)auto        - [02. Sony Smart Phone connection with NB](#02-sony-smart-phone-connection-with-nb)auto        - [03. HTC Smart Phone connection with NB](#03-htc-smart-phone-connection-with-nb)auto            - [Procedures](#procedures)auto    - [Unable to connect to 127.0.0.1:28015](#unable-to-connect-to-12700128015)auto    - [How to connect remote rethinkdb ?](#how-to-connect-remote-rethinkdb-)auto    - [How do I connect to my local STF from another computer](#how-do-i-connect-to-my-local-stf-from-another-computer)auto    - [環境構築](#環境構築)auto    - [Chromeを入れる](#chromeを入れる)auto    - [起動](#起動)auto- [Troubleshooting](#troubleshooting)auto- [Reference](#reference)auto- [h1 size](#h1-size)auto    - [h2 size](#h2-size)auto        - [h3 size](#h3-size)auto            - [h4 size](#h4-size)auto                - [h5 size](#h5-size)autoauto<!-- /TOC -->
+
 # OpenSTF (Smartphone Test Farm) on Windows Subsystem for Linux  
 [Windows Subsystem for Linux で OpenSTF (Smartphone Test Farm) を動かす Jul 11, 2019](https://qiita.com/PikachuPunch/items/1c0c469df8aa8f4339dc)  
-## 試した環境  
+## 1. Environment    
 [試した環境](https://qiita.com/PikachuPunch/items/1c0c469df8aa8f4339dc#%E8%A9%A6%E3%81%97%E3%81%9F%E7%92%B0%E5%A2%83)  
 ```
 Windows 10 Home 1903
 Linux には Ubuntu 18.04.2 LTS (Bionic Beaver) を使用
 ```
-## Windows Subsystem for Linux (Ubuntu) の インストール  
+## 2. Windows Subsystem for Linux (Ubuntu) Installation    
 ![alt tag]()  
 ![alt tag]()  
 
@@ -24,11 +26,11 @@ Linux には Ubuntu 18.04.2 LTS
 ```
 [03. WSL2 Installation on Win 10](https://github.com/philip-shen/note_Linux/tree/master/WSL(WindowsSubsystemLinux))  
 
-## RethinkDB のインストール  
+## 3. RethinkDB Installation    
 
 ![alt tag](https://i.imgur.com/AxDq6jM.jpg)  
 
-## STF に必要な他のアプリと、STF 本体のインストールする  
+## 4. STF Related Application and STF stuffs Installation    
 ```
 sudo apt-get update
 ```
@@ -90,7 +92,7 @@ sudo npm install -g stf --unsafe-perm
 ![alt tag](https://i.imgur.com/Bv0vI0U.jpg)  
 ![alt tag](https://i.imgur.com/0dJyDab.jpg)  
 
-## STF の実行  
+## 5. STF Execution    
 さきほど書いた手順で RethinkDB を起動しておきます。
 起動しておかないと STF が正しく起動しません。  
 
@@ -100,7 +102,7 @@ RethinkDB を起動した状態で Ubuntu上 で stf local を実行します。
 stf local
 ```
 
-## Hand On STF  
+## 6. Hand On STF  
 ```
 $ export RETHINKDB_PORT_28015_TCP='tcp://192.168.1.217:28015'
 $ stf local --allow-remote
@@ -116,12 +118,12 @@ $ stf local --allow-remote --public-ip xx.xx.xx.xx
 ```
 ![alt tag](https://i.imgur.com/EPT9gfW.jpg)  
 
-## STF 上で端末を操作する  
-### 端末が認識されない場合  
+## 7. Mobile Devices Operation on STF   
+### 01. Mobile Devices could not Recongnized  
 [端末が認識されない場合](https://qiita.com/PikachuPunch/items/1c0c469df8aa8f4339dc#%E7%AB%AF%E6%9C%AB%E3%81%8C%E8%AA%8D%E8%AD%98%E3%81%95%E3%82%8C%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88)  
 [[Android] デバッグモードで接続した端末がadb devicesで認識されない場合の対処法 2018.08.15](https://webbibouroku.com/Blog/Article/adb-interface-driver-update)  
 
-### Smart Phone connection with NB  
+### 02. Sony Smart Phone connection with NB  
 [[基礎教學]安裝ADB和Fastboot驅動，適用於所有Sony手機。Mar 13, 2016](https://www.mobile01.com/topicdetail.php?f=569&t=4736079)  
 
 ```
@@ -133,6 +135,87 @@ A-2.上面做完後，去手機設定-->安全性，不明來源要打勾；然�
 ```
 ![alt tag](https://i.imgur.com/2GiVbJk.jpg)  
 
+### 03. HTC Smart Phone connection with NB  
+[利用ADB讓Android7.0雙視窗可浮動(無須Root) - HTC論壇 Dec 23, 2017](https://community.htc.com/tw/chat.php?mod=viewthread&tid=85008)  
+```
+使用手機：hTC 10
+電腦系統：Win 10
+```
+#### Procedures    
+```
+1.設定 >> 開發人員選項 >> USB 偵錯>> 打勾
+* 如何開啟開發人員選項？設定 >> 關於  >> 軟體資訊 >> 更多 >> 建置號碼(點5下即可開啟)
+```
+
+```
+
+2.下載ADB工具 >> 右鍵解壓縮 >> 
+在ADB工具資料夾裡的空白處Shift+右鍵 >> 在此處開啟命令視窗(Win10: PowerShell)
+
+* 下載連結：連結為Google雲端硬碟 下載點
+* 確認手機有連接到電腦可在命令視窗中輸入 adb devices 後按Enter，下方文字為已正確連接
+```
+![alt tag](https://i.imgur.com/zN3cm5T.jpg)  
+
+```
+3.輸入 adb shell settings put global enable_freeform_support 1
+```
+
+```
+4.手機會跳出視窗請點同意/允許，確認已正確輸入，如未跳出可直接重新開機(有跳出也請重開)
+```
+
+[Android studio如何連接HTC Desire 12手機debug - 程式分享 Aug 26, 2019](http://phappy1122.blogspot.com/2019/08/android-studiohtc-desire-12debug.html)  
+```
+(a)
+點選系統 > 關於手機。
+點選關於手機。
+點選"版本號碼七次以上"，直到出現您現在已經是開發人員的訊息。
+```
+
+```
+(b)
+若自己寫的程式若放入Htc時無法安裝原因有三:
+  (1)設定/安全性/不明的來源(設為允許)
+  (2)設定/google/安全性/google play安全防護(點選)/按右上角的齒輪，關閉掃描裝置中的安全
+                                                                                                                                                        威脅 
+  (3)關閉藍光濾波器(點選最上menu，即可看到，若無就表沒有)
+```
+
+```
+(c)
+HTC與android連結，首先須adb連結，先將手機用usb線與電腦連線，此時會在"控制台/裝置管理員"，
+內會出現adb?的圖示，此時需安裝adb驅動程式，安裝方式如下網頁
+
+http://adbdriver.com/documentation/how-to-install-adb-driver-on-windows-8-10-x64.html
+https://www.laird.tw/2017/03/usb-adb-interface-driver-error.html
+
+安裝完後開啟 View->Tool Windows->Device File Explorer 即可看到Htc裝置，若有顯示權限要求，請將手機的"開發者選項/USB debug"重新開關即可。
+如此在執行run時，即會看到htc裝置，此時已可以使用android studio進行debug trace。
+```
+
+
+[如何在電腦上使用ADB指令操作Android手機 ... - 阿旺師磨書坊 Dec 16, 2018 Updated](http://wangwangtc.blogspot.com/2015/03/adbandroid.html)  
+
+[【新手看了也會】hTC 官方解鎖輕鬆搞定@ 耶魯熊の軟硬兼施 Aug 26, 2019](https://lbear.pixnet.net/blog/post/58440430)  
+[[Android] debug不用線，用ADB連接3G/wifi手機@ 清新下午茶 May 12, 2019](https://j796160836.pixnet.net/blog/post/29108155)  
+```
+4.  按Win key + R，在執行的視窗中打入 cmd
+打入指令 (綠色的為指令，黑色的部分為說明)
+C:\
+cd C:\Program Files\Android\android-sdk\platform-tools
+意思是切換資料夾到剛剛找的路徑
+adb tcpip 5555 
+意思是用tcpip連線，連接埠號5555做Debug伺服器
+```
+
+```
+5.  然後就可以脫離USB連線了
+在同一個地方再打入像是
+adb connect 192.168.1.3:5555 
+中間換成你手機的IP位址
+意思是讓電腦使用網路連線到你的手機
+```
 
 
 ## Unable to connect to 127.0.0.1:28015 
