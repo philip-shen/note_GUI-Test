@@ -27,23 +27,21 @@
         - [6.1.1.1. h4 size](#6111-h4-size)  
         - [6.1.1.1.1. h5 size](#61111-h5-size)  
 
+<!-- TOC -->autoauto- [1. Purpose](#1-purpose)auto- [2. OpenSTF (Smartphone Test Farm) on Windows Subsystem for Linux](#2-openstf-smartphone-test-farm-on-windows-subsystem-for-linux)auto    - [2.1. Environment](#21-environment)auto    - [2.2. Windows Subsystem for Linux (Ubuntu) Installation](#22-windows-subsystem-for-linux-ubuntu-installation)auto    - [2.3. RethinkDB Installation](#23-rethinkdb-installation)auto    - [2.4. STF Related Application and STF stuffs Installation](#24-stf-related-application-and-stf-stuffs-installation)auto    - [2.5. STF Execution](#25-stf-execution)auto    - [2.6. Hand On STF](#26-hand-on-stf)auto    - [2.7. Mobile Devices Operation on STF](#27-mobile-devices-operation-on-stf)auto        - [2.7.1. Mobile Devices could not Recongnized](#271-mobile-devices-could-not-recongnized)auto        - [2.7.2. Sony Smart Phone connection with NB](#272-sony-smart-phone-connection-with-nb)auto        - [2.7.3. HTC Smart Phone connection with NB](#273-htc-smart-phone-connection-with-nb)auto            - [2.7.3.1. Procedures](#2731-procedures)auto    - [2.8. Unable to connect to 127.0.0.1:28015](#28-unable-to-connect-to-12700128015)auto    - [2.9. How to connect remote rethinkdb ?](#29-how-to-connect-remote-rethinkdb-)auto    - [2.10. How do I connect to my local STF from another computer](#210-how-do-i-connect-to-my-local-stf-from-another-computer)auto    - [2.11. 環境構築](#211-環境構築)auto    - [2.12. Chromeを入れる](#212-chromeを入れる)auto    - [2.13. 起動](#213-起動)auto- [3. Troubleshooting](#3-troubleshooting)auto- [4. Reference](#4-reference)auto- [5. h1 size](#5-h1-size)auto    - [5.1. h2 size](#51-h2-size)auto        - [5.1.1. h3 size](#511-h3-size)auto            - [5.1.1.1. h4 size](#5111-h4-size)auto                - [5.1.1.1.1. h5 size](#51111-h5-size)autoauto<!-- /TOC -->
+
 # 1. Purpose
 Take note of OpenSTF (Smartphone Test Farm) Test stuffs  
 
-# 2. Table of Contents  
-[OpenSTF (Smartphone Test Farm) on Windows Subsystem for Linux](#openstf-smartphone-test-farm-on-windows-subsystem-for-linux)  
-[]()  
 
-
-# 3. OpenSTF (Smartphone Test Farm) on Windows Subsystem for Linux  
+# 2. OpenSTF (Smartphone Test Farm) on Windows Subsystem for Linux  
 [Windows Subsystem for Linux で OpenSTF (Smartphone Test Farm) を動かす Jul 11, 2019](https://qiita.com/PikachuPunch/items/1c0c469df8aa8f4339dc)  
-## 3.1. Environment    
+## 2.1. Environment    
 [試した環境](https://qiita.com/PikachuPunch/items/1c0c469df8aa8f4339dc#%E8%A9%A6%E3%81%97%E3%81%9F%E7%92%B0%E5%A2%83)  
 ```
 Windows 10 Home 1903
 Linux には Ubuntu 18.04.2 LTS (Bionic Beaver) を使用
 ```
-## 3.2. Windows Subsystem for Linux (Ubuntu) Installation    
+## 2.2. Windows Subsystem for Linux (Ubuntu) Installation    
 ![alt tag]()  
 ![alt tag]()  
 
@@ -54,11 +52,11 @@ Linux には Ubuntu 18.04.2 LTS
 ```
 [03. WSL2 Installation on Win 10](https://github.com/philip-shen/note_Linux/tree/master/WSL(WindowsSubsystemLinux))  
 
-## 3.3. RethinkDB Installation    
+## 2.3. RethinkDB Installation    
 
 ![alt tag](https://i.imgur.com/AxDq6jM.jpg)  
 
-## 3.4. STF Related Application and STF stuffs Installation    
+## 2.4. STF Related Application and STF stuffs Installation    
 ```
 sudo apt-get update
 ```
@@ -120,7 +118,7 @@ sudo npm install -g stf --unsafe-perm
 ![alt tag](https://i.imgur.com/Bv0vI0U.jpg)  
 ![alt tag](https://i.imgur.com/0dJyDab.jpg)  
 
-## 3.5. STF Execution    
+## 2.5. STF Execution    
 さきほど書いた手順で RethinkDB を起動しておきます。
 起動しておかないと STF が正しく起動しません。  
 
@@ -130,7 +128,7 @@ RethinkDB を起動した状態で Ubuntu上 で stf local を実行します。
 stf local
 ```
 
-## 3.6. Hand On STF  
+## 2.6. Hand On STF  
 ```
 $ export RETHINKDB_PORT_28015_TCP='tcp://192.168.1.217:28015'
 $ stf local --allow-remote
@@ -146,12 +144,12 @@ $ stf local --allow-remote --public-ip xx.xx.xx.xx
 ```
 ![alt tag](https://i.imgur.com/EPT9gfW.jpg)  
 
-## 3.7. Mobile Devices Operation on STF   
-### 3.7.1. Mobile Devices could not Recongnized  
+## 2.7. Mobile Devices Operation on STF   
+### 2.7.1. Mobile Devices could not Recongnized  
 [端末が認識されない場合](https://qiita.com/PikachuPunch/items/1c0c469df8aa8f4339dc#%E7%AB%AF%E6%9C%AB%E3%81%8C%E8%AA%8D%E8%AD%98%E3%81%95%E3%82%8C%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88)  
 [[Android] デバッグモードで接続した端末がadb devicesで認識されない場合の対処法 2018.08.15](https://webbibouroku.com/Blog/Article/adb-interface-driver-update)  
 
-### 3.7.2. Sony Smart Phone connection with NB  
+### 2.7.2. Sony Smart Phone connection with NB  
 [[基礎教學]安裝ADB和Fastboot驅動，適用於所有Sony手機。Mar 13, 2016](https://www.mobile01.com/topicdetail.php?f=569&t=4736079)  
 
 ```
@@ -163,13 +161,13 @@ A-2.上面做完後，去手機設定-->安全性，不明來源要打勾；然�
 ```
 ![alt tag](https://i.imgur.com/2GiVbJk.jpg)  
 
-### 3.7.3. HTC Smart Phone connection with NB  
+### 2.7.3. HTC Smart Phone connection with NB  
 [利用ADB讓Android7.0雙視窗可浮動(無須Root) - HTC論壇 Dec 23, 2017](https://community.htc.com/tw/chat.php?mod=viewthread&tid=85008)  
 ```
 使用手機：hTC 10
 電腦系統：Win 10
 ```
-#### 3.7.3.1. Procedures    
+#### 2.7.3.1. Procedures    
 ```
 1.設定 >> 開發人員選項 >> USB 偵錯>> 打勾
 * 如何開啟開發人員選項？設定 >> 關於  >> 軟體資訊 >> 更多 >> 建置號碼(點5下即可開啟)
@@ -246,14 +244,14 @@ adb connect 192.168.1.3:5555
 ```
 
 
-## 3.8. Unable to connect to 127.0.0.1:28015 
+## 2.8. Unable to connect to 127.0.0.1:28015 
 [FTL Error No hosts left to try when run `stf local --public-ip xxxx` Nov 13, 2017](https://github.com/openstf/stf/issues/752)  
 ```
 You probably don’t have rethinkdb running. Read the README.
 ```
 ![alt tag](https://i.imgur.com/Hmz1yRz.jpg)
 
-## 3.9. How to connect remote rethinkdb ?  
+## 2.9. How to connect remote rethinkdb ?  
 [How to connect remote rethinkdb ? Oct 14, 2015](https://github.com/openstf/stf/issues/122)  
 ```
 With environment variables: https://github.com/openstf/stf/blob/master/lib/db/index.js#L16
@@ -296,7 +294,7 @@ but it seems that stf doesn't connect successfully. Have you ever try this featu
 ```
 
 
-## 3.10. How do I connect to my local STF from another computer  
+## 2.10. How do I connect to my local STF from another computer  
 [How do I connect to my local STF from another computer ](https://github.com/openstf/stf/issues/536)  
 ```
 1. Either rethinkdb is not running or your machine is not able to connect with rethinkdb. Check it first.
@@ -324,7 +322,7 @@ $ export SCREEN_JPEG_QUALITY=30
 
 
 [Ubuntu 16.04にOpenSTF環境構築 Sep 29, 2017](https://qiita.com/tanaka512/items/4792931fe08b08441dc7)  
-## 3.11. 環境構築  
+## 2.11. 環境構築  
 ```
 # rethinkdb
 source /etc/lsb-release && echo "deb http://download.rethinkdb.com/apt $DISTRIB_CODENAME main" | sudo tee /etc/apt/sources.list.d/rethinkdb.list
@@ -389,12 +387,12 @@ cd stf
 sudo npm install -g stf --unsafe-perm
 ```
 
-## 3.12. Chromeを入れる  
+## 2.12. Chromeを入れる  
 ```
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 ```
 
-## 3.13. 起動  
+## 2.13. 起動  
 ```
 #rethinkdb起動
 rethinkdb
@@ -420,24 +418,24 @@ stf local
 
 [Android App 自動化測試：OPEN-STF環境搭建 2017-10-24](https://kknews.cc/digital/65xqxlp.html)  
 
-# 4. Troubleshooting
+# 3. Troubleshooting
 
 
-# 5. Reference
+# 4. Reference
 
 
 * []() 
 ![alt tag]()  
 
-# 6. h1 size
+# 5. h1 size
 
-## 6.1. h2 size
+## 5.1. h2 size
 
-### 6.1.1. h3 size
+### 5.1.1. h3 size
 
-#### 6.1.1.1. h4 size
+#### 5.1.1.1. h4 size
 
-##### 6.1.1.1.1. h5 size
+##### 5.1.1.1.1. h5 size
 
 *strong*strong  
 **strong**strong  
