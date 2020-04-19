@@ -623,6 +623,33 @@ rethinkdb
 stf local
 ```
 
+## 2.14. Login  
+[STF credentials · Issue #811 · openstf/stf · GitHub Feb 21, 2018](https://github.com/openstf/stf/issues/811)  
+```
+It does not ask for a password. 
+It asks for your name and email address. You can enter anything you want.
+```
+![alt tag](https://i.imgur.com/ZpGt2Bt.jpg)  
+
+![alt tag](https://i.imgur.com/S39C7vp.jpg)  
+
+
+[openstf /setup-examples ](https://github.com/openstf/setup-examples)  
+```
+STF Setup Examples using Vagrant and Docker 
+
+Smartphone Test Farm is a great tool to create on-premise device farm. 
+And also, it is very easy to get started with it using it's stf local feature. 
+But the problem is, this feature was developed for development purpose. 
+Users are not supposed to use it in production. 
+It is okay to use it for a small farm of 10 ~ 15 devices with one host machine. 
+But to scale you will have to deploy it over a cluster instead.
+
+This project will provide various setup examples of STF in production environment. 
+I will be using Vagrant with VirtualBox provider to create virtual cluster for demonstration.
+```
+
+
 [OpenSTF+Dockerで社内Android端末管理システムをMac上に構築する Sep 04, 2018](https://qiita.com/KazaKago/items/26db0f68ba224eb094d3)  
 
 [OSSなリモートスマホサービス（STF）が素敵すぎる Jan 30, 2017](https://qiita.com/tabbyz/items/5f6cec37e1d525a8e4d5)  
