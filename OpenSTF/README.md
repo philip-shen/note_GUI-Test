@@ -11,7 +11,8 @@
 [2.7.1. Mobile Devices could not Recongnized](#271-mobile-devices-could-not-recongnized)         
 [2.7.2. Sony Smart Phone connection with NB](#272-sony-smart-phone-connection-with-nb)         
 [2.7.3. HTC Smart Phone connection with NB](#273-htc-smart-phone-connection-with-nb)           
-[2.7.3.1. Procedures](#2731-procedures)     
+[2.7.3.1. Procedures](#2731-procedures)    
+[2.7.3.2. adb Command List](#2732-adb-command-list)   
 [2.8. Unable to connect to 127.0.0.1:28015](#28-unable-to-connect-to-12700128015)     
 [2.9. How to connect remote rethinkdb ?](#29-how-to-connect-remote-rethinkdb-)     
 [2.10. How do I connect to my local STF from another computer](#210-how-do-i-connect-to-my-local-stf-from-another-computer)    
@@ -218,8 +219,63 @@ https://www.laird.tw/2017/03/usb-adb-interface-driver-error.html
 如此在執行run時，即會看到htc裝置，此時已可以使用android studio進行debug trace。
 ```
 
+#### 2.7.3.2. adb Command List    
 
 [如何在電腦上使用ADB指令操作Android手機 ... - 阿旺師磨書坊 Dec 16, 2018 Updated](http://wangwangtc.blogspot.com/2015/03/adbandroid.html)  
+```
+adb devices (顯示目前有多少個模擬器正在執行)
+adb devices -l  (顯示目前有多少個模擬器正在執行, 更詳細的資料)
+```
+```
+E:\adb>adb devices
+List of devices attached
+470f02f1 device
+
+
+E:\adb>adb devices -l
+List of devices attached
+470f02f1 device product:geefhd_open_tw model:LG_E988
+```
+
+```
+adb push  <local> <remote>          - 複製電腦端檔案/資料夾到 SD 卡
+adb push J:\software\software\android\download\apk\line.apk  /storage/external_SD/apk
+
+adb push i:\software\software\android\download\apk\gps_map\naviking\NaviKingMap201505\NaviKingMap  /storage/external_SD/Android/data/com.kingwaytek/files/NaviKingMap
+
+adb pull  <remote> [<local>]        - 從SD 卡複製檔案/資料夾到 電腦端
+adb pull /sdcard/cwm_6.0.4.7.recovery.img  .\cwm_6.0.4.7.recovery.img
+
+adb reboot (手機重新開機)
+adb reboot recovery (手機重新開機，進入recovery 模式)
+adb reboot fastboot   (手機重新開機，進入fastboot 模式)
+
+
+adb shell (進入 Android 系統指令列模式)
+
+常用的shell 指令(跟 linux相同)
+
+dmesg  - 查看 Android Linux Kernel 運作訊息
+ ls - 顯示檔案目錄
+ cd - 進入目錄
+rm - 刪除檔案
+ mv - 移動檔案
+mkdir - 產生目錄
+ rmdir - 刪除目錄
+su - 使用 root權限
+pwd - 顯示目前路徑名稱
+dd - 複製與轉換檔案  copy and convert a file
+        if : input file  (輸入檔案)    of :  output file (輸出檔案)
+dd if=/sdcard/cwm6.0.4.7.recovery.img of=/dev/block/platform/msm_sdcc.1/by-name/recovery
+```
+```
+E:\adb>adb shell shell@geefhd:/ $ su
+root@geefhd:/ # pwd
+root@geefhd:/ # cd data 
+root@geefhd:/data #
+```
+
+
 
 [【新手看了也會】hTC 官方解鎖輕鬆搞定@ 耶魯熊の軟硬兼施 Aug 26, 2019](https://lbear.pixnet.net/blog/post/58440430)  
 [[Android] debug不用線，用ADB連接3G/wifi手機@ 清新下午茶 May 12, 2019](https://j796160836.pixnet.net/blog/post/29108155)  
