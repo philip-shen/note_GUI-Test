@@ -456,6 +456,160 @@ cd stf
 sudo npm install -g stf --unsafe-perm
 ```
 
+[Error During installation ubuntu Failed at the jpeg-turbo@0.4.0#1066 Jun 24, 2019](https://github.com/openstf/stf/issues/1066)  
+```
+Refer to: #950 , #1015
+Use nvm to install node 8.x, 
+and npm install -g stf without sudo, everything goes well.
+Node 10.x seems to be not compatible yet.
+```
+[ nvm-sh /nvm](https://github.com/nvm-sh/nvm#git-install)
+[nodejs 10.+ version cannot npm install stf successfull #1015](https://github.com/openstf/stf/issues/1015)
+[npm install -g stf gives errors #950](https://github.com/openstf/stf/issues/950)  
+```
+Don’t use sudo. Use nvm instead and you won’t need it.
+
+Also, use node 8.x for now.
+```
+[nvmを使ったNode.jsのバージョン管理 Jan 22, 2020](https://qiita.com/kei10/items/688229d5266ed613e157)  
+1. nvm をインストール  
+```
+$ git clone https://github.com/nvm-sh/nvm.git .nvm
+```
+2. nvm を使えるようにする  
+```
+$ source ~/.nvm/nvm.sh
+```
+
+```
+$ nvm --version
+```
+3. ~/.bashrcに追加  
+```
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+```
+
+```
+source .bashrc
+```
+
+3. Node.jsをインストール  
+```
+$ nvm ls-remote
+```
+```
+$ nvm install <version>
+```
+```
+$ node -v
+$ npm -v
+```
+![alt tag](https://i.imgur.com/akRvlcM.jpg)   
+![alt tag](https://i.imgur.com/7IkEUtQ.jpg)   
+![alt tag](https://i.imgur.com/NknXBTB.jpg)   
+
+![alt tag](https://i.imgur.com/xW7qZDE.jpg)  
+![alt tag](https://i.imgur.com/WNaNWbj.jpg)  
+
+
+[nvm(Node Version Manager)を使ってNode.jsをインストールする手順 Dec 22, 2017](https://qiita.com/ffggss/items/94f1c4c5d311db2ec71a)  
+[nvm-windows 導入 Oct 11, 2018](https://qiita.com/rapando/items/6e9d891789b9a652c318)  
+```
+１．適当なフォルダに解凍する
+D:\tools\nvm-noinstall
+
+２．環境変数を設定する
+NVM_HOME
+D:\tools\nvm-noinstall
+
+NVM_SYMLINK
+D:\tools\nodejs
+
+PATHに追加する
+;%NVM_HOME%;%NVM_SYMLINK%
+
+３．settings.txtを設置する
+D:\tools\nvm-noinstall
+settings.txt
+
+settings.txtの中身
+root: D:\tools\nvm-noinstall
+path: D:\tools\nvm_nodejs
+arch: 64
+proxy: none
+
+example
+https://github.com/coreybutler/nvm-windows/blob/master/examples/settings.txt
+
+４．コマンドプロンプトを起動して nvm が動くか確認
+C:\Users\uchi>nvm
+Running version 1.1.7.
+Usage:
+以下省略。。。。
+
+５．nodeをインストール
+コマンドプロンプトより
+C:\Users\uchi>nvm install latest
+Downloading node.js version 10.11.0 (64-bit)...
+Complete
+Creating D:\tools\nvm-noinstall\temp
+Downloading npm version 6.4.1... Complete
+Installing npm v6.4.1...
+Installation complete. If you want to use this version, type
+nvm use 10.11.0
+
+６．使用するnode.jsのバージョンを設定する。
+この時点では10.11.0しかないため10.11.0を指定する
+C:\Users\uchi>nvm use 10.11.0
+Now using node v10.11.0 (64-bit)
+※nvm入れる前にnode.jsをインストールしている場合は
+　先にアンインストールする。
+　もしくは％PATH%からC:\Program Files\nodejsを削除する
+
+７．nodeのバージョンを確認する
+C:\Users\uchi>node -v
+v10.11.0
+
+８．現在nvmで管理しているnodeのリストを確認する。
+C:\Users\uchi>nvm list
+10.11.0
+
+９．node.jsの別バージョンをインストールする
+C:\Users\uchi>nvm install 8.12.0
+Downloading node.js version 8.12.0 (64-bit)...
+Complete
+Creating D:\tools\nvm-noinstall\temp
+Downloading npm version 6.4.1... Complete
+Installing npm v6.4.1...
+Installation complete. If you want to use this version, type
+nvm use 8.12.0
+
+１０．node.jsのバージョンを切り替える
+念のためnode.jsのリストを確認
+C:\Users\uchi>nvm list
+* 10.11.0 (Currently using 64-bit executable)
+8.12.0
+バージョンを切り替える
+C:\Users\uchi>nvm use 8.12.0
+Now using node v8.12.0 (64-bit)
+
+C:\Users\uchi>nvm list
+10.11.0
+* 8.12.0 (Currently using 64-bit executable)
+
+C:\Users\uchi>node -v
+v8.12.0
+
+以上。
+```
+[nvm + Node.js + npmのインストール Nov 19, 2016](https://qiita.com/sansaisoba/items/242a8ba95bf70ba179d3)  
+
+
+[Debian/UbuntuでNode.jsをインストールする(nvm) Nov 11, 2014](https://qiita.com/tamurashingo@github/items/6348863668e1e3fd70c9)  
+
+
 ## 2.12. Chromeを入れる  
 ```
 sudo dpkg -i google-chrome-stable_current_amd64.deb
