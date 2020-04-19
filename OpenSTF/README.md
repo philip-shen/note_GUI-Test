@@ -1,4 +1,5 @@
 [1. Purpose](#1-purpose)  
+
 [2. OpenSTF (Smartphone Test Farm) on Windows Subsystem for Linux](#2-openstf-smartphone-test-farm-on-windows-subsystem-for-linux)     
 [2.1. Environment](#21-environment)     
 [2.2. Windows Subsystem for Linux (Ubuntu) Installation](#22-windows-subsystem-for-linux-ubuntu-installation)     
@@ -17,6 +18,7 @@
 [2.11. 環境構築](#211-環境構築)     
 [2.12. Chromeを入れる](#212-chromeを入れる)     
 [2.13. 起動](#213-起動)  
+
 [3. Troubleshooting](#3-troubleshooting)  
 [4. Reference](#4-reference)   
 [5. h1 size](#5-h1-size)    
