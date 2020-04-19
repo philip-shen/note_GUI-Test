@@ -16,7 +16,7 @@
 [2.8. Unable to connect to 127.0.0.1:28015](#28-unable-to-connect-to-12700128015)     
 [2.9. How to connect remote rethinkdb ?](#29-how-to-connect-remote-rethinkdb-)     
 [2.10. How do I connect to my local STF from another computer](#210-how-do-i-connect-to-my-local-stf-from-another-computer)    
-[2.11. 環境構築](#211-環境構築)     
+[2.11. Ubuntu 16.04 環境構築](#211-ubuntu-1604-環境構築)     
 [2.12. Chromeを入れる](#212-chromeを入れる)     
 [2.13. 起動](#213-起動)  
 
@@ -375,8 +375,15 @@ $ export SCREEN_JPEG_QUALITY=30
 [Ubuntu18にOpenSTFを入れてみた Jul 26, 2018](http://yakisaba.hatenablog.jp/entry/2018/07/26/103620)  
 
 
+*Error Msg*
+![alt tag](https://i.imgur.com/bpIivbL.jpg)  
+[n now works on windows 10 (using windows subsystem for Jun 11, 2018](https://github.com/tj/n/issues/511)  
+[cant run react server on Windows Subsystem for Linux (ubuntu) Nov 3, 2019](https://stackoverflow.com/questions/58681101/cant-run-react-server-on-windows-subsystem-for-linux-ubuntu)  
+[]()  
+
+
 [Ubuntu 16.04にOpenSTF環境構築 Sep 29, 2017](https://qiita.com/tanaka512/items/4792931fe08b08441dc7)  
-## 2.11. 環境構築  
+## 2.11. Ubuntu 16.04 環境構築  
 ```
 # rethinkdb
 source /etc/lsb-release && echo "deb http://download.rethinkdb.com/apt $DISTRIB_CODENAME main" | sudo tee /etc/apt/sources.list.d/rethinkdb.list
@@ -399,13 +406,17 @@ sudo apt-get install libprotobuf-dev
 sudo apt-get install graphicsmagick
 sudo apt-get install yasm
 sudo apt-get install stow
+```
 
+```
 #nodejs
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 sudo npm install -g bower karma gulp
+```
 
+```
 mkdir ~/Downloads
 
 #ZeroMQ
@@ -429,9 +440,13 @@ make
 sudo make install
 cd /usr/local/stow
 sudo stow -vv protobuf-*
+```
 
+```
 sudo ldconfig
+```
 
+```
 #OpenSTF
 cd
 mkdir openstf
