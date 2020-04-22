@@ -22,9 +22,10 @@
 [2.12. Chromeを入れる](#212-chromeを入れる)     
 [2.13. 起動](#213-起動)  
 
-[3. Troubleshooting](#3-troubleshooting)  
-[4. Reference](#4-reference)   
-[5. h1 size](#5-h1-size)    
+[3. Node and NPM](#3node-and_npm)
+[4. Troubleshooting](#4-troubleshooting)  
+[5. Reference](#5-reference)   
+[6. h1 size](#6-h1-size)    
     [5.1. h2 size](#51-h2-size)        
     [5.1.1. h3 size](#511-h3-size)            
         [5.1.1.1. h4 size](#5111-h4-size)                
@@ -670,16 +671,30 @@ I will be using Vagrant with VirtualBox provider to create virtual cluster for d
 
 [Android App 自動化測試：OPEN-STF環境搭建 2017-10-24](https://kknews.cc/digital/65xqxlp.html)  
 
-# 3. Troubleshooting
+# 3. Node and NPM  
+[從零開始: 使用NPM套件- 進擊的Front End's - Medium Sep 4, 2017](https://medium.com/html-test/%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B-%E4%BD%BF%E7%94%A8npm%E5%A5%97%E4%BB%B6-317beefdf182)  
+```
+安裝 NVM (node version manager)
+```
+
+[NPM是什麼？了解Node Package Manager套件管理機制 ... Oct 10, 2019](https://tw.alphacamp.co/blog/npm-node-package-manager)  
+[npm常用指令教學-Node.js套件管理工具| ucamc Dec 29, 2018](https://www.ucamc.com/e-learning/computer-skills/324-npm%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%95%99%E5%AD%B8-node-js%E5%A5%97%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7)  
+[史上最強套件管理 - NPM ， npm init 與 npm install (Day11) 2017-12-14](https://ithelp.ithome.com.tw/articles/10191682)  
+
+[npm 最佳實作的小技巧| DEVLOG of andyyou Oct 4, 2016](https://andyyou.github.io/2016/10/04/node-best-practice/)  
+[Setting up a Node development environment - 學習該如何開發 ... Mar 18, 2019](https://developer.mozilla.org/zh-TW/docs/Learn/Server-side/Express_Nodejs/development_environment)  
 
 
-# 4. Reference
+# 4. Troubleshooting
+
+
+# 5. Reference
 
 
 * []() 
 ![alt tag]()  
 
-# 5. h1 size
+# 6. h1 size
 
 ## 5.1. h2 size
 
