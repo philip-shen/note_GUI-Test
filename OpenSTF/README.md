@@ -24,6 +24,7 @@
 [2.14. Login](#214-login)  
 [2.15. Restart](#215-restart)  
 [2.16. OpenSTF on Docker](#216-openstf-on-docker)
+[2.17. OpenSTF Automation](#217-openstf-automation)  
 
 [3. Node and NPM](#3-node-and-npm)    
 [4. Troubleshooting](#4-troubleshooting)  
@@ -744,6 +745,39 @@ $ docker-compose up -d
 検証用のモバイル端末数十機を管理する仕組みを作りました。
 はまりどころ含めてご紹介します。
 ```
+
+## 2.17. OpenSTF Automation  
+[Using STF for Test Automation · Issue #38 · openstf/stf · GitHub Jul 27, 2015](https://github.com/openstf/stf/issues/38)  
+```
+Using Jenkins , I was able to set up a fully functional Test Automation structure and running it successfully now .
+Here is how I am doing this :
+
+    Run jenkins in a docker container. Here is the link to docker file.
+    https://github.com/PrabhatPandey/Jenkins-docker
+    2.Run STF in a docker container.
+    3.Occupy all the devices for automation in jenkins container through STF-apis ie. remote connect.
+    Use Spoon runner in Jenkins to create the reports of the automation results.
+    "java -jar spoon-runner-1.3.1-jar-with-dependencies.jar
+    --apk ExampleApp-debug.apk
+    --test-apk ExampleApp-debug-androidTest-unaligned.apk --grant-all"
+```
+[PrabhatPandey /Jenkins-docker](https://github.com/PrabhatPandey/Jenkins-docker/blob/master/Dockerfile)   
+
+[Jenkinsをインストールしたら入れるプラグイン18個 Aug 26, 2015](https://qiita.com/shufo/items/4a128a0bf08affbecff8)  
+[基于python+Testlink+Jenkins实现的接口自动化测试框架V3.0 Mar 16, 2017](https://testerhome.com/topics/7992)
+![alt tag](https://i1.kknews.cc/SIG=1r63c70/12p2001973pn9op68q06.jpg)  
+
+[テスト工程の管理をするツール、TestLinkについて Jul 04, 2019](https://qiita.com/mima_ita/items/ed56fb1da1e340d397b9)  
+### テストケースの作成  
+[テストケースの作成](https://qiita.com/mima_ita/items/ed56fb1da1e340d397b9#%E3%83%86%E3%82%B9%E3%83%88%E3%82%B1%E3%83%BC%E3%82%B9%E3%81%AE%E4%BD%9C%E6%88%90)  
+
+### テスト計画  
+[テスト計画](https://qiita.com/mima_ita/items/ed56fb1da1e340d397b9#%E3%83%86%E3%82%B9%E3%83%88%E8%A8%88%E7%94%BB)  
+
+[TestLinkで手動テストと自動テストを統合する : Jenkins編 Jan 30, 2016](https://qiita.com/ootaken/items/a090890ea08f8dbd5b61)  
+
+[openstf /stf-appium-example](https://github.com/openstf/stf-appium-example)  
+
 
 [OpenSTFでAndroidのCIを2倍早くする  2016-08-15](https://techlife.cookpad.com/entry/2016/08/15/200000)  
 
