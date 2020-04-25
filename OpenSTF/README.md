@@ -21,8 +21,10 @@
 
 [2.12. Chromeを入れる](#212-chromeを入れる)     
 [2.13. 起動](#213-起動)  
+[2.14. Login](#214-login)  
+[2.15. Restart](#215-restart)  
 
-[3. Node and NPM](#3node-and_npm)
+[3. Node and NPM](#3-node-and-npm)    
 [4. Troubleshooting](#4-troubleshooting)  
 [5. Reference](#5-reference)   
 [6. h1 size](#6-h1-size)    
@@ -652,6 +654,28 @@ But to scale you will have to deploy it over a cluster instead.
 This project will provide various setup examples of STF in production environment. 
 I will be using Vagrant with VirtualBox provider to create virtual cluster for demonstration.
 ```
+
+## 2.15. Restart  
+```
+# source Downloads/.nvm/nvm.sh
+
+# nvm ls
+
+# node -v
+
+# export RETHINKDB_PORT_28015_TCP='tcp://192.168.1.108:28015'
+
+# .nvm/versions/node/v8.17.0/bin/stf doctor
+
+# adb devices -l
+
+# .nvm/versions/node/v8.17.0/bin/stf local
+```
+![alt tag](https://i.imgur.com/P954qQq.jpg)  
+
+![alt tag](https://i.imgur.com/EJIzZO5.jpg)  
+
+![alt tag](https://i.imgur.com/6HS1giw.jpg)  
 
 
 [OpenSTF+Dockerで社内Android端末管理システムをMac上に構築する Sep 04, 2018](https://qiita.com/KazaKago/items/26db0f68ba224eb094d3)  
