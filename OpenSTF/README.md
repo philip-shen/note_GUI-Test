@@ -678,6 +678,7 @@ I will be using Vagrant with VirtualBox provider to create virtual cluster for d
 ![alt tag](https://i.imgur.com/6HS1giw.jpg)  
 
 ## 2.16. OpenSTF on Docker    
+[Docker on WSL2](https://github.com/philip-shen/note_Docker/tree/master/Docker_Ubuntu(WSL)#docker-on-wsl2)  
 
 [OpenSTF+Dockerで社内Android端末管理システムをMac上に構築する Sep 04, 2018; updated at Feb 13, 2020](https://qiita.com/KazaKago/items/26db0f68ba224eb094d3)  
 
@@ -693,6 +694,10 @@ I will be using Vagrant with VirtualBox provider to create virtual cluster for d
 　Windows10 Homeだと、Docker Toolkitを使うことになってしまうので、この方法だけではダメかもしれません。
 
 　adbによる接続を前提としたツールなので、adbはインストール済みとします。
+```
+
+```
+$ adb start-server
 ```
 
 ```
@@ -719,6 +724,13 @@ services:
     command: stf local --allow-remote --public-ip host.docker.internal --adb-host host.docker.internal --provider-max-port 7679    
 ```
 
+```
+$ docker-compose up -d
+```
+
+![alt tag](https://i.imgur.com/14BTEvd.jpg)  
+
+![alt tag](https://i.imgur.com/20tNBiA.jpg)  
 
 
 [OSSなリモートスマホサービス（STF）が素敵すぎる Jan 30, 2017](https://qiita.com/tabbyz/items/5f6cec37e1d525a8e4d5)  
