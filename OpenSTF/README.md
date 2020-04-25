@@ -677,8 +677,49 @@ I will be using Vagrant with VirtualBox provider to create virtual cluster for d
 
 ![alt tag](https://i.imgur.com/6HS1giw.jpg)  
 
+## 2.16. OpenSTF on Docker    
 
-[OpenSTF+Dockerで社内Android端末管理システムをMac上に構築する Sep 04, 2018](https://qiita.com/KazaKago/items/26db0f68ba224eb094d3)  
+[OpenSTF+Dockerで社内Android端末管理システムをMac上に構築する Sep 04, 2018; updated at Feb 13, 2020](https://qiita.com/KazaKago/items/26db0f68ba224eb094d3)  
+
+
+[Androidのリモート操作/管理ツール「OpenSTF」をDocker for Windowsで使う Sep 16, 2019](https://www.scriptlife.jp/contents/programming/2019/09/16/openstf-docker-for-windows/#OculusQuest)  
+```
+試した環境は次の通り。
+
+    Windows 10 Professional
+    Docker for Windows
+    adbがインストールされている
+
+　Windows10 Homeだと、Docker Toolkitを使うことになってしまうので、この方法だけではダメかもしれません。
+
+　adbによる接続を前提としたツールなので、adbはインストール済みとします。
+```
+
+```
+docker-compose.yml
+
+version: "3"
+services:
+  db:
+    image: rethinkdb
+    command: rethinkdb --bind all
+    volumes:
+      - ./db_data:/data
+  stf:
+    image: openstf/stf
+    ports:
+      - 7100:7100
+      - 7110:7110
+      - 7400-7679:7400-7679
+    links:
+      - db
+    environment:
+      - RETHINKDB_PORT_28015_TCP=tcp://db:28015
+      - RETHINKDB_ENV_DATABASE=stf
+    command: stf local --allow-remote --public-ip host.docker.internal --adb-host host.docker.internal --provider-max-port 7679    
+```
+
+
 
 [OSSなリモートスマホサービス（STF）が素敵すぎる Jan 30, 2017](https://qiita.com/tabbyz/items/5f6cec37e1d525a8e4d5)  
 
