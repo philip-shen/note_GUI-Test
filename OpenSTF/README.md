@@ -23,6 +23,7 @@
 [2.13. 起動](#213-起動)  
 [2.14. Login](#214-login)  
 [2.15. Restart](#215-restart)  
+[2.16. OpenSTF on Docker](#216-openstf-on-docker)
 
 [3. Node and NPM](#3-node-and-npm)    
 [4. Troubleshooting](#4-troubleshooting)  
