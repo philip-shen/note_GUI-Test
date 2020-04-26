@@ -8,6 +8,8 @@ Take note of GUI Auto Test stuffs
 
 [Auto Test Tool Library](#auto-test-tool-library)
 
+[SmartPhone Test](#smartphone-test)  
+
 
 # Auto Test Tools  
 [GUIテストツール一覧 Aug 14, 2018](https://qiita.com/jun2014/items/8cabbd52830904af49af)  
@@ -50,6 +52,15 @@ Take note of GUI Auto Test stuffs
 
 ### iOS  
 ### Android  
+
+# SmartPhone Test  
+[カテゴリー: SmartPhoneテスト ](https://quesqa.com/category/tech/smartphone/)  
+
+[appiumを動かしてみる(1) 2014/04/10](https://quesqa.com/appium1/)  
+[appiumを動かしてみる(2) 2014/05/22](https://quesqa.com/appium2/)  
+[appiumを動かしてみる(3) 2014/07/10](https://quesqa.com/appium3/)  
+[appiumを動かしてみる(4) 2014/09/18](https://quesqa.com/appium4/)  
+
 
 # Troubleshooting
 
