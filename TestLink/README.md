@@ -104,7 +104,78 @@ $tlCfg->user_self_signup = FALSE;
 既然要整合這些服務，那當然要先建起來。
 要感謝 Docker 的出現讓生命快樂了許多….開心地使用 docker-compose up 吧!
 ```
-配置  
+## Requirement  
+### Jenkins Installation  
+```
+version: '2'
+services:
+  jenkins:
+    images: 'jenkins:lts'
+    volumes:
+      - 'jenkins_home:/var/jenkins_home'
+    ports:
+      - '8080:8080'
+      - '50000:50000'
+volumes:
+  jenkins_data:
+    driver: local
+```
+
+### TestLink Installation  
+```
+version: '2'
+services:
+  mariadb:
+    image: 'bitnami/mariadb:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=bn_testlink
+      - MARIADB_DATABASE=bitnami_testlink
+    volumes:
+      - 'mariadb_data:/bitnami'
+  testlink:
+    image: 'bitnami/testlink:latest'
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - 'testlink_data:/bitnami'
+    depends_on:
+      - mariadb
+    environment:
+      - MARIADB_HOST=mariadb
+      - MARIADB_PORT_NUMBER=3306
+      - TESTLINK_DATABASE_USER=bn_testlink
+      - TESTLINK_DATABASE_NAME=bitnami_testlink
+      - ALLOW_EMPTY_PASSWORD=yes
+      - TESTLINK_USERNAME=admin
+      - TESTLINK_PASSWORD=password
+      - TESTLINK_EMAIL=admin@example.com
+volumes:
+  mariadb_data:
+    driver: local
+  testlink_data:
+    driver: local
+```
+
+### Gitea Installation  
+```
+version: '2'
+services:
+  gitea:
+    image: 'gitea/gitea:latest'
+    volumes:
+      - gitea_data:/data/
+    ports:
+      - '10022:10022'
+      - '3000:3000'
+volumes:
+  gitea_data:
+    driver: local
+```
+
+
+## Deployment    
 ```
 Testlink 建立Project, Test Plan, Testcase, 打開 Automation, 產生個人 API Key
 
