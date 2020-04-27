@@ -95,6 +95,28 @@ $tlCfg->user_self_signup = FALSE;
 ?>
 ```
 
+[自動化測試(檢查), 整合TestLink x Jenkins x Gitea x pytest May 21, 2018](https://medium.com/@canyu/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6-%E6%AA%A2%E6%9F%A5-%E6%95%B4%E5%90%88-testlink-x-jenkins-x-gitea-x-pytest-c5f1c4a71cfb)  
+```
+用 Jenkins 執行以 pytest 撰寫自動化測試(檢查)並回填結果到 TestLink
+既然要整合這些服務，那當然要先建起來。
+要感謝 Docker 的出現讓生命快樂了許多….開心地使用 docker-compose up 吧!
+```
+配置  
+```
+Testlink 建立Project, Test Plan, Testcase, 打開 Automation, 產生個人 API Key
+
+Jenkins 安裝 Testlink Plugin
+
+Jenkins 設定 Testlink 服務位置跟 API Key
+
+寫 python 測試上傳到 gitea
+
+Jenkins 建立 Job 設定 git source, testlink設定 (Custom Fields 一定要填上), 收xml
+
+執行 Job 看看有沒錯誤, 最後上 Testlink 看看 TestPlan 的 build 的結果是不是正確的填回去了
+```
+
+
 [基于python+Testlink+Jenkins实现的接口自动化测试框架V3.0 年03/16, 2017](https://testerhome.com/topics/7992)  
 [Jackden's Blog 12/9, 2019](https://jackden-diary.blogspot.com/)  
 [TestLink 安裝說明 - Krilo 的筆記本 10/25 2006](http://kriloc.blogspot.com/2006/10/)  
