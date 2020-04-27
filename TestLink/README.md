@@ -196,6 +196,11 @@ Jenkins 建立 Job 設定 git source, testlink設定 (Custom Fields 一定要填
 [TestLink 安裝說明 - Krilo 的筆記本 10/25 2006](http://kriloc.blogspot.com/2006/10/)  
 [TestLink 與 Mantis 的整合 08/28 2006](http://crystaliris.bokee.com/5588155.html)  
 
+[TestLink Tutorial: A Layman’s Guide to TestLink Test Management Tool (Tutorial #1) April 16, 2020](https://www.softwaretestinghelp.com/testlink-tutorial-1/)  
+[How to Manage Requirements, Execute Test Cases and Generate Reports Using TestLink – Tutorial #2 April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-2/)  
+[How to Update TestLink Test Case Execution Status Remotely Through Selenium – Tutorial #3 April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-3/)  
+[TestLink Tutorial 4 – Test Metrics, Keyword Management, Custom Fields and Test Report Charts April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-4/)  
+
 # Troubleshooting
 
 
