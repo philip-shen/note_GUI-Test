@@ -95,6 +95,9 @@ $tlCfg->user_self_signup = FALSE;
 ?>
 ```
 
+[TestLinkで手動テストと自動テストを統合する : Jenkins編 an 30, 2016](https://qiita.com/ootaken/items/a090890ea08f8dbd5b61)  
+
+
 [自動化測試(檢查), 整合TestLink x Jenkins x Gitea x pytest May 21, 2018](https://medium.com/@canyu/%E8%87%AA%E5%8B%95%E5%8C%96%E6%B8%AC%E8%A9%A6-%E6%AA%A2%E6%9F%A5-%E6%95%B4%E5%90%88-testlink-x-jenkins-x-gitea-x-pytest-c5f1c4a71cfb)  
 ```
 用 Jenkins 執行以 pytest 撰寫自動化測試(檢查)並回填結果到 TestLink
