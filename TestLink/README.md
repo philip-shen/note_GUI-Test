@@ -95,6 +95,11 @@ $tlCfg->user_self_signup = FALSE;
 ?>
 ```
 
+[基于python+Testlink+Jenkins实现的接口自动化测试框架V3.0 年03/16, 2017](https://testerhome.com/topics/7992)  
+[Jackden's Blog 12/9, 2019](https://jackden-diary.blogspot.com/)  
+[TestLink 安裝說明 - Krilo 的筆記本 10/25 2006](http://kriloc.blogspot.com/2006/10/)  
+[TestLink 與 Mantis 的整合 08/28 2006](http://crystaliris.bokee.com/5588155.html)  
+
 # Troubleshooting
 
 
