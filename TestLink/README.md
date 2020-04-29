@@ -20,6 +20,150 @@ Take note of TestLink
 [オープンソースのテスト管理ツール TestLinkをさくらのレンタルサーバーに設置する 2011/12/2](https://nantekottai.com/2011/12/02/testlink-the-open-source-test-managament-tool/)  
 [TestLink1.9.10へのバージョンアップ時の調査 Jul 10, 2014](https://qiita.com/mima_ita/items/f2837a91c9492a2b9e72)  
 [【2019年版】macOS 10.14 Mojaveの docker で TestLink をインストールと設定する Nov 19, 2019](https://qiita.com/shimizumasaru/items/a1de689866c3ee2a4de5)  
+
+## TestLink Installation  
+```
+$ mkdir -p ~/testlink/backup/
+$ cd ~/testlink
+$ curl -sSL https://raw.githubusercontent.com/bitnami/bitnami-docker-testlink/master/docker-compose.yml > docker-compose.yml
+```
+
+```
+編集ポイント
+- image: を bitnami/mariadb:10.3 に指定する
+- image: を bitnami/testlink:1.9.19 に指定する
+- ALLOW_EMPTY_PASSWORD=yes で DB パスワード無しにする
+　※簡易だが公開サーバには不向き、DBパスワードありは後述する
+- ローカルPCの~/testlink/のバックアップディレクトリを Volumes: で指定する
+- ポート番号を任意のポートに指定する
+- メール設定をする（本設定は Gmail のもの）
+- TestLink の管理者アカウントとパスワードを指定する
+- TestLink の言語を日本語対応させる
+```
+
+## Updated docker-compose.yml  
+```
+version: '3'
+
+services:
+  mariadb:
+    image: 'bitnami/mariadb:10.3'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=bn_testlink
+      - MARIADB_DATABASE=bitnami_testlink
+    volumes:
+      - '~/testlink/backup/mariadb:/bitnami'
+  testlink:
+    image: 'bitnami/testlink:1.9.19'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_HOST=mariadb
+      - MARIADB_PORT_NUMBER=3306
+      - TESTLINK_DATABASE_USER=bn_testlink
+      - TESTLINK_DATABASE_NAME=bitnami_testlink
+      - TESTLINK_EMAIL=mymailaddress@gmail.com
+      - TESTLINK_LANGUAGE=ja_JP
+      - SMTP_ENABLE=true
+      - SMTP_HOST=smtp.gmail.com
+      - SMTP_PORT=587
+      - SMTP_USER=mymailaddress@gmail.com
+      - SMTP_PASSWORD=mymailpassword12345678
+      - SMTP_CONNECTION_MODE=tls
+      - TESTLINK_USERNAME=admin
+      - TESTLINK_PASSWORD=pass1234
+    ports:
+      - '0.0.0.0:33080:80'
+      - '0.0.0.0:33443:443'
+    volumes:
+      - '~/testlink/backup/testlink:/bitnami'
+    depends_on:
+      - mariadb
+```
+
+## Password of DB  docker-compose.yml  
+```
+version: '3'
+
+services:
+  mariadb:
+    image: 'bitnami/mariadb:10.3'
+    environment:
+      - MARIADB_ROOT_PASSWORD=master_root_password
+      - MARIADB_PASSWORD=my_password
+      - MARIADB_USER=bn_testlink
+      - MARIADB_DATABASE=bitnami_testlink
+    volumes:
+      - '~/testlink/backup/mariadb:/bitnami'
+  testlink:
+    image: 'bitnami/testlink:1.9.19'
+    environment:
+      - TESTLINK_DATABASE_PASSWORD=my_password
+      - MARIADB_HOST=mariadb
+      - MARIADB_PORT_NUMBER=3306
+      - TESTLINK_DATABASE_USER=bn_testlink
+      - TESTLINK_DATABASE_NAME=bitnami_testlink
+      - TESTLINK_EMAIL=mymailaddress@gmail.com
+      - TESTLINK_LANGUAGE=ja_JP
+      - SMTP_ENABLE=true
+      - SMTP_HOST=smtp.gmail.com
+      - SMTP_PORT=587
+      - SMTP_USER=mymailaddress@gmail.com
+      - SMTP_PASSWORD=mymailpassword12345678
+      - SMTP_CONNECTION_MODE=tls
+      - TESTLINK_USERNAME=admin
+      - TESTLINK_PASSWORD=pass1234
+    ports:
+      - '0.0.0.0:33080:80'
+      - '0.0.0.0:33443:443'
+    volumes:
+      - '~/testlink/backup/testlink:/bitnami'
+    depends_on:
+      - mariadb
+volumes:
+  mariadb_data:
+    driver: local
+  testlink_data:
+    driver: local      
+```
+
+### getting "mkdir: cannot create directory '/bitnami/mariadb': Permission denied" #193  
+[getting "mkdir: cannot create directory '/bitnami/mariadb': Permission denied" #193 25 Aug 2019](https://github.com/bitnami/bitnami-docker-mariadb/issues/193)
+```
+Using the first approach (the one documented in the guide), you need to ensure that the local folder (mariadb-data) has the correct permissions, you can do it just assigning write permissions to others:
+
+sudo chmod o+w mariadb-data
+
+After that, you should be able to run
+
+docker-compose up -d
+```
+```
+Using the second approach, you don't need to create the folder or set the proper permissions because the volume is created using the Docker Engine driver as an object instead of a real directory in your filesystem (I think this is the best approach for databases), you only need to edit the docker-compose.yml, adding the following lines to the end
+
+volumes:
+  mariadb-data:
+    driver: local
+```
+```
+There are 2 options to solve the issue:
+Option 1:
+
+    mkdir mariadb-data && sudo chmod o+w mariadb-data
+    docker-compose up
+
+Option 2:
+
+    Replace ./mariadb-data:/bitnami by mariadb-data:/bitnami (removing ./) in the docker-compose.yml and add the following lines at the end of the file
+
+volumes:
+  mariadb-data:
+    driver: local
+
+    docker-compose up
+```
+
+
 [【2019年版】Docker Bitnami/TestLink を設定する Nov 19, 2019](https://qiita.com/shimizumasaru/items/6c7b3f55a2dd63d5252b)  
 ## 9. 参考：最終的な custom_config.inc.php の設定例  
 [9. 参考：最終的な custom_config.inc.php の設定例](https://qiita.com/shimizumasaru/items/6c7b3f55a2dd63d5252b#9-%E5%8F%82%E8%80%83%E6%9C%80%E7%B5%82%E7%9A%84%E3%81%AA-custom_configincphp-%E3%81%AE%E8%A8%AD%E5%AE%9A%E4%BE%8B)
