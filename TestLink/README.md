@@ -163,6 +163,32 @@ volumes:
     docker-compose up
 ```
 
+### ERROR: Couldn’t connect to Docker daemon at http+docker://localunixsocket - is it running?   
+[[ Solution ] 啟動 docker-compose 發生 ERROR: Couldn’t connect to Docker daemon at http+docker://localunixsocket - is it running? 錯誤 Dec, 19 2018](https://oranwind.org/-solution-qi-dong-docker-compose-fa-sheng-error-couldnt-connect-to-docker-daemon-at-httpdockerlocalunixsocket-is-it-running-cuo-wu/)  
+```
+Step 1. 將當前用戶加入 docker 群組
+
+❖ 在 【 Terminal 】中輸入下方指令
+  sudo gpasswd -a ${USER} docker
+```
+
+```
+Step 2. 退出當前用戶
+❖ 在 【 Terminal 】中輸入下方指令
+  sudo su
+```
+
+```
+Step 3. 再次切换到 ubuntu 用戶
+❖ 在 【 Terminal 】中輸入下方指令
+  su ubuntu
+```
+
+```
+Step 4. 啟動 docker-compose
+❖ 在 【 Terminal 】中輸入下方指令
+  docker-compose up -d
+```
 
 [【2019年版】Docker Bitnami/TestLink を設定する Nov 19, 2019](https://qiita.com/shimizumasaru/items/6c7b3f55a2dd63d5252b)  
 ## 9. 参考：最終的な custom_config.inc.php の設定例  
