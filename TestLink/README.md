@@ -190,6 +190,67 @@ Step 4. 啟動 docker-compose
   docker-compose up -d
 ```
 
+### Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?  
+[Installing the Docker client on Windows Subsystem for Linux (Ubuntu) Oct 21, 2017 ](https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4)  
+
+> You need to tell the Docker client where the Docker host is, and you can do that by using the -H option as follows:  
+```
+$ docker -H localhost:2375 images
+```
+
+> If you don't want to type the host every time, you can set up and environment variable called DOCKER_HOST to localhost:2375
+```
+$ export DOCKER_HOST=localhost:2375
+```
+
+> But, that environment variable will last only as long as the session does. You would have to set it every time you open bash. So, in order to avoid that, you set that variable in a file called .bash_profile in your home directory, like this:  
+```
+$ echo "export DOCKER_HOST=localhost:2375" >> ~/.bash_profile
+```
+
+[Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running? Dec 23, 2017](https://forums.docker.com/t/cannot-connect-to-the-docker-daemon-at-unix-var-run-docker-sock-is-the-docker-daemon-running/43371)  
+
+> This TCP endpoint is turned off by default; to activate it, right-click the Docker icon in your taskbar and choose Settings, and tick the box next to “Expose daemon on tcp://localhost:2375 without TLS”.   
+> With that done, all we need to do is instruct the CLI under Bash to connect to the engine running under Windows instead of to the non-existing engine running under Bash, like this:  
+```
+$ docker -H tcp://0.0.0.0:2375 images
+```
+
+> There are two ways to make this permanent – either add an alias for the above command or export an environment variable which instructs Docker where to find the host engine:  
+```
+$ echo “export DOCKER_HOST=‘tcp://0.0.0.0:2375’” >> ~/.bashrc
+$ source ~/.bashrc
+```
+
+[Running Docker containers on Bash on Windows April 19, 2017](https://blog.jayway.com/2017/04/19/running-docker-on-bash-on-windows/)  
+> 2. Connect Docker on WSL to Docker on Windows  
+```
+export DOCKER_HOST='tcp://0.0.0.0:2376'
+```
+
+> Of course, we’d want these changes in .bashrc  to make them sticky:  
+```
+$ echo >> ~/.bashrc <<EOF
+# Connect to Docker on Windows
+export DOCKER_CERT_PATH=/mnt/c/Users/YOUR_USERNAME/.docker/machine/certs
+export DOCKER_TLS_VERIFY=1
+export DOCKER_HOST='tcp://0.0.0.0:2375'
+EOF
+$ source ~/.bashrc
+```
+
+> Now, running docker commands from Bash works just like they’re supposed to.  
+```
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+```
+
+
+[ubuntu running under WSL2 not seeing Docker daemon at unix:///var/run/docker.sock #5096 8 Nov 2019](https://github.com/docker/for-win/issues/5096)  
+[Docker Desktop WSL 2 backend ](https://docs.docker.com/docker-for-windows/wsl-tech-preview/)  
+[]()  
+
+
 [【2019年版】Docker Bitnami/TestLink を設定する Nov 19, 2019](https://qiita.com/shimizumasaru/items/6c7b3f55a2dd63d5252b)  
 ## 9. 参考：最終的な custom_config.inc.php の設定例  
 [9. 参考：最終的な custom_config.inc.php の設定例](https://qiita.com/shimizumasaru/items/6c7b3f55a2dd63d5252b#9-%E5%8F%82%E8%80%83%E6%9C%80%E7%B5%82%E7%9A%84%E3%81%AA-custom_configincphp-%E3%81%AE%E8%A8%AD%E5%AE%9A%E4%BE%8B)
