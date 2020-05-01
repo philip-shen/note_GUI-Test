@@ -1,7 +1,29 @@
+Table of Contents
+=================
+   * [Purpose](#purpose)
+      * [TestLinkの環境作成](#testlinkの環境作成)
+      * [TestLink Installation](#testlink-installation)
+      * [Updated docker-compose.yml](#updated-docker-composeyml)
+      * [Password of DB  docker-compose.yml](#password-of-db--docker-composeyml)
+         * [getting "mkdir: cannot create directory '/bitnami/mariadb': Permission denied" #193](#getting-mkdir-cannot-create-directory-bitnamimariadb-permission-denied-193)
+         * [ERROR: Couldn’t connect to Docker daemon at http docker://localunixsocket - is it running?](#error-couldnt-connect-to-docker-daemon-at-httpdockerlocalunixsocket---is-it-running)
+         * [Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?](#cannot-connect-to-the-docker-daemon-at-unixvarrundockersock-is-the-docker-daemon-running)
+      * [9. 参考：最終的な custom_config.inc.php の設定例](#9-参考最終的な-custom_configincphp-の設定例)
+      * [Requirement](#requirement)
+         * [Jenkins Installation](#jenkins-installation)
+         * [TestLink Installation](#testlink-installation-1)
+         * [Gitea Installation](#gitea-installation)
+      * [Deployment](#deployment)
+   * [Troubleshooting](#troubleshooting)
+   * [Reference](#reference)
+   * [h1 size](#h1-size)
+      * [h2 size](#h2-size)
+         * [h3 size](#h3-size)
+            * [h4 size](#h4-size)
+               * [h5 size](#h5-size)
+
 # Purpose  
 Take note of TestLink  
-
-# Table of Contents  
 
 # 
 
@@ -165,28 +187,20 @@ volumes:
 
 ### ERROR: Couldn’t connect to Docker daemon at http+docker://localunixsocket - is it running?   
 [[ Solution ] 啟動 docker-compose 發生 ERROR: Couldn’t connect to Docker daemon at http+docker://localunixsocket - is it running? 錯誤 Dec, 19 2018](https://oranwind.org/-solution-qi-dong-docker-compose-fa-sheng-error-couldnt-connect-to-docker-daemon-at-httpdockerlocalunixsocket-is-it-running-cuo-wu/)  
+> Step 1. 將當前用戶加入 docker 群組  
 ```
-Step 1. 將當前用戶加入 docker 群組
-
-❖ 在 【 Terminal 】中輸入下方指令
   sudo gpasswd -a ${USER} docker
 ```
-
+> Step 2. 退出當前用戶  
 ```
-Step 2. 退出當前用戶
-❖ 在 【 Terminal 】中輸入下方指令
   sudo su
 ```
-
+> Step 3. 再次切换到 ubuntu 用戶  
 ```
-Step 3. 再次切换到 ubuntu 用戶
-❖ 在 【 Terminal 】中輸入下方指令
   su ubuntu
 ```
-
+> Step 4. 啟動 docker-compose  
 ```
-Step 4. 啟動 docker-compose
-❖ 在 【 Terminal 】中輸入下方指令
   docker-compose up -d
 ```
 
