@@ -1,5 +1,7 @@
 Table of Contents
 =================
+
+   * [Table of Contents](#table-of-contents)
    * [Purpose](#purpose)
       * [TestLinkの環境作成](#testlinkの環境作成)
       * [TestLink Installation](#testlink-installation)
@@ -8,6 +10,10 @@ Table of Contents
          * [getting "mkdir: cannot create directory '/bitnami/mariadb': Permission denied" #193](#getting-mkdir-cannot-create-directory-bitnamimariadb-permission-denied-193)
          * [ERROR: Couldn’t connect to Docker daemon at http docker://localunixsocket - is it running?](#error-couldnt-connect-to-docker-daemon-at-httpdockerlocalunixsocket---is-it-running)
          * [Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?](#cannot-connect-to-the-docker-daemon-at-unixvarrundockersock-is-the-docker-daemon-running)
+         * [Cannot connect to the Docker daemon at tcp://localhost:2375. Is the docker daemon running?](#cannot-connect-to-the-docker-daemon-at-tcplocalhost2375-is-the-docker-daemon-running)
+         * [MariaDB Data Perpetuation on Docker for Windows](#mariadb-data-perpetuation-on-docker-for-windows)
+         * [MariaDB Installation on WSL](#mariadb-installation-on-wsl)
+      * [TestLink Activatation and Login](#testlink-activatation-and-login)
       * [9. 参考：最終的な custom_config.inc.php の設定例](#9-参考最終的な-custom_configincphp-の設定例)
       * [Requirement](#requirement)
          * [Jenkins Installation](#jenkins-installation)
@@ -21,6 +27,10 @@ Table of Contents
          * [h3 size](#h3-size)
             * [h4 size](#h4-size)
                * [h5 size](#h5-size)
+   * [Table of Contents](#table-of-contents-1)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
 
 # Purpose  
 Take note of TestLink  
@@ -142,14 +152,33 @@ services:
       - '~/testlink/backup/testlink:/bitnami'
     depends_on:
       - mariadb
-volumes:
-  mariadb_data:
-    driver: local
-  testlink_data:
-    driver: local      
 ```
 
 ### getting "mkdir: cannot create directory '/bitnami/mariadb': Permission denied" #193  
+[Solving Bitnami Docker Redmine ‘cannot create directory ‘/bitnami/mariadb’: Permission denied’ Dec 15, 2018](https://techoverflow.net/2018/12/15/solving-bitnami-docker-redmine-cannot-create-directory-bitnami-mariadb-permission-denied/)  
+```
+sudo chown -R 1001:1001 <directory>
+```
+
+```
+# Example: This can be found in the mariadb section:
+    volumes:
+      - '/var/lib/myredmine/mariadb_data:/bitnami'
+# Example: This can be found in the redmine section
+    volumes:
+      - '/var/lib/myredmine/redmine_data:/bitnami'
+```
+
+```
+sudo chown -R 1001:1001 /var/lib/myredmine/mariadb_data /var/lib/myredmine/redmine_data
+```
+
+```
+docker-compose down
+
+docker-compose up # Use 'docker-compose up -d' to run in the background
+```
+
 [getting "mkdir: cannot create directory '/bitnami/mariadb': Permission denied" #193 25 Aug 2019](https://github.com/bitnami/bitnami-docker-mariadb/issues/193)
 ```
 Using the first approach (the one documented in the guide), you need to ensure that the local folder (mariadb-data) has the correct permissions, you can do it just assigning write permissions to others:
@@ -259,13 +288,128 @@ $ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ```
 
-
 [ubuntu running under WSL2 not seeing Docker daemon at unix:///var/run/docker.sock #5096 8 Nov 2019](https://github.com/docker/for-win/issues/5096)  
+
+### Cannot connect to the Docker daemon at tcp://localhost:2375. Is the docker daemon running?  
+![alt tag](https://camo.githubusercontent.com/dc9194e2af1ab56455de1aa4b571615bc3a69442/68747470733a2f2f692e696d6775722e636f6d2f746669634759462e6a7067)  
+```
+sudo docker images
+
+sudo docker version
+```
+
+### MariaDB Data Perpetuation on Docker for Windows   
+[Docker for WindowsでMariaDBのデータを永続化 Sep 12, 2019](https://qiita.com/imp555sti/items/3382272b6c1eada4711c)  
+> docker-compose.yaml(成功例)  
+> MariaDB用のVolumeをコンテナ化しているのがポイントとなります。  
+```
+docker-compose.yaml
+
+version: '3'
+services:
+  mariadb:
+    container_name: laravel_mariadb
+    build: ./mariadb/
+    image: laravel_mariadb:10.4.7
+    ports:
+      - 3306:3306
+    volumes:
+      - dbvolume/data:/var/lib/mysql          # ← 問題の箇所
+    environment:
+      - MYSQL_DATABASE=laravel_db
+      - MYSQL_ROOT_PASSWORD=root@1234
+      - MYSQL_USER=laravel
+      - MYSQL_PASSWORD=laravel@1234
+
+volumes:                                      # ← Volumesでデータ領域をコンテナとして定義
+  dbvolume:
+```
+
+### MariaDB Installation on WSL   
+[UbuntuにMariaDBをインストールする Apr, 3 2019](https://utsu-programmer.com/environment/mariadb-install/)  
+> MariaDBリポジトリを取得する  
+```
+$ curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
+```
+
+```
+$ apt-get -y update
+
+$ apt-get -y upgrade
+```
+
+> MariaDBのインストール  
+```
+$ apt-cache search mariadb-server
+```
+```
+$ apt-get install mariadb-server-10.3
+```
+```
+$ dpkg -l | grep -i mariadb | grep -v 10.1
+```
+
+> mysqld.sock (2)　エラー   
+```
+$ mysql -u root -p
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)
+```
+
+```
+$ sudo touch /var/run/mysqld/mysqld.sock
+```
+
+> mysqld.sock (13)　エラー   
+```
+$ service mysql start
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (13)
+```
+
+```
+$ sudo chmod 777 /var/run/mysqld/mysqld.sock
+```
+
+> MariaDBの起動 
+```
+$ service mysql start
+```
+
+```
+$ mysql -u root -p
+```
+
+> 文字コードの設定   
+```
+$ vi /etc/mysql/my.cnf
+```
+
+```
+[mysqld]　セクション内
+character-set-server=utf8
+
+[mysqldump]　セクション内
+default-character-set=utf8
+
+[mysql]　セクション内
+default-character-set=utf8
+```
+
+```
+$ service mysql  restart
+```
+
+
 [Docker Desktop WSL 2 backend ](https://docs.docker.com/docker-for-windows/wsl-tech-preview/)  
 []()  
 
 
 [【2019年版】Docker Bitnami/TestLink を設定する Nov 19, 2019](https://qiita.com/shimizumasaru/items/6c7b3f55a2dd63d5252b)  
+
+## TestLink Activatation and Login  
+![alt tag](https://i.imgur.com/Tf8ucDO.png)  
+
+![alt tag](https://i.imgur.com/n72yr2o.png)  
+
 ## 9. 参考：最終的な custom_config.inc.php の設定例  
 [9. 参考：最終的な custom_config.inc.php の設定例](https://qiita.com/shimizumasaru/items/6c7b3f55a2dd63d5252b#9-%E5%8F%82%E8%80%83%E6%9C%80%E7%B5%82%E7%9A%84%E3%81%AA-custom_configincphp-%E3%81%AE%E8%A8%AD%E5%AE%9A%E4%BE%8B)
 
@@ -481,3 +625,4 @@ Jenkins 建立 Job 設定 git source, testlink設定 (Custom Fields 一定要填
 - 1
 - 2
 - 3
+
