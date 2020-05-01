@@ -3,7 +3,7 @@ Table of Contents
 
    * [Table of Contents](#table-of-contents)
    * [Purpose](#purpose)
-      * [TestLinkの環境作成](#testlinkの環境作成)
+      * [TestLink Environment Setup](#testlink-environment-setup)
       * [TestLink Installation](#testlink-installation)
       * [Updated docker-compose.yml](#updated-docker-composeyml)
       * [Password of DB  docker-compose.yml](#password-of-db--docker-composeyml)
@@ -38,22 +38,13 @@ Take note of TestLink
 # 
 
 [テスト工程の管理をするツール、TestLinkについて ](https://qiita.com/mima_ita/items/ed56fb1da1e340d397b9)  
-## TestLinkの環境作成  
+## TestLink Environment Setup  
 [TestLinkの環境作成](https://qiita.com/mima_ita/items/ed56fb1da1e340d397b9#testlink%E3%81%AE%E7%92%B0%E5%A2%83%E4%BD%9C%E6%88%90)  
 ![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F47856%2Fae024b25-aa46-392e-6925-53436ccb5198.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=5d4dc6732d344a9edd447c3d956a8f16)  
 
-
-[TestLink で LDAP 認証を行う|へっぽこプログラマーの備忘録 2017/10/24](http://kuttsun.blogspot.com/2017/10/testlink-ldap.html)  
-[RedmineとTestlinkの連携 03/25 2011](http://in.shappi.org/article/192485671.html)  
-[TestLinkの使い方メモ　テストプロジェクトとテスト項目の作成 2010/06/19(土)](https://symfoware.blog.fc2.com/blog-entry-443.html)  
-[脱Excel！ Redmineでアジャイル開発を楽々管理 (1/5) 2009/04/14](https://www.atmarkit.co.jp/ait/articles/0904/14/news117.html)  
-[脱Excel！ TestLinkでアジャイルにテストをする (2/6) 2009/10/23](https://www.atmarkit.co.jp/ait/articles/0910/23/news110_2.html)  
-
-[オープンソースのテスト管理ツール TestLinkをさくらのレンタルサーバーに設置する 2011/12/2](https://nantekottai.com/2011/12/02/testlink-the-open-source-test-managament-tool/)  
-[TestLink1.9.10へのバージョンアップ時の調査 Jul 10, 2014](https://qiita.com/mima_ita/items/f2837a91c9492a2b9e72)  
+## TestLink Installation  
 [【2019年版】macOS 10.14 Mojaveの docker で TestLink をインストールと設定する Nov 19, 2019](https://qiita.com/shimizumasaru/items/a1de689866c3ee2a4de5)  
 
-## TestLink Installation  
 ```
 $ mkdir -p ~/testlink/backup/
 $ cd ~/testlink
@@ -579,6 +570,15 @@ Jenkins 建立 Job 設定 git source, testlink設定 (Custom Fields 一定要填
 執行 Job 看看有沒錯誤, 最後上 Testlink 看看 TestPlan 的 build 的結果是不是正確的填回去了
 ```
 
+
+[TestLink で LDAP 認証を行う|へっぽこプログラマーの備忘録 2017/10/24](http://kuttsun.blogspot.com/2017/10/testlink-ldap.html)  
+[RedmineとTestlinkの連携 03/25 2011](http://in.shappi.org/article/192485671.html)  
+[TestLinkの使い方メモ　テストプロジェクトとテスト項目の作成 2010/06/19(土)](https://symfoware.blog.fc2.com/blog-entry-443.html)  
+[脱Excel！ Redmineでアジャイル開発を楽々管理 (1/5) 2009/04/14](https://www.atmarkit.co.jp/ait/articles/0904/14/news117.html)  
+[脱Excel！ TestLinkでアジャイルにテストをする (2/6) 2009/10/23](https://www.atmarkit.co.jp/ait/articles/0910/23/news110_2.html)  
+
+[オープンソースのテスト管理ツール TestLinkをさくらのレンタルサーバーに設置する 2011/12/2](https://nantekottai.com/2011/12/02/testlink-the-open-source-test-managament-tool/)  
+[TestLink1.9.10へのバージョンアップ時の調査 Jul 10, 2014](https://qiita.com/mima_ita/items/f2837a91c9492a2b9e72)  
 
 [基于python+Testlink+Jenkins实现的接口自动化测试框架V3.0 年03/16, 2017](https://testerhome.com/topics/7992)  
 [Jackden's Blog 12/9, 2019](https://jackden-diary.blogspot.com/)  
