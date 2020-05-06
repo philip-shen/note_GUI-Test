@@ -20,6 +20,9 @@ Table of Contents
          * [TestLink Installation](#testlink-installation-1)
          * [Gitea Installation](#gitea-installation)
       * [Deployment](#deployment)
+   * [TestLink and USDM(Universal Specification Describing Manner](#testlink-and-usdmuniversal-specification-describing-manner)
+      * [HAYST(Highly Accelerated and Yield Software Testing) and FV Table(Function Verification Table)](#haysthighly-accelerated-and-yield-software-testing-and-fv-tablefunction-verification-table)
+      * [USDM and FV Table vs TestLink Data](#usdm-and-fv-table-vs-testlink-data)
    * [Troubleshooting](#troubleshooting)
    * [Reference](#reference)
    * [h1 size](#h1-size)
@@ -30,7 +33,6 @@ Table of Contents
    * [Table of Contents](#table-of-contents-1)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
-
 
 # Purpose  
 Take note of TestLink  
@@ -570,6 +572,16 @@ Jenkins 建立 Job 設定 git source, testlink設定 (Custom Fields 一定要填
 執行 Job 看看有沒錯誤, 最後上 Testlink 看看 TestPlan 的 build 的結果是不是正確的填回去了
 ```
 
+# TestLink and USDM(Universal Specification Describing Manner  
+[要求管理とテスト管理、その間のトレーサビリティの維持、および要求(仕様)カバレッジの把握 －－－ TestLinkとExcelツールで運用する Jul 25, 2019](https://qiita.com/sho1884/items/d1ce380f6872ba2454fa) 
+
+## HAYST(Highly Accelerated and Yield Software Testing) and FV Table(Function Verification Table)  
+> ここではその部分にテスト設計技法の一つとして知られるHAYST(Highly Accelerated and Yield Software Testing)法のFV表(Function Verification Table) を使うことにします。  
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F246520%2Faa91c33d-8422-d4f2-7bef-ec08d0c94ca8.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=ed5c5fe7f41e9a254b9883cb2e086c79)  
+
+## USDM and FV Table vs TestLink Data
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F246520%2Fb84bdd4c-9156-85ca-05e0-66c18449528f.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=6e810c8a8407b98bc2278d370c4e3294)  
+
 
 [TestLink で LDAP 認証を行う|へっぽこプログラマーの備忘録 2017/10/24](http://kuttsun.blogspot.com/2017/10/testlink-ldap.html)  
 [RedmineとTestlinkの連携 03/25 2011](http://in.shappi.org/article/192485671.html)  
@@ -585,6 +597,9 @@ Jenkins 建立 Job 設定 git source, testlink設定 (Custom Fields 一定要填
 [TestLink 安裝說明 - Krilo 的筆記本 10/25 2006](http://kriloc.blogspot.com/2006/10/)  
 [TestLink 與 Mantis 的整合 08/28 2006](http://crystaliris.bokee.com/5588155.html)  
 
+[testlink測試用例系統搭建完善文檔，一個不錯的測試管理工具 2018年2月5日](https://kknews.cc/zh-tw/code/nkz2l9q.html) 
+
+
 [TestLink Tutorial: A Layman’s Guide to TestLink Test Management Tool (Tutorial #1) April 16, 2020](https://www.softwaretestinghelp.com/testlink-tutorial-1/)  
 [How to Manage Requirements, Execute Test Cases and Generate Reports Using TestLink – Tutorial #2 April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-2/)  
 [How to Update TestLink Test Case Execution Status Remotely Through Selenium – Tutorial #3 April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-3/)  
@@ -596,7 +611,7 @@ Jenkins 建立 Job 設定 git source, testlink設定 (Custom Fields 一定要填
 # Reference
 
 
-* []()
+* []()  
 ![alt tag]()  
 
 # h1 size
@@ -625,4 +640,3 @@ Jenkins 建立 Job 設定 git source, testlink設定 (Custom Fields 一定要填
 - 1
 - 2
 - 3
-
