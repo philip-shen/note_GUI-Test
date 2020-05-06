@@ -572,7 +572,7 @@ Jenkins 建立 Job 設定 git source, testlink設定 (Custom Fields 一定要填
 執行 Job 看看有沒錯誤, 最後上 Testlink 看看 TestPlan 的 build 的結果是不是正確的填回去了
 ```
 
-# TestLink and USDM(Universal Specification Describing Manner  
+# TestLink and USDM(Universal Specification Describing Manner)  
 [要求管理とテスト管理、その間のトレーサビリティの維持、および要求(仕様)カバレッジの把握 －－－ TestLinkとExcelツールで運用する Jul 25, 2019](https://qiita.com/sho1884/items/d1ce380f6872ba2454fa) 
 
 ## HAYST(Highly Accelerated and Yield Software Testing) and FV Table(Function Verification Table)  
