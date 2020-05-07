@@ -1,40 +1,52 @@
+Table of Contents
+=================
+
+   * [Purpose](#purpose)
+   * [Table of Contents](#table-of-contents)
+   * [Plug-In Installation of Jenkins](#plug-in-installation-of-jenkins)
+      * [01 dockerfile](#01-dockerfile)
+      * [02 Build docker image](#02-build-docker-image)
+      * [03 Run Jenkis Container](#03-run-jenkis-container)
+         * [Remove Containers  if something wrong](#remove-containers--if-something-wrong)
+      * [04 Eneter Jekins Container to make sure Administrator password](#04-eneter-jekins-container-to-make-sure-administrator-password)
+         * [File directory on Windows](#file-directory-on-windows)
+         * ["NETSTAT.EXE -a | findstr "8080"" on Windows](#netstatexe--a--findstr-8080-on-windows)
+      * [05 Administrator Login](#05-administrator-login)
+      * [06 Click "Select Plugins"](#06-click-select-plugins)
+      * [07 Select Plugins to plugin and then install](#07-select-plugins-to-plugin-and-then-install)
+      * [08 Plugins download](#08-plugins-download)
+      * [09 Save and Finsh](#09-save-and-finsh)
+      * [10 Start using Jenkins](#10-start-using-jenkins)
+      * [11 Try it and Enjoy](#11-try-it-and-enjoy)
+      * [12 Creat a Project](#12-creat-a-project)
+      * [13 Stop Jenkis Container](#13-stop-jenkis-container)
+   * [Troubleshooting](#troubleshooting)
+   * [Reference](#reference)
+      * [Redmine Jenkins GitLab Elasticsearch by Docker](#redminejenkinsgitlabelasticsearch-by-docker)
+      * [Jenkinsを手探りで社内ローカルに立てて詰んだ話](#jenkinsを手探りで社内ローカルに立てて詰んだ話)
+      * [JenkinsとSeleniumを使ってWebコンテンツの自動UIテスト環境を作ろう！](#jenkinsとseleniumを使ってwebコンテンツの自動uiテスト環境を作ろう)
+      * [JenkinsでCI環境構築チュートリアル ～GitHubとの連携～](#jenkinsでci環境構築チュートリアル-githubとの連携)
+      * [JenkinsでCI環境構築チュートリアル ～GitHubからWebサーバーへのデプロイ～](#jenkinsでci環境構築チュートリアル-githubからwebサーバーへのデプロイ)
+      * [テスト自動化環境構築](#テスト自動化環境構築)
+      * [dockerでjenkins構築（plugin install errorを出さない）](#dockerでjenkins構築plugin-install-errorを出さない)
+      * [Jenkinsインストール(Ansible)](#jenkinsインストールansible)
+      * [【Jenkins備忘録】Python自動テスト環境構築](#jenkins備忘録python自動テスト環境構築)
+      * [Dockerで動くJenkinsから他のコンテナを操作する（Docker outside of Docker）](#dockerで動くjenkinsから他のコンテナを操作するdocker-outside-of-docker)
+      * [Dockerでjenkins( SSL)](#dockerでjenkinsssl)
+      * [Jenkins CheatSheet — Know The Top Best Practices of Jenkins](#jenkins-cheatsheet--know-the-top-best-practices-of-jenkins)
+      * [Devops实践中的CICD工具](#devops实践中的cicd工具)
+   * [h1 size](#h1-size)
+      * [h2 size](#h2-size)
+         * [h3 size](#h3-size)
+            * [h4 size](#h4-size)
+               * [h5 size](#h5-size)
+   * [Table of Contents](#table-of-contents-1)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
 # Purpose
 Take notes of Jenkis  
 
-# Table of Contents  
-
-
-[Plug-In Installation of Jenkins](#plug-in-installation-of-jenkins)  
-[01 dockerfile](#01-dockerfile)  
-[02 Build docker image](#02-build-docker-image)  
-[03 Run Jenkis Container](#03-run-jenkis-container)  
-[04 Eneter Jekins Container to make sure Administrator password](#04-eneter-jekins-container-to-make-sure-administrator-password)  
-[05 Administrator Login](#05-administrator-login)  
-[06 Click "Select Plugins"](#06-click-select-plugins)  
-[07 Select Plugins to plugin and then install](#07-select-plugins-to-plugin-and-then-install)  
-[08 Plugins download](#08-plugins-download)  
-[09 Save and Finsh](#09-save-and-finsh)  
-[10 Start using Jenkins](#10-start-using-jenkins)  
-[11 Try it and Enjoy](#11-try-it-and-enjoy)  
-[12 Creat a Project](#12-creat-a-project)  
-[13 Stop Jenkis Container](#13-stop-jenkis-container)  
-
-[Reference](#reference)  
-[Jenkinsを手探りで社内ローカルに立てて詰んだ話](#jenkins%E3%82%92%E6%89%8B%E6%8E%A2%E3%82%8A%E3%81%A7%E7%A4%BE%E5%86%85%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%81%AB%E7%AB%8B%E3%81%A6%E3%81%A6%E8%A9%B0%E3%82%93%E3%81%A0%E8%A9%B1)  
-[JenkinsとSeleniumを使ってWebコンテンツの自動UIテスト環境を作ろう！](#jenkins%E3%81%A8selenium%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6web%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84%E3%81%AE%E8%87%AA%E5%8B%95ui%E3%83%86%E3%82%B9%E3%83%88%E7%92%B0%E5%A2%83%E3%82%92%E4%BD%9C%E3%82%8D%E3%81%86)  
-[JenkinsでCI環境構築チュートリアル ～GitHubとの連携～](#jenkins%E3%81%A7ci%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB-github%E3%81%A8%E3%81%AE%E9%80%A3%E6%90%BA)  
-[JenkinsでCI環境構築チュートリアル ～GitHubからWebサーバーへのデプロイ～](#jenkins%E3%81%A7ci%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%83%81%E3%83%A5%E3%83%BC%E3%83%88%E3%83%AA%E3%82%A2%E3%83%AB-github%E3%81%8B%E3%82%89web%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%81%B8%E3%81%AE%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4)  
-[テスト自動化環境構築]()  
-
-[dockerでjenkins構築（plugin install errorを出さない）](#docker%E3%81%A7jenkins%E6%A7%8B%E7%AF%89plugin-install-error%E3%82%92%E5%87%BA%E3%81%95%E3%81%AA%E3%81%84)  
-[Jenkinsインストール(Ansible)](#jenkins%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%ABansible)  
-[【Jenkins備忘録】Python自動テスト環境構築](#jenkins%E5%82%99%E5%BF%98%E9%8C%B2python%E8%87%AA%E5%8B%95%E3%83%86%E3%82%B9%E3%83%88%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89)  
-[Dockerで動くJenkinsから他のコンテナを操作する（Docker outside of Docker）](#docker%E3%81%A7%E5%8B%95%E3%81%8Fjenkins%E3%81%8B%E3%82%89%E4%BB%96%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%82%92%E6%93%8D%E4%BD%9C%E3%81%99%E3%82%8Bdocker-outside-of-docker)  
-[Dockerでjenkins(+SSL)](#docker%E3%81%A7jenkinsssl)  
-
-[Jenkins CheatSheet — Know The Top Best Practices of Jenkins](#jenkins-cheatsheet--know-the-top-best-practices-of-jenkins)  
-
-[Devops实践中的CICD工具]() 
 
 # Plug-In Installation of Jenkins   
 [プラグインインストール済のJenkins 構築 Docker編 その1 Feb 27, 2019](https://qiita.com/atmaru/items/3707b6f3fca7f4671498)   
@@ -174,6 +186,507 @@ jenkins:2.19.4
 
 
 # Reference  
+## Redmine+Jenkins+GitLab+Elasticsearch by Docker  
+[docker-composeで開発環境全部盛りしてみた Mar 15, 2020](https://qiita.com/euledge/items/52eb2e299a128f528d42)  
+
+```
+.env
+
+# Common settings
+DNS1=xxx.xxx.xxx.xxx
+DNS2=xxx.xxx.xxx.xxx
+
+SMTP_DOMAIN=xxx.xxx.xxx.xxx
+SMTP_HOST=mail.xxx.xxx.xxx
+SMTP_PORT=25
+SMTP_USER=
+SMTP_PASS=
+
+LDAP_LABEL=xxxxxx
+LDAP_HOST=xxx.xxx.xxx.xxx
+LDAP_VERIFY_SSL=false
+LDAP_BIND_DN=CN=xxx,CN=xxx,DC=xxx,DC=xxx,DC=xxx,DC=xxx
+LDAP_PASS=xxx
+LDAP_ALLOW_USERNAME_OR_EMAIL_LOGIN=true
+LDAP_BASE=DC=xxx,DC=xxx,DC=xxx,DC=xxx
+
+HTTP_PROXY=http://proxy.xxx.xxx.xxx.xxx:8080
+HTTPS_PROXY=http://proxy.xxx.xxx.xxx.xxx:8080
+NO_PROXY=127.0.0.1,localhost
+HTTP_PROXY_HOST=http://proxy.xxx.xxx.xxx.xxx
+HTTP_PROXY_PORT=8080
+
+
+# PlantUML settings
+PLANTUML_PORT=xxxxx
+
+# Nexus settings
+NEXUS_PORT=xxxxx
+
+# PostgreSQL settings
+POSTGRESQL_VERSION=10-2
+
+# GitLab settings
+GITLAB_VERSION=12.7.6
+GITLAB_DB_USER=gitlab
+GITLAB_DB_PASS=password
+
+GITLAB_HOST=xxx.xxx.xxx.xxx
+GITLAB_PORT=xxxxx
+GITLAB_SSH_PORT=xxxxx
+GITLAB_RELATIVE_URL_ROOT=
+
+GITLAB_EMAIL=gitlab@xxx.xxx.xxx.xxx
+GITLAB_EMAIL_REPLY_TO=noreply@example.com
+GITLAB_INCOMING_EMAIL_ADDRESS=gitlab@xxx.xxx.xxx.xxx
+GITLAB_ROOT_PASSWORD=password
+
+GITLAB_PROJECTS_ISSUES=true
+GITLAB_PROJECTS_MERGE_REQUESTS=true
+GITLAB_PROJECTS_WIKI=true
+GITLAB_PROJECTS_SNIPPETS=true
+GITLAB_PROJECTS_BUILDS=true
+GITLAB_PROJECTS_CONTAINER_REGISTRY=true
+GITLAB_PAGES_ENABLED=true
+GITLAB_MATTERMOST_ENABLED=true
+
+# Redmine settings
+REDMINE_VERSION=4.1.0
+REDMINE_DB_USER=redmine
+REDMINE_DB_PASS=password
+
+REDMINE_PORT=xxxxx
+
+# Jenlins settings
+JENKINS_PORT=xxxxx
+
+# ElasticSearch settings
+ES_VERSION=7.6.1
+ES_PORT=9200
+LOGSTASH_PORT=9600
+GRAFANA_VERSION=latest
+GRAFANA_PORT=xxxxx
+ELASTICSEARCH_PROTO=http
+ELASTICSEARCH_HOST=elasticsearch
+ELASTICSEARCH_PORT=9200
+
+# Rocketchat settings
+ROCKETCHAT_VERSION=3.0.3
+ROCKETCHAT_URL=http://xxx.xxx.xxx.xxx:yyyyy
+ROCKETCHAT_PORT=yyyyy
+
+HUBOT_PORT=xxxxx
+```
+
+```
+docker-compose.yml
+
+version: '2'
+
+services:
+# Settings for PlantUML
+  plantuml:
+    image: plantuml/plantuml-server:jetty
+    restart: unless-stopped
+    dns:
+      - ${DNS1}
+      - ${DNS2}
+    environment:
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=${NO_PROXY}
+    ports:
+      - "${PLANTUML_PORT}:8080"
+
+  gitlab-redis:
+    image: sameersbn/redis:latest
+    command:
+      - --loglevel warning
+    volumes:
+      - gitlab-redis-vol:/var/lib/redis:Z
+
+  gitlab-db:
+    image: sameersbn/postgresql:${POSTGRESQL_VERSION}
+    volumes:
+      - gitlab-db-vol:/var/lib/postgresql:Z
+    environment:
+      - DB_USER=${GITLAB_DB_USER}
+      - DB_PASS=${GITLAB_DB_PASS}
+      - DB_NAME=gitlabhq_production
+      - DB_EXTENSION=pg_trgm
+
+# Settings For Gitlab
+  gitlab:
+    image: sameersbn/gitlab:${GITLAB_VERSION}
+    restart: unless-stopped
+    dns:
+      - ${DNS1}
+      - ${DNS2}
+    depends_on:
+      - gitlab-redis
+      - gitlab-db
+    ports:
+      - "${GITLAB_PORT}:80"
+      - "${GITLAB_SSH_PORT}:22"
+    volumes:
+      - gitlab-vol:/home/git/data:Z
+      - gitlab-socket-vol:/var/run/docker.sock
+    environment:
+      - DEBUG=false
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=${NO_PROXY}
+
+      - DB_ADAPTER=postgresql
+      - DB_HOST=gitlab-db
+      - DB_PORT=5432
+      - DB_USER=${GITLAB_DB_USER}
+      - DB_PASS=${GITLAB_DB_PASS}
+      - DB_NAME=gitlabhq_production
+
+      - REDIS_HOST=gitlab-redis
+      - REDIS_PORT=6379
+
+      - TZ=Asia/Tokyo
+      - GITLAB_TIMEZONE=Tokyo
+
+      - GITLAB_HTTPS=false
+      - SSL_SELF_SIGNED=false
+
+      - GITLAB_HOST=${GITLAB_HOST}
+      - GITLAB_PORT=${GITLAB_PORT}
+      - GITLAB_SSH_PORT=${GITLAB_SSH_PORT}
+      - GITLAB_RELATIVE_URL_ROOT=${GITLAB_RELATIVE_URL_ROOT}
+
+      - GITLAB_SECRETS_DB_KEY_BASE=long-and-random-alphanumeric-string
+      - GITLAB_SECRETS_SECRET_KEY_BASE=long-and-random-alphanumeric-string
+      - GITLAB_SECRETS_OTP_KEY_BASE=long-and-random-alphanumeric-string
+
+      - GITLAB_ROOT_PASSWORD=
+      - GITLAB_ROOT_EMAIL=
+
+      - GITLAB_NOTIFY_ON_BROKEN_BUILDS=true
+      - GITLAB_NOTIFY_PUSHER=false
+
+      - GITLAB_EMAIL=gitlab@example.com
+      - GITLAB_EMAIL_REPLY_TO=noreply@example.com
+      - GITLAB_INCOMING_EMAIL_ADDRESS=reply@example.com
+      - GITLAB_SIGNUP_ENABLED=false
+      - GITLAB_BACKUP_SCHEDULE=daily
+      - GITLAB_BACKUP_EXPIRY=604800
+      - GITLAB_BACKUP_TIME=01:00
+
+      - SMTP_ENABLED=true
+      - SMTP_DOMAIN=${SMTP_DOMAIN}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+      - SMTP_STARTTLS=false
+      - SMTP_AUTHENTICATION=false
+
+      - LDAP_ENABLED=true
+      - LDAP_LABEL=${LDAP_LABEL}
+      - LDAP_HOST=${LDAP_HOST}
+      - LDAP_VERIFY_SSL=${LDAP_VERIFY_SSL}
+      - LDAP_BIND_DN=${LDAP_BIND_DN}
+      - LDAP_PASS=${LDAP_PASS}
+      - LDAP_ALLOW_USERNAME_OR_EMAIL_LOGIN=${LDAP_ALLOW_USERNAME_OR_EMAIL_LOGIN}
+      - LDAP_BASE=${LDAP_BASE}
+
+      - GITLAB_PROJECTS_ISSUES=${GITLAB_PROJECTS_ISSUES}
+      - GITLAB_PROJECTS_MERGE_REQUESTS=${GITLAB_PROJECTS_MERGE_REQUESTS}
+      - GITLAB_PROJECTS_WIKI=${GITLAB_PROJECTS_WIKI}
+      - GITLAB_PROJECTS_SNIPPETS=${GITLAB_PROJECTS_SNIPPETS}
+      - GITLAB_PROJECTS_BUILDS=${GITLAB_PROJECTS_BUILDS}
+      - GITLAB_PAGES_ENABLED=${GITLAB_PAGES_ENABLED}
+      - GITLAB_MATTERMOST_ENABLED=${GITLAB_MATTERMOST_ENABLED}
+  gitlab-runner:
+    image: gitlab/gitlab-runner:latest
+    restart: unless-stopped
+    dns:
+      - ${DNS1}
+      - ${DNS2}
+    environment:
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=${NO_PROXY}
+    volumes:
+      - gitlab-runner-config-vol:/etc/gitlab-runner
+      - gitlab-socket-vol:/var/run/docker.sock
+# Redmineの設定
+  redmine-db:
+    image: sameersbn/postgresql:${POSTGRESQL_VERSION}
+    restart: unless-stopped
+    environment:
+      - DB_USER=${REDMINE_DB_USER}
+      - DB_PASS=${REDMINE_DB_PASS}
+    volumes:
+      - redmine-db-vol:/var/lib/postgresql
+  redmine:
+    image: sameersbn/redmine:${REDMINE_VERSION}
+    restart: unless-stopped
+    dns:
+      - ${DNS1}
+      - ${DNS2}
+    depends_on:
+      - redmine-db
+    environment:
+      - TZ=Asia/Tokyo
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=${NO_PROXY}
+
+      - DB_ADAPTER=postgresql
+      - DB_HOST=redmine-db
+      - DB_PORT=5432
+      - DB_USER=${REDMINE_DB_USER}
+      - DB_PASS=${REDMINE_DB_PASS}
+      - DB_NAME=redmine_production
+
+      - REDMINE_PORT=${REDMINE_PORT}
+      - REDMINE_HTTPS=false
+      - REDMINE_RELATIVE_URL_ROOT=
+      - REDMINE_SECRET_TOKEN=
+
+      - REDMINE_SUDO_MODE_ENABLED=false
+      - REDMINE_SUDO_MODE_TIMEOUT=15
+
+      - REDMINE_CONCURRENT_UPLOADS=2
+
+      - REDMINE_BACKUP_SCHEDULE=daily
+      - REDMINE_BACKUP_EXPIRY=604800
+      - REDMINE_BACKUP_TIME=02:00
+
+      - SMTP_ENABLED=true
+      - SMTP_DOMAIN=${SMTP_DOMAIN}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+      - SMTP_STARTTLS=false
+      - SMTP_AUTHENTICATION=false
+
+      - LDAP_ENABLED=true
+      - LDAP_LABEL=${LDAP_LABEL}
+      - LDAP_HOST=${LDAP_HOST}
+      - LDAP_VERIFY_SSL=${LDAP_VERIFY_SSL}
+      - LDAP_BIND_DN=${LDAP_BIND_DN}
+      - LDAP_PASS=${LDAP_PASS}
+      - LDAP_ALLOW_USERNAME_OR_EMAIL_LOGIN=${LDAP_ALLOW_USERNAME_OR_EMAIL_LOGIN}
+      - LDAP_BASE=${LDAP_BASE}
+
+    ports:
+      - "${REDMINE_PORT}:80"
+    volumes:
+      - redmine-vol:/home/redmine/data:Z
+      - gitlab-vol:/home/git/data:ro
+
+# Settings for nexus
+  nexus:
+    image: sonatype/nexus3
+    restart: unless-stopped
+    dns:
+      - ${DNS1}
+      - ${DNS2}
+    ports:
+      - "${NEXUS_PORT}:8081"
+    volumes:
+      - nexus-vol:/nexus-data:Z
+    environment:
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=${NO_PROXY}
+      - JAVA_OPTS=-Duser.timezone=Asia/Tokyo -Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8
+
+# Settings for Jenkins
+  jenkins:
+    image: jenkinsci/blueocean
+    restart: unless-stopped
+    dns:
+      - ${DNS1}
+      - ${DNS2}
+    user: root
+    ports:
+      - '${JENKINS_PORT}:8080'
+    volumes:
+      - jenkins-vol:/var/jenkins_home:Z
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/docker:/etc/docker:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - JAVA_OPTS=-Duser.timezone=Asia/Tokyo -Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8
+      - TZ=Asia/Tokyo
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=${NO_PROXY}
+
+# Settings for ELK
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ES_VERSION}
+    restart: unless-stopped
+    dns:
+      - ${DNS1}
+      - ${DNS2}
+    environment:
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=${NO_PROXY}
+
+      - discovery.type=single-node
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - ${ES_PORT}:9200
+    volumes:
+      - elastic-vol:/usr/share/elasticsearch/data
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:${ES_VERSION}
+    restart: unless-stopped
+    dns:
+      - ${DNS1}
+      - ${DNS2}
+    environment:
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=${NO_PROXY}
+      - discovery.type=single-node
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    depends_on:
+      - elasticsearch
+    ports:
+      - ${LOGSTASH_PORT}:9600
+    volumes:
+      - logstash-vol:/usr/share/logstash
+
+  grafana:
+    image: grafana/grafana:${GRAFANA_VERSION}
+    restart: unless-stopped
+    dns:
+      - ${DNS1}
+      - ${DNS2}
+    environment:
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=${NO_PROXY}
+    depends_on:
+      - elasticsearch
+    ports:
+      - ${GRAFANA_PORT}:3000
+    volumes:
+      - grafana-vol:/var/lib/grafana
+
+# Settings for Communications
+  mongo:
+    image: mongo:4.0.16
+    restart: unless-stopped
+    dns:
+      - ${DNS1}
+      - ${DNS2}
+    environment:
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=${NO_PROXY}
+      - TZ=Asia/Tokyo
+    volumes:
+      - rocketchat-db-vol:/data
+      - /etc/localtime:/etc/localtime:ro
+    command: mongod --smallfiles --oplogSize 128 --replSet rs0 --storageEngine=mmapv1
+
+  # initialization mongodb for create replicaset no need restart
+  mongoinitreplica:
+    image: mongo:4.0.16
+    depends_on:
+      - mongo
+    environment:
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=${NO_PROXY}
+      - TZ=Asia/Tokyo
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    command: 'mongo mongo/rocketchat --eval "rs.initiate({ _id: ''rs0'', members: [ { _id: 0, host: ''mongo:27017'' } ]})"'
+
+  rocketchat:
+    image: rocketchat/rocket.chat:${ROCKETCHAT_VERSION}
+    restart: unless-stopped
+    dns:
+      - ${DNS1}
+      - ${DNS2}
+    volumes:
+      - rocketchat-vol:/app/uploads
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - mongoinitreplica
+    environment:
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=${NO_PROXY}
+      - ROOT_URL=${ROCKETCHAT_URL}
+      - MONGO_URL=mongodb://mongo:27017/rocketchat
+      - MONGO_OPLOG_URL=mongodb://mongo:27017/local?replSet=rs0
+      - TZ=Asia/Tokyo
+    ports:
+      - ${ROCKETCHAT_PORT}:3000
+
+  hubot:
+    image: rocketchat/hubot-rocketchat:latest
+    restart: unless-stopped
+    dns:
+      - ${DNS1}
+      - ${DNS2}
+    environment:
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - NO_PROXY=${NO_PROXY}
+      - ROCKETCHAT_URL=rocketchat:${ROCKETCHAT_PORT}
+      - ROCKETCHAT_ROOM=GENERAL
+      - ROCKETCHAT_USER=bot
+      - ROCKETCHAT_PASSWORD=password
+      - BOT_NAME=bot
+      - EXTERNAL_SCRIPTS=hubot-help,hubot-seen,hubot-links,hubot-diagnostics,hubot-proxy-loader
+      - TZ=Asia/Tokyo
+    depends_on:
+      - rocketchat
+    labels:
+      - "traefik.enable=false"
+    volumes:
+      - hubot-vol:/home/hubot
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - ${HUBOT_PORT}:8080
+
+volumes:
+  gitlab-redis-vol:
+  gitlab-db-vol:
+  gitlab-vol:
+  gitlab-socket-vol:
+  gitlab-runner-config-vol:
+  redmine-db-vol:
+  redmine-vol:
+  nexus-vol:
+  jenkins-vol:
+  logstash-vol:
+  elastic-vol:
+  grafana-vol:
+  rocketchat-db-vol:
+  rocketchat-vol:
+  hubot-vol:
+```
+
+
 ## Jenkinsを手探りで社内ローカルに立てて詰んだ話  
 [Jenkinsを手探りで社内ローカルに立てて詰んだ話 Dec 14, 2017](https://qiita.com/wryu/items/de3767f231e690fb4e7d)  
 
@@ -352,3 +865,5 @@ This project type lets you implement different Jenkinsfiles for different branch
 - 1
 - 2
 - 3
+
+
