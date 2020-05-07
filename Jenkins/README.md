@@ -1,8 +1,8 @@
 Table of Contents
 =================
 
-   * [Purpose](#purpose)
    * [Table of Contents](#table-of-contents)
+   * [Purpose](#purpose)
    * [Plug-In Installation of Jenkins](#plug-in-installation-of-jenkins)
       * [01 dockerfile](#01-dockerfile)
       * [02 Build docker image](#02-build-docker-image)
@@ -23,6 +23,9 @@ Table of Contents
    * [Troubleshooting](#troubleshooting)
    * [Reference](#reference)
       * [Redmine Jenkins GitLab Elasticsearch by Docker](#redminejenkinsgitlabelasticsearch-by-docker)
+      * [GitLab, Redmine and Jenkins by Docker-Compose](#gitlab-redmine-and-jenkins-by-docker-compose)
+         * [nginx.conf](#nginxconf)
+      * [Docker上に開発環境一式を構築する](#docker上に開発環境一式を構築する)
       * [Jenkinsを手探りで社内ローカルに立てて詰んだ話](#jenkinsを手探りで社内ローカルに立てて詰んだ話)
       * [JenkinsとSeleniumを使ってWebコンテンツの自動UIテスト環境を作ろう！](#jenkinsとseleniumを使ってwebコンテンツの自動uiテスト環境を作ろう)
       * [JenkinsでCI環境構築チュートリアル ～GitHubとの連携～](#jenkinsでci環境構築チュートリアル-githubとの連携)
@@ -686,6 +689,228 @@ volumes:
   hubot-vol:
 ```
 
+## GitLab, Redmine and Jenkins by Docker-Compose  
+[Docker-ComposeでGitLabとRedmineとJenkinsを立ち上げる updated at 2017-08-29](https://qiita.com/nexkeh/items/02a4d6c33d884bda1b23)  
+```
+docker-compose.yml
+
+gitlab-mysql:
+  restart: always
+  image: sameersbn/mysql:latest
+  environment:
+    - DB_USER=gitlab
+    - DB_PASS=password
+    - DB_NAME=gitlabhq_production
+  volumes:
+    - /srv/docker/gitlab/mysql:/var/lib/mysql
+gitlab:
+  restart: always
+  image: sameersbn/gitlab:8.3.2
+  links:
+    - gitlab-redis:redisio
+    - gitlab-mysql:mysql
+  environment:
+    - DEBUG=false
+    - TZ=Asia/Tokyo
+    - GITLAB_TIMEZONE=Tokyo
+
+    - GITLAB_SECRETS_DB_KEY_BASE=long-and-random-alphanumeric-string
+
+    - GITLAB_HOST=
+    - GITLAB_PORT=
+    - GITLAB_SSH_PORT=
+    - GITLAB_RELATIVE_URL_ROOT=/gitlab
+
+    - GITLAB_NOTIFY_ON_BROKEN_BUILDS=true
+    - GITLAB_NOTIFY_PUSHER=false
+
+    - GITLAB_EMAIL=notifications@example.com
+    - GITLAB_EMAIL_REPLY_TO=noreply@example.com
+    - GITLAB_INCOMING_EMAIL_ADDRESS=reply@example.com
+
+    - GITLAB_BACKUP_SCHEDULE=daily
+    - GITLAB_BACKUP_TIME=01:00
+
+    - SMTP_ENABLED=false
+    - SMTP_DOMAIN=www.example.com
+    - SMTP_HOST=smtp.gmail.com
+    - SMTP_PORT=587
+    - SMTP_USER=mailer@example.com
+    - SMTP_PASS=password
+    - SMTP_STARTTLS=true
+    - SMTP_AUTHENTICATION=login
+
+    - IMAP_ENABLED=false
+    - IMAP_HOST=imap.gmail.com
+    - IMAP_PORT=993
+    - IMAP_USER=mailer@example.com
+    - IMAP_PASS=password
+    - IMAP_SSL=true
+    - IMAP_STARTTLS=false
+  volumes:
+    - /srv/docker/gitlab/gitlab:/home/git/data
+gitlab-redis:
+  restart: always
+  image: sameersbn/redis:latest
+  volumes:
+    - /srv/docker/gitlab/redis:/var/lib/redis
+redmine-mysql:
+  restart: always
+  image: sameersbn/mysql:latest
+  environment:
+    - DB_USER=redmine
+    - DB_PASS=password
+    - DB_NAME=redmine_production
+  volumes:
+    - /srv/docker/redmine/mysql:/var/lib/mysql
+redmine:
+  restart: always
+  image: sameersbn/redmine:latest
+  links:
+    - redmine-mysql:mysql
+  environment:
+    - TZ=Asia/Tokyo
+
+    - REDMINE_PORT=
+    - REDMINE_HTTPS=false
+    - REDMINE_RELATIVE_URL_ROOT=/redmine
+    - REDMINE_SECRET_TOKEN=
+
+    - REDMINE_SUDO_MODE_ENABLED=false
+    - REDMINE_SUDO_MODE_TIMEOUT=15
+
+    - REDMINE_CONCURRENT_UPLOADS=2
+
+    - REDMINE_BACKUP_SCHEDULE=
+    - REDMINE_BACKUP_EXPIRY=
+    - REDMINE_BACKUP_TIME=
+
+    - SMTP_ENABLED=false
+    - SMTP_METHOD=smtp
+    - SMTP_DOMAIN=www.example.com
+    - SMTP_HOST=smtp.gmail.com
+    - SMTP_PORT=587
+    - SMTP_USER=mailer@example.com
+    - SMTP_PASS=password
+    - SMTP_STARTTLS=true
+    - SMTP_AUTHENTICATION=:login
+
+    - IMAP_ENABLED=false
+    - IMAP_HOST=imap.gmail.com
+    - IMAP_PORT=993
+    - IMAP_USER=mailer@example.com
+    - IMAP_PASS=password
+    - IMAP_SSL=true
+    - IMAP_INTERVAL=30
+  volumes:
+    - /srv/docker/redmine/redmine:/home/redmine/data
+jenkins:
+  restart: always
+  image: jenkins:latest
+  environment:
+    - JENKINS_OPTS=--prefix=/jenkins
+  volumes:
+    - /srv/docker/jenkins/jenkins:/var/jenkins_home
+proxy:
+  build: proxy
+  links:
+    - gitlab:gitlab
+    - redmine:redmine
+    - jenkins:jenkins
+  ports:
+    - "80:80"
+```
+> nginx用のDockerfile。docker-compose.ymlのproxyの部分で、このDockerfileを使ってnginxのイメージがビルドされます。  
+
+```
+Dockerfile
+
+# https://registry.hub.docker.com/_/nginx/
+FROM nginx:latest
+
+# 設定ファイルをコピー
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# HTMLファイルをコピー
+COPY index.html /usr/share/nginx/html/index.html
+```
+
+### nginx.conf  
+```
+nginx.conf
+
+user  nginx;
+worker_processes  2;
+
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+
+events {
+  worker_connections  1024;
+}
+
+http {
+  include  /etc/nginx/mime.types;
+  default_type  application/octet-stream;
+
+  log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                    '$status $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for"';
+  access_log  /var/log/nginx/access.log  main;
+
+  sendfile           on;
+  keepalive_timeout  65;
+  server_tokens      off;
+
+  server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name 127.0.0.1;
+    charset koi8-r;
+
+    client_max_body_size 1024M;
+
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-Proto http;
+    proxy_set_header X-Forwarded-Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-NginX-Proxy true;
+
+    # static-html
+    location / {
+      index index.html;
+      root /usr/share/nginx/html;
+    }
+    # gitlab
+    location /gitlab {
+      proxy_pass http://gitlab;
+    }
+    # redmine
+    location /redmine {
+      proxy_pass http://redmine;
+    }
+    # jenkins
+    location /jenkins {
+      proxy_pass http://jenkins:8080;
+    }
+  }
+}
+```
+
+## Docker上に開発環境一式を構築する  
+[Docker上に開発環境一式を構築する updated at 2016-04-07](https://qiita.com/hakaicode/items/5522a5ad1c280b9cf757)  
+```
+現在のステータス
+
+    VPSにホストにUbuntuを入れる <-イマココ
+    dnsを構築する
+    nginxを構築する
+    GitBucket環境を構築する
+    Selenium用のJenkins環境を構築する
+    Desktop環境(IntelliJ IDEA)を構築する
+    まとめと反省
+```
 
 ## Jenkinsを手探りで社内ローカルに立てて詰んだ話  
 [Jenkinsを手探りで社内ローカルに立てて詰んだ話 Dec 14, 2017](https://qiita.com/wryu/items/de3767f231e690fb4e7d)  
@@ -796,7 +1021,7 @@ http://localhost:18080/
 * [Dockerで動くJenkinsから他のコンテナを操作する（Docker outside of Docker） Oct 26, 2019](https://qiita.com/quotto/items/61b44bdeef7dbb915970)  
 
 ## Dockerでjenkins(+SSL)  
-* [Dockerでjenkins(+SSL) Sep 05, 2019](https://qiita.com/search?page=2&q=Jenkins)  
+* [Dockerでjenkins(+SSL) Sep 05, 2019](https://qiita.com/oko1977/items/8b2f782bb7ead8e27659)  
 
 ## Jenkins CheatSheet — Know The Top Best Practices of Jenkins  
 [Jenkins CheatSheet — Know The Top Best Practices of Jenkins Aug 7, 2019](https://medium.com/edureka/jenkins-cheat-sheet-e0f7e25558a3)  
@@ -865,5 +1090,3 @@ This project type lets you implement different Jenkinsfiles for different branch
 - 1
 - 2
 - 3
-
-
