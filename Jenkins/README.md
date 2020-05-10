@@ -1,3 +1,4 @@
+
 Table of Contents
 =================
 
@@ -20,9 +21,22 @@ Table of Contents
       * [11 Try it and Enjoy](#11-try-it-and-enjoy)
       * [12 Creat a Project](#12-creat-a-project)
       * [13 Stop Jenkis Container](#13-stop-jenkis-container)
+   * [Jenkins   Portainer.io](#jenkins--portainerio)
+      * [dockerfile](#dockerfile)
+      * [Unlock Jenkins](#unlock-jenkins)
+      * [Post Installation](#post-installation)
+         * [Security](#security)
+         * [Plugins](#plugins)
+      * [Jenkins Fox One](#jenkins-fox-one)
+         * [安裝編譯系統所需要的套件: OpenWRT](#安裝編譯系統所需要的套件-openwrt)
+         * [New Project: FreeStyle](#new-project-freestyle)
+      * [Jenkins Fox Two](#jenkins-fox-two)
+         * [Round 1](#round-1)
+   * [Redmine Jenkins GitLab Elasticsearch by Docker](#redminejenkinsgitlabelasticsearch-by-docker)
+      * [.env](#env)
+      * [docker-compose.yml](#docker-composeyml)
    * [Troubleshooting](#troubleshooting)
    * [Reference](#reference)
-      * [Redmine Jenkins GitLab Elasticsearch by Docker](#redminejenkinsgitlabelasticsearch-by-docker)
       * [GitLab, Redmine and Jenkins by Docker-Compose](#gitlab-redmine-and-jenkins-by-docker-compose)
          * [nginx.conf](#nginxconf)
       * [Docker上に開発環境一式を構築する](#docker上に開発環境一式を構築する)
@@ -185,15 +199,83 @@ jenkins:2.19.4
 （表題と内容が合わないので、あとで表題は変える予定です。）
 ```
 
-# Troubleshooting
+
+# Jenkins + Portainer.io  
+[Jenkins at service  2019-09-26](https://ithelp.ithome.com.tw/articles/10215423)  
+
+## dockerfile  
+```
+docker run --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+```
+
+## Unlock Jenkins  
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190920/20094403oXrX4EC1EJ.png)  
+
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190920/20094403pD8g13lhlH.png)  
+
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190920/20094403AU9i0htAWw.png)  
+
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190920/20094403nuHdMWG1ny.png)  
+
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190920/20094403tdiyD7GjqV.png)  
+
+## Post Installation  
+> restart jenkins by portainer  
+
+### Security  
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190924/20094403uBzrbKf0Uo.png)  
+
+### Plugins  
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190924/20094403c79rutyBRS.png)  
+
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190924/20094403gkQ2wNUfyn.png)  
+
+## Jenkins Fox One 
+
+### 安裝編譯系統所需要的套件: OpenWRT  
+```
+apt-get update && apt-get install -y sudo time git-core subversion build-essential gcc-multilib quilt rsync file libncurses5-dev zlib1g-dev gawk flex gettext wget unzip python vim
+```
+
+### New Project: FreeStyle 
+>    
+![alt tag]()  
+
+> 改變不同參數   
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403x3P1TzIlUp.png)  
+
+> 取得最新原始碼     
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403FvWnGVsxkY.png)  
+
+> 定期建置     
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403qFfQLpdu8j.png)
+
+> make     
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403xiZkBuxsLc.png)  
+
+>    
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403tSWYWCuaIS.png)  
+
+> Console    
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403jq77U17tHl.png)  
+
+> Complete
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/200944033pwURvFbcN.png)  
+
+## Jenkins Fox Two  
+[Jenkins Fox Two 2019-09-28](https://ithelp.ithome.com.tw/articles/10217573)  
+
+### Round 1  
+```
+env
+```
 
 
-# Reference  
-## Redmine+Jenkins+GitLab+Elasticsearch by Docker  
+# Redmine+Jenkins+GitLab+Elasticsearch by Docker  
 [docker-composeで開発環境全部盛りしてみた Mar 15, 2020](https://qiita.com/euledge/items/52eb2e299a128f528d42)  
 
+## .env  
 ```
-.env
 
 # Common settings
 DNS1=xxx.xxx.xxx.xxx
@@ -281,8 +363,8 @@ ROCKETCHAT_PORT=yyyyy
 HUBOT_PORT=xxxxx
 ```
 
+## docker-compose.yml  
 ```
-docker-compose.yml
 
 version: '2'
 
@@ -689,6 +771,13 @@ volumes:
   hubot-vol:
 ```
 
+
+# Troubleshooting
+
+
+# Reference  
+
+
 ## GitLab, Redmine and Jenkins by Docker-Compose  
 [Docker-ComposeでGitLabとRedmineとJenkinsを立ち上げる updated at 2017-08-29](https://qiita.com/nexkeh/items/02a4d6c33d884bda1b23)  
 ```
@@ -1090,3 +1179,4 @@ This project type lets you implement different Jenkinsfiles for different branch
 - 1
 - 2
 - 3
+
