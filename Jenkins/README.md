@@ -1,4 +1,6 @@
 
+
+
 Table of Contents
 =================
 
@@ -37,6 +39,8 @@ Table of Contents
       * [docker-compose.yml](#docker-composeyml)
    * [Troubleshooting](#troubleshooting)
    * [Reference](#reference)
+      * [Android App Automation Test](#android-app-automation-test)
+      * [Jenkins for Android](#jenkins-for-android)
       * [GitLab, Redmine and Jenkins by Docker-Compose](#gitlab-redmine-and-jenkins-by-docker-compose)
          * [nginx.conf](#nginxconf)
       * [Docker上に開発環境一式を構築する](#docker上に開発環境一式を構築する)
@@ -776,6 +780,13 @@ volumes:
 
 
 # Reference  
+
+## Android App Automation Test  
+[從0開始，全方面自動化測試Android App 2019-09-16](https://ithelp.ithome.com.tw/users/20120975/ironman/2726?page=1)  
+
+## Jenkins for Android   
+[[Android 十全大補] Jenkins 2019-10-13](https://ithelp.ithome.com.tw/articles/10227688)  
+
 
 
 ## GitLab, Redmine and Jenkins by Docker-Compose  
