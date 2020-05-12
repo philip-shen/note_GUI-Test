@@ -1,6 +1,3 @@
-
-
-
 Table of Contents
 =================
 
@@ -23,6 +20,9 @@ Table of Contents
       * [11 Try it and Enjoy](#11-try-it-and-enjoy)
       * [12 Creat a Project](#12-creat-a-project)
       * [13 Stop Jenkis Container](#13-stop-jenkis-container)
+   * [docker-jenkins-django-tutorial](#docker-jenkins-django-tutorial)
+      * [Method 2: Named volume](#method-2-named-volume)
+      * [Jenkins First time Login](#jenkins-first-time-login)
    * [Jenkins   Portainer.io](#jenkins--portainerio)
       * [dockerfile](#dockerfile)
       * [Unlock Jenkins](#unlock-jenkins)
@@ -64,6 +64,7 @@ Table of Contents
    * [Table of Contents](#table-of-contents-1)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
 
 # Purpose
 Take notes of Jenkis  
@@ -202,6 +203,68 @@ jenkins:2.19.4
 もともとローカルで動かすのが目的だったが、せっかくなのでAWS上で動かす練習しておく。
 （表題と内容が合わないので、あとで表題は変える予定です。）
 ```
+
+
+# docker-jenkins-django-tutorial  
+[twtrubiks/docker-jenkins-django-tutorial](https://github.com/twtrubiks/docker-jenkins-django-tutorial)  
+
+## Method 2: Named volume    
+```
+version: '3'
+services:
+
+    db:
+      image: postgres
+      environment:
+        POSTGRES_PASSWORD: password123
+      ports:
+        - "5432:5432"
+      volumes:
+        - pgdata_jenkins:/var/lib/postgresql/data/
+
+    api:
+      build: ./api
+      restart: always
+      command: python /var/jenkins_home/workspace/demo/api/manage.py runserver 0.0.0.0:8000
+      ports:
+        - "8002:8000"
+      volumes:
+        - api_data:/docker_api
+        - jenkins_data:/var/jenkins_home
+      depends_on:
+        - db
+
+    jenkins:
+          build: ./jenkins
+          restart: always
+          ports:
+              - "8080:8080"
+              - "50000:50000"
+          volumes:
+              - jenkins_data:/var/jenkins_home
+volumes:
+    api_data:
+    jenkins_data:
+    pgdata_jenkins:
+```
+
+## Jenkins First time Login  
+![alt tag](https://i.imgur.com/kk3UWJm.jpg) 
+
+> cat /var/jenkins_home/secrets/initialAdminPassword
+![alt tag](https://i.imgur.com/y63Je7b.jpg) 
+
+![alt tag](https://i.imgur.com/gYAh9dv.jpg) 
+
+![alt tag](https://i.imgur.com/tlaj7sa.jpg) 
+
+![alt tag](https://i.imgur.com/zhcbtfT.jpg) 
+
+![alt tag](https://i.imgur.com/Fke32s6.jpg) 
+
+![alt tag](https://i.imgur.com/9ZfL8zZ.jpg) 
+
+![alt tag](https://i.imgur.com/i0VlVHm.jpg) 
 
 
 # Jenkins + Portainer.io  
@@ -1190,4 +1253,5 @@ This project type lets you implement different Jenkinsfiles for different branch
 - 1
 - 2
 - 3
+
 
