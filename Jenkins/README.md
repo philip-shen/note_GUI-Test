@@ -34,6 +34,12 @@ Table of Contents
          * [New Project: FreeStyle](#new-project-freestyle)
       * [Jenkins Fox Two](#jenkins-fox-two)
          * [Round 1](#round-1)
+   * [Jenkins of Docker version Uprage Tips](#jenkins-of-docker-version-uprage-tips)
+      * [前提](#前提)
+      * [現象](#現象)
+      * [1次調査](#1次調査)
+      * [原因の推測](#原因の推測)
+      * [2次調査](#2次調査)
    * [Redmine Jenkins GitLab Elasticsearch by Docker](#redminejenkinsgitlabelasticsearch-by-docker)
       * [.env](#env)
       * [docker-compose.yml](#docker-composeyml)
@@ -407,11 +413,11 @@ $ docker cp jenkins_1:/usr/share/jenkins ./srv/jenkins/usr/share/
 
 ```
 test@test-Ubuntu18:~/docker-jenkins-django-tutorial/jenkins_volume$ mkdir -p ./jenkins/var/cache
-test@test-Ubuntu18:~/docker-jenkins-django-tutorial/jenkins_volume$ mkdir -p ./jenkins/var/cache/jenkins/
-test@test-Ubuntu18:~/docker-jenkins-django-tutorial/jenkins_volume$ mkdir -p ./jenkins/usr
-test@test-Ubuntu18:~/docker-jenkins-django-tutorial/jenkins_volume$ mkdir -p ./jenkins/usr/share/
-test@test-Ubuntu18:~/docker-jenkins-django-tutorial/jenkins_volume$ docker cp jenkins_volume_jenkins_1:/var/jenkins_home/war ./jenkins/var/cache/jenkins/
-test@test-Ubuntu18:~/docker-jenkins-django-tutorial/jenkins_volume$ docker cp jenkins_volume_jenkins_1:/usr/share/jenkins ./jenkins/usr/share/
+$ mkdir -p ./jenkins/var/cache/jenkins/
+$ mkdir -p ./jenkins/usr
+$ mkdir -p ./jenkins/usr/share/
+$ docker cp jenkins_volume_jenkins_1:/var/jenkins_home/war ./jenkins/var/cache/jenkins/
+$ docker cp jenkins_volume_jenkins_1:/usr/share/jenkins ./jenkins/usr/share/
 ```
 ![alt tag](https://i.imgur.com/SC14AtE.png)  
 
@@ -1360,5 +1366,7 @@ This project type lets you implement different Jenkinsfiles for different branch
 - 1
 - 2
 - 3
+
+
 
 
