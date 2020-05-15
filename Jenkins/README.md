@@ -405,7 +405,7 @@ $ docker cp jenkins_volume_jenkins_1:/usr/share/jenkins ./jenkins/usr/share/
 [[jenkins, ci] 最簡單的方法安裝 ...-井民全觀點(Jing's Perspective) Apr 29, 2019](http://mqjing.blogspot.com/2019/04/jenkins-ci-jenkins-service.html)  
 
 ## Refer docker-compose.yml and Dockerfile  
-[Dockerfile]https://github.com/philip-shen/note_GUI-Test/blob/master/Jenkins/Dockerfile)  
+[Dockerfile](https://github.com/philip-shen/note_GUI-Test/blob/master/Jenkins/Dockerfile)  
 [docker-compose.yml](https://github.com/philip-shen/note_GUI-Test/blob/master/Jenkins/docker-compose.yml)
 
 ## Install Docker--- Dockerfile  
