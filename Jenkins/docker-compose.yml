@@ -32,6 +32,7 @@ services:
               - jenkins_data:/var/jenkins_home
               - ./jenkins/var/cache/jenkins/war:/var/jenkins_home/war
               - ./jenkins/usr/share/jenkins:/usr/share/jenkins
+              - /home/test/project:/home/project
 volumes:
     api_data:
     jenkins_data:

@@ -23,6 +23,26 @@ Table of Contents
    * [docker-jenkins-django-tutorial](#docker-jenkins-django-tutorial)
       * [Method 2: Named volume](#method-2-named-volume)
       * [Jenkins First time Login](#jenkins-first-time-login)
+   * [Jenkins of Docker version Uprage Tips](#jenkins-of-docker-version-uprage-tips)
+      * [前提](#前提)
+      * [現象](#現象)
+      * [1次調査](#1次調査)
+      * [原因の推測](#原因の推測)
+      * [2次調査](#2次調査)
+   * [[jenkins, ci] 最簡單的方法安裝](#jenkins-ci-最簡單的方法安裝)
+      * [Refer docker-compose.yml and Dockerfile](#refer-docker-composeyml-and-dockerfile)
+      * [Install Docker--- Dockerfile](#install-docker----dockerfile)
+      * [Build the image](#build-the-image)
+      * [Run Jenkins](#run-jenkins)
+   * [【Jenkins備忘録】Python AutoTest Environment Setup](#jenkins備忘録python-autotest-environment-setup)
+      * [Project Setup, New Item](#project-setup-new-item)
+      * [Item name keyin--&gt; Free Style--&gt; OK.](#item-name-keyin---free-style---ok)
+      * [General--&gt; Advanced--&gt; Use Customer Workspace](#general---advanced---use-customer-workspace)
+      * [Build--&gt; Excute shell--&gt; ptyhon xxx.py--&gt; Apply and Save](#build---excute-shell---ptyhon-xxxpy---apply-and-save)
+      * [Build Now Button](#build-now-button)
+      * [Press #1](#press-1)
+      * [Press Console Output](#press-console-output)
+      * [Console Output Reslult](#console-output-reslult)
    * [Jenkins   Portainer.io](#jenkins--portainerio)
       * [dockerfile](#dockerfile)
       * [Unlock Jenkins](#unlock-jenkins)
@@ -34,12 +54,6 @@ Table of Contents
          * [New Project: FreeStyle](#new-project-freestyle)
       * [Jenkins Fox Two](#jenkins-fox-two)
          * [Round 1](#round-1)
-   * [Jenkins of Docker version Uprage Tips](#jenkins-of-docker-version-uprage-tips)
-      * [前提](#前提)
-      * [現象](#現象)
-      * [1次調査](#1次調査)
-      * [原因の推測](#原因の推測)
-      * [2次調査](#2次調査)
    * [Redmine Jenkins GitLab Elasticsearch by Docker](#redminejenkinsgitlabelasticsearch-by-docker)
       * [.env](#env)
       * [docker-compose.yml](#docker-composeyml)
@@ -49,15 +63,19 @@ Table of Contents
       * [Jenkins for Android](#jenkins-for-android)
       * [GitLab, Redmine and Jenkins by Docker-Compose](#gitlab-redmine-and-jenkins-by-docker-compose)
          * [nginx.conf](#nginxconf)
-      * [Docker上に開発環境一式を構築する](#docker上に開発環境一式を構築する)
+      * [Jenkins部署Python專案實戰| IT人](#jenkins部署python專案實戰-it人)
+      * [docker   selenium   jenkins Autotest](#docker--selenium--jenkins-autotest)
+      * [Python Unit Test on Jenkins and Docker](#python-unit-test-on-jenkins-and-docker)
+         * [前提](#前提-1)
+      * [Python Docker from Jenkins](#python-docker-from-jenkins)
+      * [Docker上に開発環境一式を構築する  GitBucket/Jenkins/nginx/DNS/Desktop on Docker](#docker上に開発環境一式を構築する--gitbucketjenkinsnginxdnsdesktop-on-docker)
       * [Jenkinsを手探りで社内ローカルに立てて詰んだ話](#jenkinsを手探りで社内ローカルに立てて詰んだ話)
-      * [JenkinsとSeleniumを使ってWebコンテンツの自動UIテスト環境を作ろう！](#jenkinsとseleniumを使ってwebコンテンツの自動uiテスト環境を作ろう)
+      * [JenkinsとSeleniumを使ってWebコンテンツの自動UIテスト環境を作ろう！  Node.js and Selenium](#jenkinsとseleniumを使ってwebコンテンツの自動uiテスト環境を作ろう--nodejs-and-selenium)
       * [JenkinsでCI環境構築チュートリアル ～GitHubとの連携～](#jenkinsでci環境構築チュートリアル-githubとの連携)
       * [JenkinsでCI環境構築チュートリアル ～GitHubからWebサーバーへのデプロイ～](#jenkinsでci環境構築チュートリアル-githubからwebサーバーへのデプロイ)
-      * [テスト自動化環境構築](#テスト自動化環境構築)
+      * [テスト自動化環境構築 on Vagrant and VirturalBox](#テスト自動化環境構築-on-vagrant-and-virturalbox)
       * [dockerでjenkins構築（plugin install errorを出さない）](#dockerでjenkins構築plugin-install-errorを出さない)
       * [Jenkinsインストール(Ansible)](#jenkinsインストールansible)
-      * [【Jenkins備忘録】Python自動テスト環境構築](#jenkins備忘録python自動テスト環境構築)
       * [Dockerで動くJenkinsから他のコンテナを操作する（Docker outside of Docker）](#dockerで動くjenkinsから他のコンテナを操作するdocker-outside-of-docker)
       * [Dockerでjenkins( SSL)](#dockerでjenkinsssl)
       * [Jenkins CheatSheet — Know The Top Best Practices of Jenkins](#jenkins-cheatsheet--know-the-top-best-practices-of-jenkins)
@@ -273,75 +291,6 @@ volumes:
 ![alt tag](https://i.imgur.com/i0VlVHm.jpg) 
 
 
-# Jenkins + Portainer.io  
-[Jenkins at service  2019-09-26](https://ithelp.ithome.com.tw/articles/10215423)  
-
-## dockerfile  
-```
-docker run --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
-```
-
-## Unlock Jenkins  
-![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190920/20094403oXrX4EC1EJ.png)  
-
-![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190920/20094403pD8g13lhlH.png)  
-
-![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190920/20094403AU9i0htAWw.png)  
-
-![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190920/20094403nuHdMWG1ny.png)  
-
-![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190920/20094403tdiyD7GjqV.png)  
-
-## Post Installation  
-> restart jenkins by portainer  
-
-### Security  
-![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190924/20094403uBzrbKf0Uo.png)  
-
-### Plugins  
-![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190924/20094403c79rutyBRS.png)  
-
-![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190924/20094403gkQ2wNUfyn.png)  
-
-## Jenkins Fox One 
-
-### 安裝編譯系統所需要的套件: OpenWRT  
-```
-apt-get update && apt-get install -y sudo time git-core subversion build-essential gcc-multilib quilt rsync file libncurses5-dev zlib1g-dev gawk flex gettext wget unzip python vim
-```
-
-### New Project: FreeStyle 
->    
-![alt tag]()  
-
-> 改變不同參數   
-![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403x3P1TzIlUp.png)  
-
-> 取得最新原始碼     
-![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403FvWnGVsxkY.png)  
-
-> 定期建置     
-![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403qFfQLpdu8j.png)
-
-> make     
-![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403xiZkBuxsLc.png)  
-
->    
-![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403tSWYWCuaIS.png)  
-
-> Console    
-![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403jq77U17tHl.png)  
-
-> Complete
-![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/200944033pwURvFbcN.png)  
-
-## Jenkins Fox Two  
-[Jenkins Fox Two 2019-09-28](https://ithelp.ithome.com.tw/articles/10217573)  
-
-### Round 1  
-```
-env
-```
 
 
 # Jenkins of Docker version Uprage Tips  
@@ -431,8 +380,8 @@ $ docker cp jenkins_volume_jenkins_1:/usr/share/jenkins ./jenkins/usr/share/
 
 *  docker-compose.yml on my site  
 ```
-./jenkins/var/cache/jenkins/war:/var/jenkins_home/war
-./jenkins/usr/share/jenkins:/usr/share/jenkins
+- ./jenkins/var/cache/jenkins/war:/var/jenkins_home/war
+- ./jenkins/usr/share/jenkins:/usr/share/jenkins
 ```
 ![alt tag](https://i.imgur.com/DrbNF77.png)  
 
@@ -450,6 +399,167 @@ $ docker cp jenkins_volume_jenkins_1:/usr/share/jenkins ./jenkins/usr/share/
 ![alt tag](https://i.imgur.com/G3asieQ.png)  
 
 ![alt tag](https://i.imgur.com/IVrOKM1.png)  
+
+
+# [jenkins, ci] 最簡單的方法安裝
+[[jenkins, ci] 最簡單的方法安裝 ...-井民全觀點(Jing's Perspective) Apr 29, 2019](http://mqjing.blogspot.com/2019/04/jenkins-ci-jenkins-service.html)  
+
+## Refer docker-compose.yml and Dockerfile  
+[Dockerfile](https://github.com/philip-shen/note_GUI-Test/blob/master/Jenkins/dockerfile)  
+[docker-compose.yml](https://github.com/philip-shen/note_GUI-Test/blob/master/Jenkins/docker-compose.yml)
+
+## Install Docker--- Dockerfile  
+```
+FROM jenkins/jenkins:lts
+USER root
+RUN apt-get update
+RUN apt-get install -y python3-pip
+# Install app dependencies
+RUN pip3 install --upgrade pip
+RUN pip3 install numpy pandas scipy matplotlib
+
+# drop back to the regular jenkins user - good practice
+USER jenkins
+```
+
+## Build the image   
+```
+ sudo docker build --tag=jenkins-python3-v3 .
+# list image: sudo docker image list
+# rm image: sudo docker image rm ${image-name}
+```
+
+##  Run Jenkins  
+```
+ ＃用預設的 uid  1000, gid 1000 執行
+sudo docker run -p 8080:8080 -p 50000:50000 jenkins-python3-v3
+
+
+# 但如果你有 mount volumn 時,  且被掛上來的磁碟有 permission 設定
+# 可以指定某一個 host 的 group id 身份來存取該 volume
+Ex
+sudo docker run -u :`id -g $USER` -p 8080:8080 -p 50000:50000 -v /home2:/home2 jenkins-python3-v3
+```
+
+```
+# 讓 docker 的執行 gid 設定為 volumn 存取 group
+
+/usr/bin/docker run \
+         --name jenkins-server \
+         --user jenkins:1007 \
+         --publish 8080:8080 \
+         --publish 50000:50000 \
+         --volume /var/jenkins:/var/jenkins_home \
+         --volume /home2:/home2 \
+         jenkins-python3-v3
+```
+
+[Running a Docker container as a non-root user Feb 21, 2018](https://medium.com/redbubble/running-a-docker-container-as-a-non-root-user-7d2e00f8ee15)  
+
+
+# 【Jenkins備忘録】Python AutoTest Environment Setup  
+[【Jenkins備忘録】Python自動テスト環境構築①Python準備編  Jun 09, 2018](https://qiita.com/Kento75/items/8558d9ddd2cb04c3e36d)  
+[【Jenkins備忘録】Python自動テスト環境構築②テストコード準備編 Jun 09, 2018](https://qiita.com/Kento75/items/e4ebeb990449f447ce3f)  
+[【Jenkins備忘録】Python自動テスト環境構築③jenkins準備編 Jun 09, 2018](https://qiita.com/Kento75/items/2ecd1f3251c9c344ca69)  
+
+[【Jenkins備忘録】Python自動テスト環境構築④プロジェクト作成編 updated at 2019-09-11](https://qiita.com/Kento75/items/f46b4c47a3a33de7ae5d)  
+## Project Setup, New Item  
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F149104e8-9afa-ed3f-a446-8c7388627e42.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=c83e012cf467a943ae436664269efc26)  
+
+## Item name keyin--> Free Style--> OK.
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F099cfe3b-16e7-de72-fbcc-941ea2992055.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=3cdc580f7918eb62807efc6fdaa63dc8)  
+
+## General--> Advanced--> Use Customer Workspace  
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F12260b65-75e6-2c33-2e2f-dcdb1ed44502.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=a43f6682aa3402ccc82b582cfc63801f)  
+
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F9bc678f6-6e9a-5297-0edb-bed477c38dd7.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=60a23b5d6c13d8ad2cf0d54fdecf5033)  
+
+## Build--> Excute shell--> ptyhon xxx.py--> Apply and Save   
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2Fc5c4b299-a112-4f61-e9a4-f814214ec489.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=c134a851357f2ada335c5d94798a23a2)  
+
+## Build Now Button  
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F00071801-13a0-ed78-c220-039435d58e72.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=4647a6b3dffd3190392ad6760e8b5903)  
+
+## Press #1  
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F257a856c-ad11-dc0e-4250-1bbb1d1fa5be.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=c9bf5a302405db6d07a8ee1ca1ae19c2) 
+
+## Press Console Output
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F8e0d40c1-5d6a-3abb-b2da-0fd4d46b0afc.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=aa90c23d7bca9e253edd13abaf3ee00a)  
+
+## Console Output Reslult  
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F8aa59ded-7ecf-1552-48cc-696fb32533ce.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=32943babb6e80708a4adc66906eabc16)  
+
+
+# Jenkins + Portainer.io  
+[Jenkins at service  2019-09-26](https://ithelp.ithome.com.tw/articles/10215423)  
+
+## dockerfile  
+```
+docker run --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+```
+
+## Unlock Jenkins  
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190920/20094403oXrX4EC1EJ.png)  
+
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190920/20094403pD8g13lhlH.png)  
+
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190920/20094403AU9i0htAWw.png)  
+
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190920/20094403nuHdMWG1ny.png)  
+
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190920/20094403tdiyD7GjqV.png)  
+
+## Post Installation  
+> restart jenkins by portainer  
+
+### Security  
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190924/20094403uBzrbKf0Uo.png)  
+
+### Plugins  
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190924/20094403c79rutyBRS.png)  
+
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190924/20094403gkQ2wNUfyn.png)  
+
+## Jenkins Fox One 
+
+### 安裝編譯系統所需要的套件: OpenWRT  
+```
+apt-get update && apt-get install -y sudo time git-core subversion build-essential gcc-multilib quilt rsync file libncurses5-dev zlib1g-dev gawk flex gettext wget unzip python vim
+```
+
+### New Project: FreeStyle 
+>    
+![alt tag]()  
+
+> 改變不同參數   
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403x3P1TzIlUp.png)  
+
+> 取得最新原始碼     
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403FvWnGVsxkY.png)  
+
+> 定期建置     
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403qFfQLpdu8j.png)
+
+> make     
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403xiZkBuxsLc.png)  
+
+>    
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403tSWYWCuaIS.png)  
+
+> Console    
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/20094403jq77U17tHl.png)  
+
+> Complete
+![alt tag](https://d1dwq032kyr03c.cloudfront.net/upload/images/20190926/200944033pwURvFbcN.png)  
+
+## Jenkins Fox Two  
+[Jenkins Fox Two 2019-09-28](https://ithelp.ithome.com.tw/articles/10217573)  
+
+### Round 1  
+```
+env
+```
+
 
 # Redmine+Jenkins+GitLab+Elasticsearch by Docker  
 [docker-composeで開発環境全部盛りしてみた Mar 15, 2020](https://qiita.com/euledge/items/52eb2e299a128f528d42)  
@@ -1174,7 +1284,31 @@ http {
 }
 ```
 
-## Docker上に開発環境一式を構築する  
+## Jenkins部署Python專案實戰| IT人
+[Jenkins部署Python專案實戰| IT人 Apr 4, 2019](https://iter01.com/69116.html)  
+
+## docker + selenium + jenkins Autotest  
+[docker + selenium + jenkins 构建自动化测试- 知乎 Oct 25, 2018](https://zhuanlan.zhihu.com/p/41945353)  
+
+
+## Python Unit Test on Jenkins and Docker  
+[Jenkins&DockerでPythonのユニットテストをクリーンな環境で実行できるようにした。 posted at 2018-08-14](https://qiita.com/tatsuakimitani/items/7eb72295f01bdcad7060)  
+
+### 前提  
+ |  
+------------------------------------ | --------------------------------------------- 
+OS | Amazon Linux 2(ami-a9d09ed1)
+Jenkins | jenkins.noarch-2.121.2-1.1
+Docker | docker-ce-18.06.0
+git | git-2.9.5
+Jenkins-plugin | WarningsPublisher
+Jenkins-plugin | CoberturaPublisher
+Jenkins-plugin | JUnitResultArchiver
+
+## Python Docker from Jenkins  
+[Jenkinsから起動したpythonのDockerコンテナ内でpip installする posted at 2018-08-05](https://qiita.com/yoichi22/items/655d56045a8a8950045e)  
+
+## Docker上に開発環境一式を構築する  GitBucket/Jenkins/nginx/DNS/Desktop on Docker  
 [Docker上に開発環境一式を構築する updated at 2016-04-07](https://qiita.com/hakaicode/items/5522a5ad1c280b9cf757)  
 ```
 現在のステータス
@@ -1191,8 +1325,9 @@ http {
 ## Jenkinsを手探りで社内ローカルに立てて詰んだ話  
 [Jenkinsを手探りで社内ローカルに立てて詰んだ話 Dec 14, 2017](https://qiita.com/wryu/items/de3767f231e690fb4e7d)  
 
-## JenkinsとSeleniumを使ってWebコンテンツの自動UIテスト環境を作ろう！  
+## JenkinsとSeleniumを使ってWebコンテンツの自動UIテスト環境を作ろう！  Node.js and Selenium  
 [JenkinsとSeleniumを使ってWebコンテンツの自動UIテスト環境を作ろう！ 4/9, 2015](https://ics.media/entry/6031/)  
+![alt tag](https://ics.media/entry/6031/images/0eba6744a4b1ab0d9b633aabe2910703.png)  
 
 ## JenkinsでCI環境構築チュートリアル ～GitHubとの連携～  
 [JenkinsでCI環境構築チュートリアル ～GitHubとの連携～ 12/9, 2016](https://ics.media/entry/2869/)  
@@ -1200,8 +1335,8 @@ http {
 ## JenkinsでCI環境構築チュートリアル ～GitHubからWebサーバーへのデプロイ～  
 [JenkinsでCI環境構築チュートリアル ～GitHubからWebサーバーへのデプロイ～ 11/14, 2015](https://ics.media/entry/3283/)  
 
-## テスト自動化環境構築  
-[テスト自動化環境構築  Jul 14, 2018](https://qiita.com/jun2014/items/0c97f99e60109f9ec870)  
+## テスト自動化環境構築 on Vagrant and VirturalBox   
+[テスト自動化環境構築  updated at 2019-09-07](https://qiita.com/jun2014/items/0c97f99e60109f9ec870)  
 
 ## dockerでjenkins構築（plugin install errorを出さない）  
 [dockerでjenkins構築（plugin install errorを出さない） Jul 08, 2019](https://qiita.com/_ainosh_/items/04992adbab8502e2ed9e)  
@@ -1286,12 +1421,6 @@ http://localhost:18080/
 ## Jenkinsインストール(Ansible)  
 [Jenkinsインストール(Ansible) Oct 24, 2019](https://qiita.com/tz2i5i_ebinuma/items/c7cdb0520062a6c75685)  
 
-## 【Jenkins備忘録】Python自動テスト環境構築  
-[【Jenkins備忘録】Python自動テスト環境構築①Python準備編  Jun 09, 2018](https://qiita.com/Kento75/items/8558d9ddd2cb04c3e36d)  
-[【Jenkins備忘録】Python自動テスト環境構築②テストコード準備編 Jun 09, 2018](https://qiita.com/Kento75/items/e4ebeb990449f447ce3f)  
-[【Jenkins備忘録】Python自動テスト環境構築③jenkins準備編 Jun 09, 2018](https://qiita.com/Kento75/items/2ecd1f3251c9c344ca69)  
-
-[【Jenkins備忘録】Python自動テスト環境構築④プロジェクト作成編 Jun 09, 2018](https://qiita.com/Kento75/items/f46b4c47a3a33de7ae5d)  
 
 ## Dockerで動くJenkinsから他のコンテナを操作する（Docker outside of Docker） 
 * [Dockerで動くJenkinsから他のコンテナを操作する（Docker outside of Docker） Oct 26, 2019](https://qiita.com/quotto/items/61b44bdeef7dbb915970)  
@@ -1366,6 +1495,7 @@ This project type lets you implement different Jenkinsfiles for different branch
 - 1
 - 2
 - 3
+
 
 
 
