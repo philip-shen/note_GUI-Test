@@ -338,6 +338,113 @@ env
 ```
 
 
+# Jenkins of Docker version Uprage Tips  
+[Docker版JenkinsでのアップグレードTips updated at 2018-12-03](https://qiita.com/nykym/items/6353fcbba679428e0d6e)  
+
+## 前提  
+*  Docker 17.05.0-ce  
+*  docker-compose 1.8.0  
+*  jenkins:2.60.3-alpine  
+*  自分のDocker環境で（当初）永続化していたディレクトリーは以下  
+>  /var/jenkins_home/     
+*  DockerHub上のガイドではアップグレードに関する記載は以下となっている   
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F270508%2F1bf39372-b8c3-60ea-b3ab-cbc4981c2dd8.jpeg?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=52a52ecf98a87662a60a1ea5145920d3)  
+
+## 現象  
+*  ブラウザーからUI上でJenkinsのアップデートをかけバージョンアップした  
+*  普段のバックアップはdocker stopコマンドで停止した状態で実行しており、アップグレード後にdocker-compose downは未実行  
+*  ある日、別件のメンテナンスでdocker-compose downして作業を行いdocker-compose up --build -dを実行したところjenkinsにログインできない状況となった  
+   *  エラー「XmlPullParserException」が発生  
+
+## 1次調査  
+*  エラー・ログの出力は以下  
+> org.xmlpull.v1.XmlPullParserException: only 1.0 is supported as <?xml version not '1.1' (position: START_DOCUMENT seen <?xml version=\'1.1\'... @1:1
+
+## 原因の推測  
+*  新しいバージョンのjenkins.warファイルがダウンロードおよび展開されているディレクトリーが永続化されてない可能性が高い
+
+## 2次調査  
+*  docker-compose down  
+*  xmlファイルを全て1.0に戻す（grepとsedで一括置換）  
+```
+$ sudo grep -lr srv/jenkins/var/jenkins_home/ --include="*.xml" -e "xml version='1.1'" |
+sudo xargs sed -i 's/1.1/1.0/'
+```
+
+*  docker-compose up --build -d  
+*  コンテナに「docker exec -it /bin/bash」でログインしwarのディレクトリーを調査  
+    *  「/usr/share/jenkins/jenkins.war」（warファイルの配置先と推測）  
+    *  「/var/cache/jenkins/war」（warの展開先と推測）  
+```
+$ docker exec -it jenkins_1 /bin/bash
+bash-4.3# find / -name *war* -type d
+/var/cache/jenkins/war
+/var/cache/jenkins/war/META-INF/maven/org.jenkins-ci.main/jenkins-war
+/tmp/jetty-0.0.0.0-8080-war-_jenkins-any-781527918347635117.dir
+/tmp/jetty-0.0.0.0-8080-war-_jenkins-any-2252951103130751390.dir
+/tmp/jetty-0.0.0.0-8080-war-_jenkins-any-5296010582638823514.dir
+/lib/firmware
+/sys/bus/acpi/drivers/hardware_error_device
+/sys/devices/software
+/sys/class/firmware
+/sys/firmware
+/sys/module/firmware_class
+bash-4.3# find / -name *.war -type f
+/usr/share/jenkins/jenkins.war
+bash-4.3# exit
+$
+```
+![alt tag](https://i.imgur.com/vkGPLgj.png)  
+
+*  docker cpコマンドでコンテナ内の該当するディレクトリー（2つ）をDockerホスト上に取得する  
+```
+$ mkdir -p .srv/jenkins/var/cache
+$ mkdir -p .srv/jenkins/var/cache/jenkins/
+$ docker cp jenkins_1:/var/cache/jenkins/war ./srv/jenkins/var/cache/jenkins/
+$ docker cp jenkins_1:/usr/share/jenkins ./srv/jenkins/usr/share/
+```
+
+
+```
+test@test-Ubuntu18:~/docker-jenkins-django-tutorial/jenkins_volume$ mkdir -p ./jenkins/var/cache
+test@test-Ubuntu18:~/docker-jenkins-django-tutorial/jenkins_volume$ mkdir -p ./jenkins/var/cache/jenkins/
+test@test-Ubuntu18:~/docker-jenkins-django-tutorial/jenkins_volume$ mkdir -p ./jenkins/usr
+test@test-Ubuntu18:~/docker-jenkins-django-tutorial/jenkins_volume$ mkdir -p ./jenkins/usr/share/
+test@test-Ubuntu18:~/docker-jenkins-django-tutorial/jenkins_volume$ docker cp jenkins_volume_jenkins_1:/var/jenkins_home/war ./jenkins/var/cache/jenkins/
+test@test-Ubuntu18:~/docker-jenkins-django-tutorial/jenkins_volume$ docker cp jenkins_volume_jenkins_1:/usr/share/jenkins ./jenkins/usr/share/
+```
+![alt tag](https://i.imgur.com/SC14AtE.png)  
+
+![alt tag](https://i.imgur.com/Yd4Teth.png)  
+
+*  docker-compose.ymlを編集しjenkinsのコンテナの永続化ボリュームを2つ追加する  
+```
+./srv/jenkins/var/cache/jenkins/war:/var/cache/jenkins/war
+./srv/jenkins/usr/share/jenkins:/usr/share/jenkins
+```
+
+*  docker-compose.yml on my site  
+```
+./jenkins/var/cache/jenkins/war:/var/jenkins_home/war
+./jenkins/usr/share/jenkins:/usr/share/jenkins
+```
+![alt tag](https://i.imgur.com/DrbNF77.png)  
+
+
+*  docker-compose up --build -dを実行  
+*  ブラウザー上からjenkinsのアップグレードを実行  
+*  docker-compose downを実行  
+*  docker-compose up -dを実行  
+*  jenkinsは正常に起動し、アップグレードしたバージョンが維持されている  
+
+![alt tag](https://i.imgur.com/5CfCyK9.png)  
+
+![alt tag](https://i.imgur.com/vg2uHzQ.png)  
+
+![alt tag](https://i.imgur.com/G3asieQ.png)  
+
+![alt tag](https://i.imgur.com/IVrOKM1.png)  
+
 # Redmine+Jenkins+GitLab+Elasticsearch by Docker  
 [docker-composeで開発環境全部盛りしてみた Mar 15, 2020](https://qiita.com/euledge/items/52eb2e299a128f528d42)  
 
