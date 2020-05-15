@@ -407,6 +407,7 @@ $ docker cp jenkins_volume_jenkins_1:/usr/share/jenkins ./jenkins/usr/share/
 ## Refer docker-compose.yml and Dockerfile  
 [Dockerfile](https://github.com/philip-shen/note_GUI-Test/blob/master/Jenkins/Dockerfile)  
 [docker-compose.yml](https://github.com/philip-shen/note_GUI-Test/blob/master/Jenkins/docker-compose.yml)
+![alt tag](https://i.imgur.com/e2Emf96.png)  
 
 ## Install Docker--- Dockerfile  
 ```
