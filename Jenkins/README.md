@@ -40,7 +40,7 @@ Table of Contents
       * [General--&gt; Advanced--&gt; Use Customer Workspace](#general---advanced---use-customer-workspace)
       * [Build--&gt; Excute shell--&gt; ptyhon xxx.py--&gt; Apply and Save](#build---excute-shell---ptyhon-xxxpy---apply-and-save)
       * [Build Now Button](#build-now-button)
-      * [Press #1](#press-1)
+      * [Press #Number](#press-number)
       * [Press Console Output](#press-console-output)
       * [Console Output Reslult](#console-output-reslult)
    * [Jenkins   Portainer.io](#jenkins--portainerio)
@@ -459,36 +459,31 @@ sudo docker run -u :`id -g $USER` -p 8080:8080 -p 50000:50000 -v /home2:/home2 j
 
 
 # 【Jenkins備忘録】Python AutoTest Environment Setup  
-[【Jenkins備忘録】Python自動テスト環境構築①Python準備編  Jun 09, 2018](https://qiita.com/Kento75/items/8558d9ddd2cb04c3e36d)  
-[【Jenkins備忘録】Python自動テスト環境構築②テストコード準備編 Jun 09, 2018](https://qiita.com/Kento75/items/e4ebeb990449f447ce3f)  
-[【Jenkins備忘録】Python自動テスト環境構築③jenkins準備編 Jun 09, 2018](https://qiita.com/Kento75/items/2ecd1f3251c9c344ca69)  
-
 [【Jenkins備忘録】Python自動テスト環境構築④プロジェクト作成編 updated at 2019-09-11](https://qiita.com/Kento75/items/f46b4c47a3a33de7ae5d)  
 ## Project Setup, New Item  
 ![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F149104e8-9afa-ed3f-a446-8c7388627e42.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=c83e012cf467a943ae436664269efc26)  
 
 ## Item name keyin--> Free Style--> OK.
-![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F099cfe3b-16e7-de72-fbcc-941ea2992055.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=3cdc580f7918eb62807efc6fdaa63dc8)  
+![alt tag](https://i.imgur.com/PKTtXHJ.png)  
 
 ## General--> Advanced--> Use Customer Workspace  
-![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F12260b65-75e6-2c33-2e2f-dcdb1ed44502.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=a43f6682aa3402ccc82b582cfc63801f)  
-
-![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F9bc678f6-6e9a-5297-0edb-bed477c38dd7.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=60a23b5d6c13d8ad2cf0d54fdecf5033)  
+![alt tag](https://i.imgur.com/lNhQr8n.png)  
 
 ## Build--> Excute shell--> ptyhon xxx.py--> Apply and Save   
-![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2Fc5c4b299-a112-4f61-e9a4-f814214ec489.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=c134a851357f2ada335c5d94798a23a2)  
+![alt tag](https://i.imgur.com/w5z6ASR.png)  
 
 ## Build Now Button  
-![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F00071801-13a0-ed78-c220-039435d58e72.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=4647a6b3dffd3190392ad6760e8b5903)  
+![alt tag](https://i.imgur.com/3Eh0WHf.png)  
 
-## Press #1  
-![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F257a856c-ad11-dc0e-4250-1bbb1d1fa5be.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=c9bf5a302405db6d07a8ee1ca1ae19c2) 
+## Press #Number   
+![alt tag](https://i.imgur.com/xhfwN4b.png)  
 
 ## Press Console Output
-![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F8e0d40c1-5d6a-3abb-b2da-0fd4d46b0afc.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&s=aa90c23d7bca9e253edd13abaf3ee00a)  
+![alt tag](https://i.imgur.com/8WNABiB.png)  
 
 ## Console Output Reslult  
-![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F180939%2F8aa59ded-7ecf-1552-48cc-696fb32533ce.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=32943babb6e80708a4adc66906eabc16)  
+![alt tag](https://i.imgur.com/J7d9E6R.png)  
+![alt tag](https://i.imgur.com/nC7Dxbs.png)  
 
 
 # Jenkins + Portainer.io  
@@ -1496,8 +1491,3 @@ This project type lets you implement different Jenkinsfiles for different branch
 - 1
 - 2
 - 3
-
-
-
-
-
