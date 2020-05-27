@@ -714,6 +714,10 @@ The build can be edited and deleted as well.
 [TestLink Tutorial 4 – Test Metrics, Keyword Management, Custom Fields and Test Report Charts April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-4/)  
 
 
+# Troubleshooting
+
+
+# Reference
 [TestLink で LDAP 認証を行う|へっぽこプログラマーの備忘録 2017/10/24](http://kuttsun.blogspot.com/2017/10/testlink-ldap.html)  
 [RedmineとTestlinkの連携 03/25 2011](http://in.shappi.org/article/192485671.html)  
 [TestLinkの使い方メモ　テストプロジェクトとテスト項目の作成 2010/06/19(土)](https://symfoware.blog.fc2.com/blog-entry-443.html)  
@@ -729,12 +733,6 @@ The build can be edited and deleted as well.
 [TestLink 與 Mantis 的整合 08/28 2006](http://crystaliris.bokee.com/5588155.html)  
 
 [testlink測試用例系統搭建完善文檔，一個不錯的測試管理工具 2018年2月5日](https://kknews.cc/zh-tw/code/nkz2l9q.html) 
-
-
-# Troubleshooting
-
-
-# Reference
 
 
 * []()  
