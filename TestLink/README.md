@@ -3,6 +3,7 @@ Table of Contents
 
    * [Table of Contents](#table-of-contents)
    * [Purpose](#purpose)
+   * [TestLink Setup](#testlink-setup)   
       * [TestLink Environment Setup](#testlink-environment-setup)
       * [TestLink Installation](#testlink-installation)
       * [Updated docker-compose.yml](#updated-docker-composeyml)
@@ -20,9 +21,18 @@ Table of Contents
          * [TestLink Installation](#testlink-installation-1)
          * [Gitea Installation](#gitea-installation)
       * [Deployment](#deployment)
-   * [TestLink and USDM(Universal Specification Describing Manner](#testlink-and-usdmuniversal-specification-describing-manner)
+   * [TestLink and USDM(Universal Specification Describing Manner)](#testlink-and-usdmuniversal-specification-describing-manner)
       * [HAYST(Highly Accelerated and Yield Software Testing) and FV Table(Function Verification Table)](#haysthighly-accelerated-and-yield-software-testing-and-fv-tablefunction-verification-table)
       * [USDM and FV Table vs TestLink Data](#usdm-and-fv-table-vs-testlink-data)
+   * [TestLink Tutorial](#testlink-tutorial)
+      * [Setting up a Project](#setting-up-a-project)
+      * [Creating a Test Plan](#creating-a-test-plan)
+      * [How to Create a Build](#how-to-create-a-build)
+      * [Test Suite Management Documentation](#test-suite-management-documentation)
+      * [How to execute Test Cases in TestLink](#how-to-execute-test-cases-in-testlink)
+      * [How to Create Users and Assign Roles Tutorial](#how-to-create-users-and-assign-roles-tutorial)
+      * [Writing Requirements in TestLink](#writing-requirements-in-testlink)
+      * [Assigning the Requirements to Test Case(s)](#assigning-the-requirements-to-test-cases)
    * [Troubleshooting](#troubleshooting)
    * [Reference](#reference)
    * [h1 size](#h1-size)
@@ -30,14 +40,15 @@ Table of Contents
          * [h3 size](#h3-size)
             * [h4 size](#h4-size)
                * [h5 size](#h5-size)
-   * [Table of Contents](#table-of-contents-1)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
 
 # Purpose  
 Take note of TestLink  
 
-# 
+
+# TestLink Setup  
 
 [テスト工程の管理をするツール、TestLinkについて ](https://qiita.com/mima_ita/items/ed56fb1da1e340d397b9)  
 ## TestLink Environment Setup  
@@ -586,6 +597,123 @@ Jenkins 建立 Job 設定 git source, testlink設定 (Custom Fields 一定要填
 ![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F246520%2Fb84bdd4c-9156-85ca-05e0-66c18449528f.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=6e810c8a8407b98bc2278d370c4e3294)  
 
 
+# TestLink Tutorial  
+[TestLink Tutorial – Getting Started Documentation Last updated on: Jan 17, 2020](https://qa.world/testlink-tutorial/)  
+
+## Setting up a Project  
+
+![alt tag](https://qa.world/wp-content/uploads/2019/04/testlink-project.png)  
+
+## Creating a Test Plan  
+* Step 1: Navigate to the Desktop page by clicking on the icon in the top bar as shown in the screenshot below.  
+![alt tag](https://qa.world/wp-content/uploads/2019/04/test-plan-1200x324.png)  
+
+* Step 2: Once a new page is loaded, you can see a Test Plan Management option on the right side of the page. A new page will appear with a button ‘Create’, you have to click that.  
+![alt tag](https://qa.world/wp-content/uploads/2019/04/test-plan-2-1200x343.png)  
+
+* Step 3: Provide information in the fields and click on the Create button at the bottom to finish creating a test plan.  
+![alt tag](https://qa.world/wp-content/uploads/2019/04/test-plan-step-3.png)  
+
+* You can edit and delete a test plan.  
+![alt tag](https://qa.world/wp-content/uploads/2019/04/test-plan-step-4-1200x250.png)  
+
+## How to Create a Build  
+* Step 1: Click on Builds/Releases option in the right side of the dashboard as shown in the screenshot below.  
+![alt tag](https://qa.world/wp-content/uploads/2019/04/testlink-builds-1200x345.png)  
+
+* A new screen will appear, asking you to click on the button ‘Create’.  
+![alt tag](https://qa.world/wp-content/uploads/2019/04/no-builds.png)  
+
+* Step 2: Provide the necessary details and click on the ‘Create’ button at the bottom to successfully create a build.  
+```
+The build should have a unique title.
+
+There are two attributes: active and inactive. Active is set by default, 
+and defines whether the build can be used or not. When we select inactive build, 
+then these will not be listed anywhere on reports or execution pages.
+    
+A release date is a future date when the build will be released.
+    
+The build can be edited and deleted as well.
+```
+![alt tag](https://qa.world/wp-content/uploads/2019/04/testlink-new-build.png)  
+
+## Test Suite Management Documentation  
+* Step 1: Click on the ‘Test Specification’ option in the bottom left of the screen on the dashboard. Upon clicking the option, the following screen will appear.  
+![alt tag](https://qa.world/wp-content/uploads/2019/04/test-suite-1-1200x336.png)  
+
+* Step 2: Fill all the necessary information and click on ‘Save’ button.  
+![alt tag](https://qa.world/wp-content/uploads/2019/04/create-test-suite-1200x607.png)  
+
+## How to execute Test Cases in TestLink  
+* Step 1: As with step 1 of the test suite, navigate to Test Specification and click on the option as shown below (TS-001-ABC).  
+![alt tag](https://qa.world/wp-content/uploads/2019/04/test-case-1.png)  
+
+* Step 2: Click on the settings icon which is marked in black and it will open two options beneath it. Click on the (+) icon to the right of the words ‘Test Case Operations’.
+
+* Step 3: Fill out all the necessary information and click on ‘Create’ button in the form.
+![alt tag](https://qa.world/wp-content/uploads/2019/04/test-case-step-3.png)  
+
+* Test cases can be edited and deleted as required, and testers can easily create further steps for more efficiency by clicking the ‘Create Step’ button.
+
+![alt tag](https://qa.world/wp-content/uploads/2019/04/test-case-structure-1200x553.png)  
+
+* You can then provide necessary information and click on ‘Create’ button at the bottom as shown in the below screenshot. It will link the steps with the respective test case.  
+![alt tag](https://qa.world/wp-content/uploads/2019/04/add-test-case-step.png)  
+
+## How to Create Users and Assign Roles Tutorial  
+
+* Guest: A guest cannot edit, but only view test cases and metrics.  
+
+* Tester: A tester only has access to execute test cases and view test metrics.
+
+*  Senior Tester: A senior tester can view, create, modify, and delete test cases as needed. Similar to a regular tester role, a senior tester can execute test cases and can view test metrics. The senior tester role cannot create test cases in TestLink.
+
+*  Test Lead (Leader) & Admin: These roles can perform all major functionalities such as creating a test plan and build, and are able to alter them at any stage. They can also execute test cases, and assign roles to users along with permissions.  
+
+
+* Step 1:  Click on the User icon in the navigation bar as shown below. A new page will open.  
+![alt tag](https://qa.world/wp-content/uploads/2019/04/assign_role.png)  
+
+* Step 2: Click the ‘Create’ button present on that page.
+
+* Step 3: Enter all required details on the form.
+![alt tag](https://qa.world/wp-content/uploads/2019/04/user-details.png)  
+
+* Step 4: As a new user is created, you can now assign a project to that particular user. To do so, click on the tab ‘Assign Test Project roles’.
+
+* Step 5: Select a project name and assign a role to that user, then click the ‘Update’ button present on that page, as shown in the picture below.
+![alt tag](https://qa.world/wp-content/uploads/2019/04/select-testlink-project-1200x441.png)  
+
+## Writing Requirements in TestLink  
+> A requirement details qualities that a function should possess in order to perform as envisioned.   
+
+* Step 1: Click on the ‘Requirements’ icon in the navigational tab as shown in the picture.  
+![alt tag](https://qa.world/wp-content/uploads/2019/04/writing_req.png)  
+
+* Step 2:  A new page will open. Click on ‘Create’ button.
+
+* Step 3: Fill out the form with the necessary information and click on ‘Save’ button.
+![alt tag](https://qa.world/wp-content/uploads/2019/04/testlink-requirement.png)  
+
+## Assigning the Requirements to Test Case(s)  
+> One of the important activities for the test team is to track test coverage so that no requirements can be missed. In TestLink, one can link the requirements to the test cases by following few of the below steps.  
+
+* Step 1: Navigate to ‘Test Specification’ section and open an existing test case.  
+![alt tag](https://qa.world/wp-content/uploads/2019/04/test-spec.png)  
+
+* Step 2: As you can see in the above screenshot, a ‘Requirement’ button is present along with an icon. You have to click that file icon button in order to link the test cases with the requirements. A dialogue box will then appear.  
+![alt tag](https://qa.world/wp-content/uploads/2019/04/testlink-spec-document.png)  
+
+* Step 3: After selecting your chosen requirements, click the ‘Assign’ button and the operation will be executed successfully.  
+
+
+[TestLink Tutorial: A Layman’s Guide to TestLink Test Management Tool (Tutorial #1) April 16, 2020](https://www.softwaretestinghelp.com/testlink-tutorial-1/)  
+[How to Manage Requirements, Execute Test Cases and Generate Reports Using TestLink – Tutorial #2 April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-2/)  
+[How to Update TestLink Test Case Execution Status Remotely Through Selenium – Tutorial #3 April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-3/)  
+[TestLink Tutorial 4 – Test Metrics, Keyword Management, Custom Fields and Test Report Charts April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-4/)  
+
+
 [TestLink で LDAP 認証を行う|へっぽこプログラマーの備忘録 2017/10/24](http://kuttsun.blogspot.com/2017/10/testlink-ldap.html)  
 [RedmineとTestlinkの連携 03/25 2011](http://in.shappi.org/article/192485671.html)  
 [TestLinkの使い方メモ　テストプロジェクトとテスト項目の作成 2010/06/19(土)](https://symfoware.blog.fc2.com/blog-entry-443.html)  
@@ -602,11 +730,6 @@ Jenkins 建立 Job 設定 git source, testlink設定 (Custom Fields 一定要填
 
 [testlink測試用例系統搭建完善文檔，一個不錯的測試管理工具 2018年2月5日](https://kknews.cc/zh-tw/code/nkz2l9q.html) 
 
-
-[TestLink Tutorial: A Layman’s Guide to TestLink Test Management Tool (Tutorial #1) April 16, 2020](https://www.softwaretestinghelp.com/testlink-tutorial-1/)  
-[How to Manage Requirements, Execute Test Cases and Generate Reports Using TestLink – Tutorial #2 April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-2/)  
-[How to Update TestLink Test Case Execution Status Remotely Through Selenium – Tutorial #3 April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-3/)  
-[TestLink Tutorial 4 – Test Metrics, Keyword Management, Custom Fields and Test Report Charts April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-4/)  
 
 # Troubleshooting
 
@@ -643,3 +766,4 @@ Jenkins 建立 Job 設定 git source, testlink設定 (Custom Fields 一定要填
 - 1
 - 2
 - 3
+
