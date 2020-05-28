@@ -3,7 +3,7 @@ Table of Contents
 
    * [Table of Contents](#table-of-contents)
    * [Purpose](#purpose)
-   * [TestLink Setup](#testlink-setup)   
+   * [TestLink Setup](#testlink-setup)
       * [TestLink Environment Setup](#testlink-environment-setup)
       * [TestLink Installation](#testlink-installation)
       * [Updated docker-compose.yml](#updated-docker-composeyml)
@@ -33,6 +33,7 @@ Table of Contents
       * [How to Create Users and Assign Roles Tutorial](#how-to-create-users-and-assign-roles-tutorial)
       * [Writing Requirements in TestLink](#writing-requirements-in-testlink)
       * [Assigning the Requirements to Test Case(s)](#assigning-the-requirements-to-test-cases)
+   * [Manits Installation](#manits-installation)
    * [Troubleshooting](#troubleshooting)
    * [Reference](#reference)
    * [h1 size](#h1-size)
@@ -713,6 +714,87 @@ The build can be edited and deleted as well.
 [How to Update TestLink Test Case Execution Status Remotely Through Selenium – Tutorial #3 April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-3/)  
 [TestLink Tutorial 4 – Test Metrics, Keyword Management, Custom Fields and Test Report Charts April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-4/)  
 
+# Manits Installation  
+[Setting up PHP-FPM, Nginx, Mariadb on CentOs using docker ](https://stackoverflow.com/questions/52540785/setting-up-php-fpm-nginx-mariadb-on-centos-using-docker/52628260)  
+
+* [https://github.com/matchish/skeleton](https://github.com/matchish/skeleton)
+```
+You can run terminal in any service
+
+docker-compose exec db bash
+docker-compose exec php-fpm bash
+docker-compose exec nginx bash 
+```
+
+[PortainerでMantis Bug Tracker2.15とMariaDBのスタックを作成する Jun 15, 2018](https://serverarekore.blogspot.com/2018/07/portainermantis-bug-tracker215mariadb.html)  
+
+> Dockerfile   
+
+```
+FROM alpine:3.7
+WORKDIR /
+RUN  apk update \
+  && apk add --no-cache apache2 php7-apache2 php7-mysqli php7-pdo php7-pdo_mysql php7-intl php7-mcrypt php7-mbstring php7-session php7-curl php7-json php7-xml php7-zip php7-tokenizer php7-ctype php7-gd php7-xmlwriter php7-xmlreader php7-dom php7-iconv php7-simplexml php7-fileinfo openssl openrc unzip \
+  && rm -rf /var/cache/apk/* \
+  && wget https://sourceforge.net/projects/mantisbt/files/mantis-stable/2.15.0/mantisbt-2.15.0.tar.gz \
+  && tar xvfz mantisbt-2.15.0.tar.gz \
+  && rm -f mantisbt-2.15.0.tar.gz \
+  && mkdir -p /opt \
+  && mv mantisbt-2.15.0 /opt/mantisbt \
+  && chown -R apache:apache /opt/mantisbt \
+  && ln -s  /opt/mantisbt /var/www/localhost/htdocs \
+  && mkdir -p /run/apache2 \
+  && mkdir -p /var/mantisbt \
+  && chown -R apache:apache /var/mantisbt
+EXPOSE 80
+VOLUME ["/var/mantisbt","/opt/mantisbt"]
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+```
+
+> docker-compose.yml  
+
+```
+version: "3"
+services:
+  mantisbt:
+    image: mantisbt:2.15
+    container_name: "mantisbt"
+    volumes:
+      - "mantisbt-data:/var/mantisbt"
+      - "mantisbt-opt:/opt/mantisbt"
+    ports:
+      - "13980:80"
+    depends_on:
+      - mantisbtdb
+  mantisbtdb:
+    image: mariadb:10.3
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    container_name: "mantisbt-db"
+    ports:
+      - "13906:3306"
+    volumes:
+      - "mantisbtdbdb-data:/var/lib/mysql"
+    environment:
+        MYSQL_DATABASE: mantisbt
+        MYSQL_ROOT_PASSWORD: mantisbt
+volumes:
+  mantisbtdbdb-data:
+    driver: local
+  mantisbt-data:
+    driver: local
+  mantisbt-opt:
+    driver: local
+```
+
+
+[novatechweb /docker-mantisbt](https://github.com/novatechweb/docker-mantisbt)  
+
+[【玩转开源】基于Docker搭建Bug管理系统 MantisBT Apr 19, 2019](https://www.shuzhiduo.com/A/l1dyVAG0ze/)  
+[Setup MantisBT on Ubuntu 18.04 | 16.04 with Nginx Nov 23, 2019](https://websiteforstudents.com/setup-mantisbt-on-ubuntu-18-04-16-04-with-nginx/)  
+
+[技术干货丨如何在Docker环境下搭建测试管理平台？ Apr 2, 2019](https://zhuanlan.zhihu.com/p/61208686)  
+[TestLink 與 Mantis 的整合 08/28 2006](http://crystaliris.bokee.com/5588155.html)  
+
 
 # Troubleshooting
 
@@ -730,7 +812,7 @@ The build can be edited and deleted as well.
 [基于python+Testlink+Jenkins实现的接口自动化测试框架V3.0 年03/16, 2017](https://testerhome.com/topics/7992)  
 [Jackden's Blog 12/9, 2019](https://jackden-diary.blogspot.com/)  
 [TestLink 安裝說明 - Krilo 的筆記本 10/25 2006](http://kriloc.blogspot.com/2006/10/)  
-[TestLink 與 Mantis 的整合 08/28 2006](http://crystaliris.bokee.com/5588155.html)  
+
 
 [testlink測試用例系統搭建完善文檔，一個不錯的測試管理工具 2018年2月5日](https://kknews.cc/zh-tw/code/nkz2l9q.html) 
 
@@ -764,4 +846,5 @@ The build can be edited and deleted as well.
 - 1
 - 2
 - 3
+
 
