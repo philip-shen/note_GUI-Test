@@ -715,16 +715,6 @@ The build can be edited and deleted as well.
 [TestLink Tutorial 4 – Test Metrics, Keyword Management, Custom Fields and Test Report Charts April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-4/)  
 
 # Manits Installation  
-[Setting up PHP-FPM, Nginx, Mariadb on CentOs using docker ](https://stackoverflow.com/questions/52540785/setting-up-php-fpm-nginx-mariadb-on-centos-using-docker/52628260)  
-
-* [https://github.com/matchish/skeleton](https://github.com/matchish/skeleton)
-```
-You can run terminal in any service
-
-docker-compose exec db bash
-docker-compose exec php-fpm bash
-docker-compose exec nginx bash 
-```
 
 [PortainerでMantis Bug Tracker2.15とMariaDBのスタックを作成する Jun 15, 2018](https://serverarekore.blogspot.com/2018/07/portainermantis-bug-tracker215mariadb.html)  
 
@@ -798,6 +788,44 @@ Database name (for Database): mantisbt
 
 ![alt tag](https://1.bp.blogspot.com/-GmXq2XGe8pU/WzelFHzxYjI/AAAAAAAAOXA/1tFAytA3OdUsmZ1K_z-ONwbu1z5rAU4pgCLcBGAs/s640/portainer-mantisbt-p4.png@448w_518h.jpg)  
 
+[xlrl/mantisbt](https://hub.docker.com/r/xlrl/mantisbt) 
+> The examples suppose you will have the data for your containers in /srv/mantis. Adapt for your server.
+> docker-compose.yml 
+
+```
+mantisbt:
+  image: xlrl/mantisbt:latest
+  ports:
+    - "33980:80"
+  links:
+    - mysql
+  volumes:
+    - ./config:/var/www/html/config
+    - ./custom:/var/www/html/custom
+  restart: always
+
+mysql:
+  image: mariadb:latest
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=bugtracker
+    - MYSQL_USER=mantisbt
+    - MYSQL_PASSWORD=mantisbt
+  volumes:
+    - ./mysql:/var/lib/mysql
+```
+
+
+[Setting up PHP-FPM, Nginx, Mariadb on CentOs using docker ](https://stackoverflow.com/questions/52540785/setting-up-php-fpm-nginx-mariadb-on-centos-using-docker/52628260)  
+
+* [https://github.com/matchish/skeleton](https://github.com/matchish/skeleton)
+```
+You can run terminal in any service
+
+docker-compose exec db bash
+docker-compose exec php-fpm bash
+docker-compose exec nginx bash 
+```
 
 [novatechweb /docker-mantisbt](https://github.com/novatechweb/docker-mantisbt)  
 
