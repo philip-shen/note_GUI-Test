@@ -786,6 +786,18 @@ volumes:
     driver: local
 ```
 
+> ブラウザからhttp://<Dockerホスト名>:13980/mantisbt/にアクセスする 
+```
+Installer Optionsで以下の項目を入力する
+Type of Database: MySQL Improved
+Hostname (for Database Server): mantisbtdb
+Username (for Database): root
+Password (for Database): mantisbt
+Database name (for Database): mantisbt
+```
+
+![alt tag](https://1.bp.blogspot.com/-GmXq2XGe8pU/WzelFHzxYjI/AAAAAAAAOXA/1tFAytA3OdUsmZ1K_z-ONwbu1z5rAU4pgCLcBGAs/s640/portainer-mantisbt-p4.png@448w_518h.jpg)  
+
 
 [novatechweb /docker-mantisbt](https://github.com/novatechweb/docker-mantisbt)  
 
