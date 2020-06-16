@@ -650,7 +650,7 @@ The build can be edited and deleted as well.
 ![alt tag](https://qa.world/wp-content/uploads/2019/04/create-test-suite-1200x607.png)  
 
 ## Creating a Testcase  
-[TestLink Tutorial: A Complete Guide](#https://www.guru99.com/testlink-tutorial-complete-guide.html)  
+[TestLink Tutorial: A Complete Guide](https://www.guru99.com/testlink-tutorial-complete-guide.html)  
 [Creating a Testcase](https://www.guru99.com/testlink-tutorial-complete-guide.html#18)  
 
 * Step 1: Click on the test suite folder on the left side of the panel under a folder tree structure  
