@@ -1,3 +1,4 @@
+
 Table of Contents
 =================
 
@@ -29,6 +30,8 @@ Table of Contents
       * [Creating a Test Plan](#creating-a-test-plan)
       * [How to Create a Build](#how-to-create-a-build)
       * [Test Suite Management Documentation](#test-suite-management-documentation)
+      * [Creating a Testcase](#creating-a-testcase)
+      * [Assigning test case to test plan](#assigning-test-case-to-test-plan)
       * [How to execute Test Cases in TestLink](#how-to-execute-test-cases-in-testlink)
       * [How to Create Users and Assign Roles Tutorial](#how-to-create-users-and-assign-roles-tutorial)
       * [Writing Requirements in TestLink](#writing-requirements-in-testlink)
@@ -646,6 +649,63 @@ The build can be edited and deleted as well.
 * Step 2: Fill all the necessary information and click on ‘Save’ button.  
 ![alt tag](https://qa.world/wp-content/uploads/2019/04/create-test-suite-1200x607.png)  
 
+## Creating a Testcase  
+[TestLink Tutorial: A Complete Guide](#https://www.guru99.com/testlink-tutorial-complete-guide.html#18)  
+[Creating a Testcase](https://www.guru99.com/testlink-tutorial-complete-guide.html#18)  
+
+* Step 1: Click on the test suite folder on the left side of the panel under a folder tree structure  
+![alt tag](https://www.guru99.com/images/1-2015/011915_1034_TestLinkTut18.png)  
+
+
+* Step 2: Click on the setting icon in the right side panel. List of test case operations will be displayed on the right side panel  
+![alt tag](https://www.guru99.com/images/1-2015/011915_1034_TestLinkTut19.png)  
+
+
+* Step 3: New window will open, to create test cases click on create a button in test-case operations  
+![alt tag](https://www.guru99.com/images/1-2015/011915_1034_TestLinkTut20.png)  
+
+
+* Step 4: Enter the details in the test case specification page  
+![alt tag](https://www.guru99.com/images/1-2015/011915_1034_TestLinkTut21.png)  
+
+
+* Step 5: After entering the details, click on "create" button to save the details. The test-case for Guru99 is created successfully  
+![alt tag](https://www.guru99.com/images/1-2015/011915_1034_TestLinkTut22.png)  
+
+
+* Step 6: Click on test-case from the folder, as shown above, it will open a window. Click on "create steps" button in a test case. It will open a test case step editor  
+![alt tag](https://www.guru99.com/images/1-2015/011915_1034_TestLinkTut23.png)  
+
+
+* Step 7: It will open another window on the same page, in that window you have to enter the following details
+
+  * 1. Enter the step-action for your test case
+  * 2. Enter the details about the step action
+  * 3. Click save it and add another step action OR click save and exit tab if there is no more test step to add
+
+![alt tag](https://www.guru99.com/images/1-2015/011915_1034_TestLinkTut24.png)  
+
+
+* Step 8: Once you save and exit the test step, it will appear like this 
+![alt tag](https://www.guru99.com/images/1-2015/011915_1034_TestLinkTut25.png)  
+
+## Assigning test case to test plan  
+[Assigning test case to test plan](https://www.guru99.com/testlink-tutorial-complete-guide.html#19)  
+
+* Step 1: Click on the setting icon TestLink Tutorial: A Complete Guide on the test panel. It will show the list of operations. 
+
+* Step 2: Click on "Add to Test Plans"  
+![alt tag](https://www.guru99.com/images/1-2015/011915_1034_TestLinkTut27.png)  
+
+
+* Step 3: New window will open, search your project "Guru99"  
+
+  * 1.  Mark the checkbox against your test plan
+  * 2.  Click on add button
+
+![alt tag](https://www.guru99.com/images/1-2015/011915_1034_TestLinkTut28.png)  
+
+
 ## How to execute Test Cases in TestLink  
 * Step 1: As with step 1 of the test suite, navigate to Test Specification and click on the option as shown below (TS-001-ABC).  
 ![alt tag](https://qa.world/wp-content/uploads/2019/04/test-case-1.png)  
@@ -859,6 +919,7 @@ docker-compose exec nginx bash
 
 * []()  
 ![alt tag]()  
+![alt tag]()  
 
 # h1 size
 
@@ -886,5 +947,3 @@ docker-compose exec nginx bash
 - 1
 - 2
 - 3
-
-
