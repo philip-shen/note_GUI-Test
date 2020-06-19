@@ -768,6 +768,10 @@ The build can be edited and deleted as well.
 
 * Step 3: After selecting your chosen requirements, click the ‘Assign’ button and the operation will be executed successfully.  
 
+[TestLink - Test Execution Setup](https://www.tutorialspoint.com/testlink/testlink_test_execution_setup.htm)  
+[TestLink Tutorial: A Complete Guide Executing a test case](https://www.guru99.com/testlink-tutorial-complete-guide.html#23)  
+
+
 
 [TestLink Tutorial: A Layman’s Guide to TestLink Test Management Tool (Tutorial #1) April 16, 2020](https://www.softwaretestinghelp.com/testlink-tutorial-1/)  
 [How to Manage Requirements, Execute Test Cases and Generate Reports Using TestLink – Tutorial #2 April 16, 202](https://www.softwaretestinghelp.com/testlink-tutorial-2/)  
