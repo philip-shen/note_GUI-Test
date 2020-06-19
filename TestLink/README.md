@@ -25,6 +25,7 @@ Table of Contents
    * [TestLink and USDM(Universal Specification Describing Manner)](#testlink-and-usdmuniversal-specification-describing-manner)
       * [HAYST(Highly Accelerated and Yield Software Testing) and FV Table(Function Verification Table)](#haysthighly-accelerated-and-yield-software-testing-and-fv-tablefunction-verification-table)
       * [USDM and FV Table vs TestLink Data](#usdm-and-fv-table-vs-testlink-data)
+   * [TestLink Components](#testlink-components)
    * [TestLink Tutorial](#testlink-tutorial)
       * [Setting up a Project](#setting-up-a-project)
       * [Creating a Test Plan](#creating-a-test-plan)
@@ -44,9 +45,9 @@ Table of Contents
          * [h3 size](#h3-size)
             * [h4 size](#h4-size)
                * [h5 size](#h5-size)
+   * [Table of Contents](#table-of-contents-1)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
-
 
 # Purpose  
 Take note of TestLink  
@@ -597,8 +598,20 @@ Jenkins 建立 Job 設定 git source, testlink設定 (Custom Fields 一定要填
 
 ![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F246520%2Faa91c33d-8422-d4f2-7bef-ec08d0c94ca8.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=ed5c5fe7f41e9a254b9883cb2e086c79)  
 
-## USDM and FV Table vs TestLink Data
+## USDM and FV Table vs TestLink Data  
 ![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.ap-northeast-1.amazonaws.com%2F0%2F246520%2Fb84bdd4c-9156-85ca-05e0-66c18449528f.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=6e810c8a8407b98bc2278d370c4e3294)  
+
+# TestLink Components  
+[TestLinkの構造を理解したかったんだ posted at 2015-02-09](https://qiita.com/bamchoh/items/c38df7eafb8da0357067)  
+
+> Test Plan 下の Test Case は Test Specification 下の Test Case の部分写像。Test Specification の中から Test Case を抽出して Test Plan をつくる。  
+
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F12550%2Ff8f3fb71-0d36-28e9-d09d-7a2bd295c12e.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=1edde83945ca5b1e4340f45ba604bdcb) 
+
+[TestLinkのデータベース内部 posted at 2015-02-14](https://qiita.com/bamchoh/items/aeee48b2fff08f752d31)  
+
+[Test Link に 自作のレポートを表示する updated at 2016-03-10](https://qiita.com/bamchoh/items/058dea058cacb3dbd24f)  
+![alt tag](https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F12550%2F217bb8a3-ef72-4db6-9969-1174af1443cf.png?ixlib=rb-1.2.2&auto=format&gif-q=60&q=75&w=1400&fit=max&s=ac0118bdbf572f860cb35a4242bee58a)
 
 
 # TestLink Tutorial  
@@ -951,3 +964,5 @@ docker-compose exec nginx bash
 - 1
 - 2
 - 3
+
+
