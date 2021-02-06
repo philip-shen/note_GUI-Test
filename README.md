@@ -1,3 +1,42 @@
+Table of Contents
+=================
+
+   * [Purpose](#purpose)
+   * [Table of Contents](#table-of-contents)
+   * [Auto Test Tools](#auto-test-tools)
+      * [GUI Test Tools](#gui-test-tools)
+         * [Selenium（WebDriver）](#seleniumwebdriver)
+         * [Selenium（IDE）](#seleniumide)
+         * [Selenide](#selenide)
+         * [Katalon Recorder（Selenium IDE の強化版）](#katalon-recorderselenium-ide-の強化版)
+         * [Cypress](#cypress)
+         * [Testcafe](#testcafe)
+         * [Chromeless](#chromeless)
+         * [Puppeteer](#puppeteer)
+         * [mabl](#mabl)
+         * [Autify](#autify)
+      * [GUI Mobile Test Tools](#gui-mobile-test-tools)
+         * [Appium](#appium)
+         * [Smartphone Test Farm](#smartphone-test-farm)
+         * [MagicPod](#magicpod)
+         * [Calabash](#calabash)
+   * [Auto Test Tool Library](#auto-test-tool-library)
+      * [モバイル向けテスト自動化ツール・ライブラリ](#モバイル向けテスト自動化ツールライブラリ)
+         * [Android / iOS](#android--ios)
+         * [iOS](#ios)
+         * [Android](#android)
+   * [SmartPhone Test](#smartphone-test)
+   * [Troubleshooting](#troubleshooting)
+   * [Reference](#reference)
+   * [h1 size](#h1-size)
+      * [h2 size](#h2-size)
+         * [h3 size](#h3-size)
+            * [h4 size](#h4-size)
+               * [h5 size](#h5-size)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
+
 # Purpose
 Take note of GUI Auto Test stuffs  
 
@@ -97,3 +136,5 @@ Take note of GUI Auto Test stuffs
 - 1
 - 2
 - 3
+
+
